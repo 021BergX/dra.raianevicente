@@ -137,6 +137,21 @@ header {
     justify-content: center; /* Mantém apenas o texto centralizado verticalmente */
     padding-bottom: 80px; /* Devolve o respiro (espaço) apenas para o lado do texto */
 }
+/* RESTAURANDO A FORMATAÇÃO DO TEXTO DO HERO */
+.hero-content h2 {
+    color: var(--white) !important;
+    font-size: 45px;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    font-family: var(--font-heading);
+}
+
+.hero-content p {
+    color: var(--white);
+    font-size: 18px;
+    margin-bottom: 30px;
+    font-weight: 300;
+}
 
 .hero-image {
     flex: 1;
