@@ -589,4 +589,75 @@ footer {
     border-radius: 25px; /* Mantém as pontas arredondadas e sofisticadas */
     margin-bottom: 20px;
     display: block;
+}/* =========================================
+   SEÇÃO DE DEPOIMENTOS (LOW PROFILE)
+   ========================================= */
+.depoimentos {
+    background-color: var(--bg-color); /* Fundo off-white */
+    padding: 80px 0;
+}
+
+.depoimentos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    margin-top: 50px;
+}
+
+.depoimento-card {
+    background-color: var(--white);
+    padding: 40px;
+    border-radius: 0; /* Design mais reto e arquitetônico */
+    border-left: 4px solid var(--primary-color); /* Linha de destaque minimalista */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+}
+
+.depoimento-texto {
+    font-family: 'Playfair Display', serif; /* Fonte clássica para citações */
+    font-size: 18px;
+    font-style: italic;
+    color: var(--primary-dark);
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.depoimento-autor {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--primary-color);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* =========================================
+   PAINEL DE ACESSIBILIDADE FLUTUANTE
+   ========================================= */
+.acessibilidade-panel {
+    position: fixed;
+    left: 20px; /* Fica no canto inferior esquerdo */
+    bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 999;
+}
+
+.btn-acessibilidade {
+    background-color: var(--primary-dark); /* Tom escuro para alto contraste */
+    color: var(--white);
+    border: none;
+    width: 45px;
+    height: 45px;
+    border-radius: 5px; /* Formato estrutural */
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    transition: background-color 0.3s ease;
+}
+
+.btn-acessibilidade:hover {
+    background-color: var(--primary-color);
 }

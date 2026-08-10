@@ -40,3 +40,18 @@ slider.addEventListener('mousemove', (e) => {
     const walk = (x - startX) * 1.5; // Multiplicador de velocidade (1.5x)
     slider.scrollLeft = scrollLeft - walk;
 });
+
+/* CONTROLE DE ACESSIBILIDADE: TAMANHO DA FONTE */
+let tamanhoFonteAtual = 100; // Porcentagem inicial (100%)
+
+function mudarTamanhoTexto(step) {
+    // Cada clique altera 5% para cima ou para baixo
+    tamanhoFonteAtual += (step * 5);
+    
+    // Limites de segurança para não quebrar o layout (entre 90% e 120%)
+    if(tamanhoFonteAtual > 120) tamanhoFonteAtual = 120;
+    if(tamanhoFonteAtual < 90) tamanhoFonteAtual = 90;
+    
+    // Aplica o novo tamanho no corpo do site
+    document.body.style.fontSize = tamanhoFonteAtual + '%';
+}
