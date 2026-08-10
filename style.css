@@ -57,23 +57,16 @@ header {
     align-items: center;
 }
 
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 15px;
+/* ESTILO DA NOVA LOGO OFICIAL */
+.logo-img {
+    height: 70px; /* Você pode aumentar ou diminuir esse valor para ajustar o tamanho */
+    width: auto;
+    display: block;
+    transition: transform 0.3s ease;
 }
 
-.logo-rv {
-    background-color: var(--primary-color);
-    color: var(--white);
-    font-family: var(--font-heading);
-    font-size: 24px;
-    width: 50px;
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
+.logo-img:hover {
+    transform: scale(1.05); /* Dá um leve zoom quando passa o mouse por cima */
 }
 
 .logo-text h1 {
@@ -461,4 +454,14 @@ footer {
 .especialidade-card * {
     user-select: none;
     -webkit-user-drag: none;
+}
+/* ESTILO PARA AS IMAGENS REAIS DOS CARDS (QUADRADAS COM BORDAS ARREDONDADAS) */
+.card-img-real {
+    width: 100%;
+    aspect-ratio: 1 / 1; 
+    height: auto; 
+    object-fit: cover; 
+    border-radius: 35px; 
+    margin-bottom: 20px;
+    display: block;
 }
