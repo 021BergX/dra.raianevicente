@@ -115,33 +115,45 @@ header {
 }
 
 /* HERO SECTION */
+/* AJUSTES NA SEÇÃO HERO PARA A IMAGEM NÃO FLUTUAR */
 .hero {
     background-color: var(--primary-color);
     color: var(--white);
-    padding: 80px 0;
+    /* Tiramos o padding de baixo (o último 0) para a foto encostar na borda */
+    padding: 80px 0 0 0; 
+    overflow: hidden; /* Esconde qualquer "rebarba" da foto que passe do limite */
 }
 
 .hero-container {
     display: flex;
-    align-items: center;
+    align-items: stretch; /* Permite que a caixa da foto estique até o chão */
     gap: 50px;
 }
 
 .hero-content {
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Mantém apenas o texto centralizado verticalmente */
+    padding-bottom: 80px; /* Devolve o respiro (espaço) apenas para o lado do texto */
 }
 
-.hero-content h2 {
-    color: var(--white);
-    font-size: 42px;
-    line-height: 1.2;
-    margin-bottom: 20px;
+.hero-image {
+    flex: 1;
+    display: flex;
+    align-items: flex-end; /* A mágica acontece aqui: empurra a foto para o chão */
+    justify-content: center;
 }
 
-.hero-content p {
-    font-size: 18px;
-    margin-bottom: 30px;
-    font-weight: 300;
+/* ESTILO DA FOTO PRINCIPAL COM FUNDO TRANSPARENTE */
+.main-photo {
+    width: 100%;
+    max-width: 500px; /* Aumentei um pouco para ela ganhar mais destaque */
+    height: auto;
+    object-fit: contain; /* É o melhor formato para PNG transparente */
+    border-radius: 0; /* Como a foto é recortada, não precisamos de borda arredondada aqui */
+    box-shadow: none; /* Removemos a sombra para não marcar o corte quadrado da foto */
+    margin-bottom: -2px; /* Puxa a foto 2px para baixo para garantir que o corte reto fique escondido sob a linha */
 }
 
 .btn-outline {
