@@ -263,16 +263,16 @@ header {
     margin-top: 10px;
 }
 /* REFORÇANDO OS CARDS E AS IMAGENS DE ESPECIALIDADES */
+/* AJUSTE OPCIONAL: DEIXANDO O CARD UM POUCO MAIS ESTREITO */
 .especialidade-card {
     background: var(--white);
-    padding: 30px;
+    padding: 25px; /* Reduzi um pouco o espaçamento interno para ganhar espaço */
     border-radius: 20px;
     text-align: center;
     box-shadow: 0 10px 30px rgba(0,0,0,0.03);
     
-    /* Correção crucial para manter os cards uniformes */
-    min-width: 320px; 
-    max-width: 350px; /* Impede que o card estique demais e ocupe a tela toda */
+    min-width: 280px; 
+    max-width: 310px; /* Card mais estreito = mais cards visíveis na tela */
     flex: 0 0 auto; 
     scroll-snap-align: center;
     transition: transform 0.4s ease, filter 0.4s ease, opacity 0.4s ease;
@@ -463,8 +463,69 @@ footer {
         flex-direction: column;
         text-align: center;
     }
-    .hero-content h2 {
-        font-size: 32px;
+    /* =========================================
+   ESTILO DO TEXTO HERO (INSPIRADO NA REFERÊNCIA)
+   ========================================= */
+
+/* A tag arredondada acima do título */
+.hero-badge {
+    display: inline-block;
+    background-color: rgba(255, 255, 255, 0.15); /* Fundo semi-transparente elegante */
+    color: var(--white);
+    padding: 6px 18px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+}
+
+/* O título gigante e em negrito */
+.hero-content h2 {
+    color: var(--white) !important;
+    font-family: 'Montserrat', sans-serif !important; /* Muda para a fonte moderna */
+    font-size: 52px;
+    font-weight: 800; /* Deixa a letra bem grossa (Black) */
+    line-height: 1.1;
+    margin-bottom: 25px;
+}
+
+/* O efeito de cor mais clara/apagada em algumas palavras */
+.hero-content h2 .text-highlight {
+    color: rgba(255, 255, 255, 0.55); 
+}
+
+/* O texto do parágrafo */
+.hero-content p {
+    color: var(--white) !important;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 35px;
+    font-weight: 400;
+    max-width: 90%;
+}
+
+/* NOVO BOTÃO: Sólido, grosso e chamativo */
+.btn-hero-solid {
+    display: inline-flex;
+    align-items: center;
+    background-color: var(--bg-color); /* Usa o off-white da paleta como fundo */
+    color: var(--primary-dark); /* Texto marrom escuro para dar contraste */
+    text-decoration: none;
+    padding: 16px 35px;
+    border-radius: 40px; /* Bem arredondado como na imagem */
+    font-weight: 700;
+    font-size: 16px;
+    font-family: 'Montserrat', sans-serif;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-hero-solid:hover {
+    transform: translateY(-4px); /* Pula um pouquinho ao passar o mouse */
+    box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+}
     }
     .cards-grid {
         grid-template-columns: 1fr;
@@ -472,7 +533,6 @@ footer {
     .formacao-lista {
         text-align: left;
     }
-}
 /* CURSOR DE ARRASTE PARA O CARROSSEL */
 .cards-grid {
     cursor: grab;
@@ -490,12 +550,12 @@ footer {
     -webkit-user-drag: none;
 }
 /* ESTILO PARA AS IMAGENS REAIS DOS CARDS (QUADRADAS COM BORDAS ARREDONDADAS) */
+/* DEIXANDO AS IMAGENS DOS CARDS MAIS COMPACTAS */
 .card-img-real {
     width: 100%;
-    aspect-ratio: 1 / 1; 
-    height: auto; 
-    object-fit: cover; 
-    border-radius: 35px; 
+    height: 220px; /* Fixamos uma altura bem menor para caber na tela */
+    object-fit: cover; /* Garante que a foto preencha esse novo espaço sem amassar */
+    border-radius: 25px; /* Mantém as pontas arredondadas e sofisticadas */
     margin-bottom: 20px;
     display: block;
 }
