@@ -261,25 +261,62 @@ header {
     margin-top: 10px;
 }
 
+/* CONTAINER DO CARROSSEL */
 .cards-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
     gap: 30px;
+    overflow-x: auto; /* Habilita a rolagem horizontal */
+    padding: 30px 10px; /* Espaço extra para o zoom não cortar as bordas */
+    scroll-snap-type: x mandatory; /* Deixa a rolagem suave e "puxa" o card */
+    
+    /* Estilo da barra de rolagem para navegadores modernos */
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-color) var(--bg-color);
 }
 
+/* Estilo da barra de rolagem (Chrome/Edge/Safari) */
+.cards-grid::-webkit-scrollbar {
+    height: 8px;
+}
+.cards-grid::-webkit-scrollbar-thumb {
+    background-color: var(--primary-color);
+    border-radius: 10px;
+}
+
+/* CARDS DO CARROSSEL */
 .especialidade-card {
     background: var(--white);
     padding: 30px;
     border-radius: 20px;
     text-align: center;
     box-shadow: 0 10px 30px rgba(0,0,0,0.03);
-    transition: transform 0.3s ease;
+    min-width: 320px; /* Define a largura fixa para o carrossel funcionar */
+    flex: 0 0 auto;
+    scroll-snap-align: center; /* Centraliza o card ao rolar */
+    
+    /* Transições suaves para o zoom e o desfoque */
+    transition: transform 0.4s ease, filter 0.4s ease, opacity 0.4s ease;
 }
 
-.especialidade-card:hover {
-    transform: translateY(-10px);
+/* 
+   O EFEITO MÁGICO: 
+   Quando o mouse entra no contêiner (.cards-grid), desfoca TODOS os cards.
+*/
+.cards-grid:hover .especialidade-card {
+    filter: blur(4px);
+    opacity: 0.6;
 }
 
+/* 
+   Exceção: O card que está EXATAMENTE com o mouse em cima 
+   perde o desfoque, ganha zoom e fica 100% opaco.
+*/
+.cards-grid .especialidade-card:hover {
+    transform: scale(1.08);
+    filter: blur(0);
+    opacity: 1;
+    z-index: 2;
+}
 .placeholder-img {
     height: 200px;
     background-color: var(--bg-color);
