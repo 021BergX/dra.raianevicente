@@ -116,17 +116,16 @@ header {
 
 /* HERO SECTION */
 /* AJUSTES NA SEÇÃO HERO PARA A IMAGEM NÃO FLUTUAR */
+/* AJUSTES PARA A BARRA MARROM TER A ALTURA EXATA DA FOTO */
 .hero {
     background-color: var(--primary-color);
-    color: var(--white);
-    /* Tiramos o padding de baixo (o último 0) para a foto encostar na borda */
-    padding: 80px 0 0 0; 
-    overflow: hidden; /* Esconde qualquer "rebarba" da foto que passe do limite */
+    padding: 0; /* Removemos o espaçamento que empurrava a foto para baixo */
+    overflow: hidden;
 }
 
 .hero-container {
     display: flex;
-    align-items: stretch; /* Permite que a caixa da foto estique até o chão */
+    align-items: stretch; /* Garante que a coluna de texto e a coluna da foto tenham exatamente a mesma altura */
     gap: 50px;
 }
 
@@ -134,41 +133,22 @@ header {
     flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Mantém apenas o texto centralizado verticalmente */
-    padding-bottom: 80px; /* Devolve o respiro (espaço) apenas para o lado do texto */
-}
-/* RESTAURANDO A FORMATAÇÃO DO TEXTO DO HERO */
-.hero-content h2 {
-    color: var(--white) !important;
-    font-size: 45px;
-    line-height: 1.2;
-    margin-bottom: 20px;
-    font-family: var(--font-heading);
-}
-
-.hero-content p {
-    color: var(--white);
-    font-size: 18px;
-    margin-bottom: 30px;
-    font-weight: 300;
+    justify-content: center; /* Centraliza o texto verticalmente */
+    padding: 80px 0; /* Colocamos o "respiro" de volta APENAS no texto, não na foto */
 }
 
 .hero-image {
     flex: 1;
     display: flex;
-    align-items: flex-end; /* A mágica acontece aqui: empurra a foto para o chão */
-    justify-content: center;
 }
-
-/* ESTILO DA FOTO PRINCIPAL COM FUNDO TRANSPARENTE */
 .main-photo {
     width: 100%;
-    max-width: 500px; /* Aumentei um pouco para ela ganhar mais destaque */
-    height: auto;
-    object-fit: contain; /* É o melhor formato para PNG transparente */
-    border-radius: 0; /* Como a foto é recortada, não precisamos de borda arredondada aqui */
-    box-shadow: none; /* Removemos a sombra para não marcar o corte quadrado da foto */
-    margin-bottom: -2px; /* Puxa a foto 2px para baixo para garantir que o corte reto fique escondido sob a linha */
+    height: 100%; /* Força a imagem a preencher do topo à base da barra marrom */
+    max-width: none;
+    max-height: none;
+    object-fit: cover; /* Garante que a foto cubra o espaço perfeitamente sem ficar achatada ou esticada */
+    border-radius: 0;
+    margin: 0;
 }
 
 .btn-outline {
@@ -222,13 +202,15 @@ header {
 .sobre-image {
     flex: 1;
 }
-
+/* CORRIGINDO A IMAGEM DA SEÇÃO SOBRE */
 .portrait-photo {
-    height: 500px;
-    background-color: var(--bg-color);
-    border-color: var(--primary-color);
-    color: var(--primary-color);
-    border-radius: 20px 20px 0 20px; /* Estilo elegante para a foto */
+    width: 100%;
+    max-width: 450px; /* Limita a largura máxima da foto */
+    height: 500px; /* Trava a altura */
+    object-fit: cover; /* Garante que a imagem não fique esticada ou achatada */
+    border-radius: 20px 20px 0 20px; /* Restaura a borda curvada elegante */
+    margin: 0 auto; /* Centraliza a imagem se a tela for muito larga */
+    display: block; /* Evita espaços em branco indesejados abaixo da imagem */
 }
 
 .sobre-content {
@@ -279,6 +261,31 @@ header {
 .section-header h2 {
     font-size: 40px;
     margin-top: 10px;
+}
+/* REFORÇANDO OS CARDS E AS IMAGENS DE ESPECIALIDADES */
+.especialidade-card {
+    background: var(--white);
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+    
+    /* Correção crucial para manter os cards uniformes */
+    min-width: 320px; 
+    max-width: 350px; /* Impede que o card estique demais e ocupe a tela toda */
+    flex: 0 0 auto; 
+    scroll-snap-align: center;
+    transition: transform 0.4s ease, filter 0.4s ease, opacity 0.4s ease;
+}
+
+.card-img-real {
+    width: 100%; /* A imagem ocupa 100% da largura DO CARD, e não da tela */
+    aspect-ratio: 1 / 1; /* Força o formato quadrado perfeito */
+    height: auto; 
+    object-fit: cover; 
+    border-radius: 35px; /* Restaura as pontas bem arredondadas */
+    margin-bottom: 20px;
+    display: block;
 }
 
 /* CONTAINER DO CARROSSEL */
