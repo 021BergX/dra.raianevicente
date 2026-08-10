@@ -446,3 +446,19 @@ footer {
         text-align: left;
     }
 }
+/* CURSOR DE ARRASTE PARA O CARROSSEL */
+.cards-grid {
+    cursor: grab;
+}
+
+.cards-grid.active {
+    cursor: grabbing;
+    scroll-snap-type: none; /* Desativa a trava automática para o arraste ficar livre */
+}
+
+/* Evita que o navegador tente arrastar o card como se fosse um link ou imagem solta */
+.especialidade-card, 
+.especialidade-card * {
+    user-select: none;
+    -webkit-user-drag: none;
+}
