@@ -297,21 +297,20 @@ header {
     /* Transições suaves para o zoom e o desfoque */
     transition: transform 0.4s ease, filter 0.4s ease, opacity 0.4s ease;
 }
-
 /* 
-   O EFEITO MÁGICO: 
-   Quando o mouse entra no contêiner (.cards-grid), desfoca TODOS os cards.
+   O EFEITO CORRIGIDO: 
+   Usamos o :has() para detectar se EXATAMENTE um card está sendo focado.
+   Se sim, aplicamos o desfoque em todos os cards que NÃO estão com o mouse (:not(:hover)).
 */
-.cards-grid:hover .especialidade-card {
+.cards-grid:has(.especialidade-card:hover) .especialidade-card:not(:hover) {
     filter: blur(4px);
     opacity: 0.6;
 }
 
 /* 
-   Exceção: O card que está EXATAMENTE com o mouse em cima 
-   perde o desfoque, ganha zoom e fica 100% opaco.
+   O card que está com o mouse ganha o zoom e se mantém nítido.
 */
-.cards-grid .especialidade-card:hover {
+.especialidade-card:hover {
     transform: scale(1.08);
     filter: blur(0);
     opacity: 1;
