@@ -324,6 +324,8 @@ header {
     align-items: center;
     width: 100%;
     padding: 0 70px; /* Aumentamos de 40px para 70px para garantir que o botão nunca toque no card */
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
 }
 
 .carousel-track {
