@@ -420,64 +420,45 @@ header {
 
 /* FOOTER */
 footer {
-    background-color: var(--primary-color);
+    background-color: var(--primary-dark);
     color: var(--white);
-    padding: 70px 0 30px 0;
+    padding: 60px 0 20px;
 }
 
 .footer-container {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
-    flex-wrap: wrap; /* Permite que os itens quebrem a linha no celular */
-    gap: 40px;
     margin-bottom: 40px;
 }
 
-/* 1. TRAVANDO O TAMANHO DA LOGO GIGANTE */
-.footer-logo {
-    flex: 1;
-    min-width: 250px;
+.footer-logo h2 {
+    color: var(--white);
+    font-size: 24px;
+    margin-top: 15px;
 }
 
-.footer-logo img {
-    width: 100%;
-    max-width: 220px; /* Limite máximo para a logo não estourar a tela */
-    height: auto;
-    display: block;
-    margin-bottom: 20px;
-}
-
-/* 2. ALINHAMENTO DOS TEXTOS DO RODAPÉ */
-.footer-info, 
-.footer-social {
-    flex: 1;
-    min-width: 250px;
+.footer-logo p {
+    color: #ccc;
+    font-size: 14px;
 }
 
 .footer-info h4 {
-    font-family: 'Playfair Display', serif;
-    font-size: 22px;
-    margin-bottom: 20px;
     color: var(--white);
+    margin-bottom: 15px;
 }
 
 .footer-info p {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 15px;
-    line-height: 1.8;
+    color: #ccc;
     margin-bottom: 10px;
-    color: rgba(255, 255, 255, 0.8); /* Branco levemente transparente para contraste elegante */
+    font-size: 14px;
 }
 
-/* 3. BARRA INFERIOR DE DIREITOS AUTORAIS */
 .footer-bottom {
     text-align: center;
-    padding-top: 25px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1); /* Linha divisória sutil */
-    font-family: 'Montserrat', sans-serif;
-    font-size: 13px;
-    color: rgba(255, 255, 255, 0.6);
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 20px;
+    font-size: 12px;
+    color: #999;
 }
 
 /* WHATSAPP FLOAT */
@@ -695,52 +676,4 @@ footer {
 
 .btn-acessibilidade:hover {
     background-color: var(--primary-color);
-}
-/* =========================================
-   ACESSIBILIDADE: ALTO CONTRASTE E DESTAQUES
-   ========================================= */
-/* Modo de Alto Contraste (Fundo escuro, texto claro e amarelo) */
-body.alto-contraste {
-    --bg-color: #0a0a0a;
-    --white: #141414;
-    --primary-color: #000000;
-    --primary-dark: #FFD700; /* Amarelo muito forte para destaque */
-    color: #ffffff !important;
-}
-
-body.alto-contraste p,
-body.alto-contraste span,
-body.alto-contraste h3,
-body.alto-contraste h4,
-body.alto-contraste li {
-    color: #ffffff !important;
-}
-
-body.alto-contraste h2 {
-    color: #FFD700 !important;
-}
-
-/* Ajuste nos cards para o modo escuro */
-body.alto-contraste .especialidade-card,
-body.alto-contraste .depoimento-card {
-    background-color: #141414;
-    border: 1px solid #FFD700;
-}
-
-body.alto-contraste .btn-saiba-mais,
-body.alto-contraste .btn-hero-solid,
-body.alto-contraste .btn-agendar {
-    background-color: #FFD700 !important;
-    color: #000000 !important;
-    font-weight: 900;
-}
-
-/* Destacar Links (Cria bordas para mostrar onde é clicável) */
-body.destacar-links a,
-body.destacar-links button {
-    text-decoration: underline !important;
-    text-decoration-thickness: 3px !important;
-    text-underline-offset: 4px !important;
-    outline: 4px solid #FF8C00 !important; /* Laranja forte e grosso */
-    outline-offset: 2px;
 }

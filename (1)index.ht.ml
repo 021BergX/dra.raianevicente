@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dra. Raiane dos Santos Vicente | Geriatria e Clínica Médica</title>
+    <title>Dra. Raiane Vicente | Geriatria e Clínica Médica</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
@@ -15,7 +15,7 @@
         <div class="container header-container">
             <div class="logo">
             <a href="#inicio">
-                <img src="IMG/logo.png" alt="Logo Dra. Raiane dos Santos Vicente" class="logo-img">
+                <img src="IMG/logo.png" alt="Logo Dra. Raiane Vicente" class="logo-img">
             </a>
         </div>
             <nav>
@@ -26,7 +26,7 @@
                     <li><a href="#contato">Contato</a></li>
                 </ul>
             </nav>
-            <a href="https://wa.me/5511950460616" class="btn-agendar" target="_blank">Agendar consulta</a>
+            <a href="https://wa.me/5513991482601" class="btn-agendar" target="_blank">Agendar consulta</a>
         </div>
     </header>
 
@@ -36,19 +36,19 @@
         <div class="container hero-container">
             <div class="hero-content">
                 <!-- Tag superior -->
-                <span class="hero-badge">Saúde, Vitalidade e Longevidade</span>
+                <span class="hero-badge">Geriatria e Cuidados</span>
                 
                 <!-- Título com destaque -->
-                <h2>Otimização da Saúde & Longevidade: <span class="text-highlight">Atenção médica contínua</span> voltada para a preservação do seu bem-estar físico e mental, proporcionando uma trajetória longa, ativa e plena.</h2>
+                <h2>Saúde e longevidade: <span class="text-highlight">cuidados especializados</span> para cada fase da sua vida.</h2>
                 
-                <p>Cuidado médico contínuo e personalizado em cada fase da sua trajetória. Integramos saúde física, cognitiva e emocional para que você desfrute da vida com máxima autonomia</p>
+                <p>Atendimento humanizado com foco na qualidade de vida, autonomia e bem-estar do idoso.</p>
                 
                 <!-- Botão sólido com seta -->
                 <a href="#sobre" class="btn-hero-solid">Conheça mais sobre mim &#8599;</a>
             </div>
             <div class="hero-image">
                 <!-- LEMBRE-SE: Coloque o nome exato da sua foto aqui no src -->
-                <img src="IMG/dra-raiane.jpeg" alt="Dra. Raiane dos Santos Vicente" class="main-photo">
+                <img src="IMG/dra-raiane.jpeg" alt="Dra. Raiane Vicente" class="main-photo">
             </div>
         </div>
     </section>
@@ -68,68 +68,86 @@
                 <div class="cards-grid carousel-track">
                     <!-- Card 1 -->
                     <div class="especialidade-card">
-                        <img src="IMG/IDOSO_PENSANDO.jpg" alt="Demência" class="card-img-real">
+                        <img src="img/idoso_pensando.jpg" alt="Demência" class="card-img-real">
                         <h4>Demência</h4>
+                        <p>Identificação precoce e tratamento abrangente, buscando retardar sintomas e promover qualidade de vida.</p>
                         <button class="btn-saiba-mais">Saiba mais</button>
                     </div>
 
                     <!-- Card 2 -->
                     <div class="especialidade-card">
-                        <img src="IMG/IDOSO_BENGALA.jpg" alt="Quedas" class="card-img-real">
+                        <img src="img/idoso_bengala.jpg" alt="Quedas" class="card-img-real">
                         <h4>Quedas</h4>
+                        <p>Avaliação de riscos, prevenção e reabilitação. Foco em fortalecer a musculatura e adequar o ambiente.</p>
                         <button class="btn-saiba-mais">Saiba mais</button>
                     </div>
 
                     <!-- Card 3 -->
                     <div class="especialidade-card">
-                        <img src="IMG/SAUDE_MENTAL.png" alt="Ansiedade e Depressão" class="card-img-real">
+                        <img src="img/saude_mental.png" alt="Ansiedade e Depressão" class="card-img-real">
                         <h4>Ansiedade e Depressão</h4>
+                        <p>Abordagem cuidadosa da saúde mental na terceira idade, garantindo acolhimento e tratamentos eficazes.</p>
                         <button class="btn-saiba-mais">Saiba mais</button>
                     </div>
 
                     <!-- Card 4 (NOVO) -->
                     <div class="especialidade-card">
-                        <img src="IMG/idoso_parkison.png" alt="Doença de Parkinson" class="card-img-real">
-                        <h4>Doença de Parkison</h4>
+                        <img src="img/sua-foto-4.jpg" alt="Especialidade 4" class="card-img-real">
+                        <h4>Especialidade 4</h4>
+                        <p>Descrição breve da sua quarta especialidade. Substitua a foto e o texto conforme necessário.</p>
                         <button class="btn-saiba-mais">Saiba mais</button>
                     </div>
 
                     <!-- Card 5 (NOVO) -->
                     <div class="especialidade-card">
-                        <img src="IMG/idoso_insônia.png" alt="Insonia" class="card-img-real">
-                        <h4>Insônia</h4>
+                        <img src="img/sua-foto-5.jpg" alt="Especialidade 5" class="card-img-real">
+                        <h4>Especialidade 5</h4>
+                        <p>Descrição breve da sua quinta especialidade. Substitua a foto e o texto conforme necessário.</p>
                         <button class="btn-saiba-mais">Saiba mais</button>
                     </div>
 
                     <!-- Card 6 (NOVO) -->
                     <div class="especialidade-card">
-                        <img src="IMG/idoso_dorescronicas.png" alt="Dores Crônicas" class="card-img-real">
-                        <h4>Dores Crônicas</h4>
+                        <img src="img/sua-foto-6.jpg" alt="Especialidade 6" class="card-img-real">
+                        <h4>Especialidade 6</h4>
+                        <p>Descrição breve da sua sexta especialidade. Substitua a foto e o texto conforme necessário.</p>
                         <button class="btn-saiba-mais">Saiba mais</button>
                     </div>
 
                     <!-- Card 7 (NOVO) -->
                     <div class="especialidade-card">
-                        <img src="IMG/idoso_osteoporose.png" alt="Osteoporose" class="card-img-real">
-                        <h4>Osteoporose</h4>
+                        <img src="img/sua-foto-7.jpg" alt="Especialidade 7" class="card-img-real">
+                        <h4>Especialidade 7</h4>
+                        <p>Descrição breve da sua sétima especialidade. Substitua a foto e o texto conforme necessário.</p>
                         <button class="btn-saiba-mais">Saiba mais</button>
                     </div>
                     
                     <!-- Card 8 (NOVO) -->
                     <div class="especialidade-card">
-                        <img src="IMG/idoso_perdadepeso.png" alt="Perda de Peso" class="card-img-real">
-                        <h4>Perda de Peso</h4>
+                        <img src="img/sua-foto-8.jpg" alt="Especialidade 8" class="card-img-real">
+                        <h4>Especialidade 8</h4>
+                        <p>Descrição breve da sua oitava especialidade. Substitua a foto e o texto conforme necessário.</p>
                         <button class="btn-saiba-mais">Saiba mais</button>
                     </div>
 
                     <!-- Card 9 (NOVO) -->
                     <div class="especialidade-card">
-                        <img src="IMG/idoso_promocaodasaude.png" alt="Promoção da Saúde" class="card-img-real">
-                        <h4>Promoção da Saúde</h4>
+                        <img src="img/sua-foto-9.jpg" alt="Especialidade 9" class="card-img-real">
+                        <h4>Especialidade 9</h4>
+                        <p>Descrição breve da sua nona especialidade. Substitua a foto e o texto conforme necessário.</p>
+                        <button class="btn-saiba-mais">Saiba mais</button>
+                    </div>
+
+                    <!-- Card 10 (NOVO) -->
+                    <div class="especialidade-card">
+                        <img src="img/sua-foto-10.jpg" alt="Especialidade 10" class="card-img-real">
+                        <h4>Especialidade 10</h4>
+                        <p>Descrição breve da sua décima especialidade. Substitua a foto e o texto conforme necessário.</p>
                         <button class="btn-saiba-mais">Saiba mais</button>
                     </div>
                 </div>
-                <button class="carousel-btn next-btn" aria-label="Próximo">&#10095;</button>
+
+                <button class="carousel-btn next-btn" aria-label="Próximo">&#10095;</button>>
             </div>
         </div>
     </section>
@@ -141,11 +159,10 @@
             </div>
             <div class="sobre-content">
                 <h3>Minha Trajetória</h3>
-                <p>Sou a Dra. Raiane dos Santos Vicente, médica apaixonada pelo cuidado com o idoso. Acredito que o envelhecimento deve ser acompanhado de dignidade, autonomia e, acima de tudo, qualidade de vida.</p>
+                <p>Sou a Dra. Raiane Vicente, médica apaixonada pelo cuidado com o idoso. Acredito que o envelhecimento deve ser acompanhado de dignidade, autonomia e, acima de tudo, qualidade de vida.</p>
                 <ul class="formacao-lista">
-                    <li><strong>Formação: </strong> Medicina - Universidade federal de Goiás (2016)</li>
-                    <li>Pós-Graduação em Médicina da Família e Comunidade (2019)</li>
-                    <li>Pós-Graduação em Geriátia e Gerontologia (2020)</li>
+                    <li><strong>Formação Médica:</strong> Faculdade de Medicina da Bolívia</li>
+                    <li><strong>Especialização:</strong> Pós-Graduação em Geriatria pela Faculdade Federal de Rondônia</li>
                 </ul>
                 <p>Meu foco é proporcionar um atendimento integrado, que olhe para o paciente de forma global, apoiando não apenas sua saúde física, mas também emocional, e orientando toda a rede de apoio e familiares.</p>
             </div>
@@ -212,12 +229,10 @@
     </a>
 
     <script src="script.js"></script>
-    <!-- CONTROLES DE ACESSIBILIDADE AVANÇADOS -->
+    <!-- CONTROLES DE ACESSIBILIDADE (MINIMALISTAS) -->
     <div class="acessibilidade-panel">
-        <button onclick="toggleAltoContraste()" title="Ativar Alto Contraste" class="btn-acessibilidade">🌗</button>
-        <button onclick="toggleDestacarLinks()" title="Destacar Botões e Links" class="btn-acessibilidade">🔗</button>
-        <button onclick="aumentarZoom()" title="Aumentar site" class="btn-acessibilidade">A+</button>
-        <button onclick="diminuirZoom()" title="Diminuir site" class="btn-acessibilidade">A-</button>
+        <button onclick="mudarTamanhoTexto(1)" title="Aumentar texto" class="btn-acessibilidade">A+</button>
+        <button onclick="mudarTamanhoTexto(-1)" title="Diminuir texto" class="btn-acessibilidade">A-</button>
     </div>
 </body>
 </html>

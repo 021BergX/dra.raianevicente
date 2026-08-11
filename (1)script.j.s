@@ -114,27 +114,3 @@ if (track) {
         track.scrollLeft = scrollLeft - walk;
     });
 }
-let nivelZoom = 1;
-
-// 1. Aumentar e Diminuir TODO o site de verdade (Zoom Real)
-function aumentarZoom() {
-    nivelZoom += 0.1;
-    if(nivelZoom > 1.4) nivelZoom = 1.4; // Limite máximo para não quebrar a tela
-    document.body.style.zoom = nivelZoom;
-}
-
-function diminuirZoom() {
-    nivelZoom -= 0.1;
-    if(nivelZoom < 0.9) nivelZoom = 0.9; // Limite mínimo
-    document.body.style.zoom = nivelZoom;
-}
-
-// 2. Ligar/Desligar Alto Contraste
-function toggleAltoContraste() {
-    document.body.classList.toggle('alto-contraste');
-}
-
-// 3. Ligar/Desligar Destaque de Links
-function toggleDestacarLinks() {
-    document.body.classList.toggle('destacar-links');
-}
