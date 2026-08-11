@@ -838,3 +838,40 @@ body.destacar-links button {
         gap: 15px;
     }
 }
+/* =========================================
+   LINKS DO RODAPÉ (Maps, Email e WhatsApp)
+   ========================================= */
+.footer-link {
+    color: #666666; /* Mantém o cinza elegante */
+    text-decoration: none; /* Tira o sublinhado padrão */
+    transition: color 0.3s ease;
+}
+
+.footer-link:hover {
+    color: #128C7E; /* Fica verde sutil ao passar o mouse indicando que é clicável */
+    text-decoration: underline;
+}
+
+/* Deixa o texto do bairro (Itaim Bibi) com destaque */
+.footer-info strong {
+    color: #1C1C1C;
+    font-weight: 600;
+}/* Estilo base do botão */
+.btn-hero {
+    background-color: #FFFFFF;
+    color: #A07B65; /* A cor do fundo da sua tela para dar contraste */
+    padding: 15px 35px;
+    border: 2px solid #FFFFFF;
+    border-radius: 30px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.4s ease;
+    display: inline-block;
+}
+
+/* Efeito quando o mouse passa por cima */
+.btn-hero:hover {
+    background-color: transparent; /* O fundo fica transparente */
+    color: #FFFFFF; /* O texto fica branco */
+    /* A borda branca se mantém, criando um efeito sofisticado de "esvaziamento" */
+}
