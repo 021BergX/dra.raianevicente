@@ -311,11 +311,10 @@ header {
     display: flex;
     gap: 30px;
     overflow-x: auto;
-    scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
     padding: 20px 10px;
     
-    /* Esconde a barra de rolagem para ficar mais limpo */
+    /* Esconde a barra de rolagem */
     -ms-overflow-style: none;  
     scrollbar-width: none;  
 }
@@ -324,14 +323,11 @@ header {
     display: none;
 }
 
-/* Quando o usuário estiver arrastando com o mouse */
 .carousel-track.dragging {
     scroll-behavior: auto; 
     cursor: grabbing; 
-    scroll-snap-type: none; /* Desliga a trava do carrossel enquanto você arrasta */
 }
 
-/* Impede de clicar nos botões internos enquanto arrasta */
 .carousel-track.dragging .especialidade-card {
     pointer-events: none;
 }
@@ -343,12 +339,11 @@ header {
     text-align: center;
     box-shadow: 0 10px 30px rgba(0,0,0,0.03);
     
-    /* Ajuste para o carrossel */
     min-width: 280px;
     max-width: 310px;
     flex: 0 0 auto; 
-    scroll-snap-align: start; /* Alinha o card perfeitamente ao parar de rolar */
-    cursor: grab; /* Indica que pode ser arrastado */
+    cursor: grab; 
+    transition: transform 0.4s ease, filter 0.4s ease, opacity 0.4s ease;
 }
 
 /* Estilo dos botões laterais de navegação */

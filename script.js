@@ -16,59 +16,75 @@ document.addEventListener('DOMContentLoaded', () => {
 /* =========================================
    CONTROLE DO CARROSSEL DE ESPECIALIDADES
    ========================================= */
+/* =========================================
+   CONTROLE DO CARROSSEL COM LOOP INFINITO REAL
+   ========================================= */
 const track = document.querySelector('.carousel-track');
 const btnPrev = document.querySelector('.prev-btn');
 const btnNext = document.querySelector('.next-btn');
 
 if (track) {
-    let isAnimating = false; // Trava de segurança para não bugar com cliques rápidos
+    let isAnimating = false; 
 
-    // 1. Loop infinito (Avançar)
+    // AVANÇAR (Seta Direita)
     btnNext.addEventListener('click', () => {
-        if (isAnimating) return; // Se já estiver rodando, ignora o clique
+        if (isAnimating) return; 
         isAnimating = true;
 
-        // Calcula exatamente a largura do card + o gap de 30px
-        const card = track.querySelector('.especialidade-card');
-        const moveDistance = card.offsetWidth + 30;
+        const firstCard = track.firstElementChild;
+        const moveDistance = firstCard.offsetWidth + 30; // Largura do card + gap
 
-        track.style.scrollBehavior = 'smooth';
+        // 1. Rola suavemente para o próximo
         track.scrollBy({ left: moveDistance, behavior: 'smooth' });
 
-        // Espera a rolagem acabar (500ms) e joga o primeiro card para o final
+        // 2. Aguarda a animação terminar (aprox 400ms)
         setTimeout(() => {
-            track.style.scrollBehavior = 'auto'; // Desliga a suavidade para não piscar
-            track.appendChild(track.firstElementChild); // Move fisicamente o HTML
-            track.scrollLeft -= moveDistance; // Reajusta a posição invisível
-            isAnimating = false; // Libera para o próximo clique
-        }, 500); 
+            // Tira a suavidade temporariamente
+            track.style.scrollBehavior = 'auto';
+            
+            // Move o primeiro card para o final da fila
+            track.appendChild(firstCard);
+            
+            // Puxa a barra de rolagem para trás para compensar o card que saiu
+            track.scrollLeft -= moveDistance;
+            
+            // Devolve a suavidade e libera para o próximo clique
+            requestAnimationFrame(() => {
+                track.style.scrollBehavior = 'smooth';
+                isAnimating = false;
+            });
+        }, 400); 
     });
 
-    // 2. Loop infinito (Voltar)
+    // VOLTAR (Seta Esquerda)
     btnPrev.addEventListener('click', () => {
         if (isAnimating) return;
         isAnimating = true;
 
-        const card = track.querySelector('.especialidade-card');
-        const moveDistance = card.offsetWidth + 30;
+        const lastCard = track.lastElementChild;
+        const moveDistance = lastCard.offsetWidth + 30;
 
-        // Joga o último card para o começo "escondido"
+        // 1. Tira a suavidade e prepara o truque
         track.style.scrollBehavior = 'auto';
-        track.prepend(track.lastElementChild);
-        track.scrollLeft += moveDistance;
         
-        // Dá 10ms para o navegador respirar e então rola suavemente
-        setTimeout(() => {
+        // 2. Move o último card para o começo
+        track.prepend(lastCard);
+        
+        // 3. Empurra a rolagem para frente instantaneamente para o usuário não ver o pulo
+        track.scrollLeft += moveDistance;
+
+        // 4. No próximo milissegundo, ativa a suavidade e rola para trás
+        requestAnimationFrame(() => {
             track.style.scrollBehavior = 'smooth';
             track.scrollBy({ left: -moveDistance, behavior: 'smooth' });
-        }, 10);
-
-        setTimeout(() => {
-            isAnimating = false;
-        }, 500);
+            
+            setTimeout(() => {
+                isAnimating = false;
+            }, 400);
+        });
     });
 
-    // 3. Controle por Arrasto do Mouse (Drag)
+    // CONTROLE POR ARRASTO DO MOUSE
     let isDown = false;
     let startX;
     let scrollLeft;
