@@ -169,10 +169,10 @@ document.querySelectorAll('a').forEach(link => {
         // Adiciona a classe que faz a página "apagar"
         document.body.classList.add('fade-out');
 
-        // Espera 400ms (o tempo exato da animação do CSS) e então libera a troca de página
+        // Espera 200ms (o tempo exato da animação do CSS) e então libera a troca de página
         setTimeout(() => {
             window.location.href = url;
-        }, 400); 
+        }, 200); 
     });
 });
 /* =========================================
