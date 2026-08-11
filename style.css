@@ -380,19 +380,23 @@ header {
     right: 10px; 
 }
 
-/* O desfoque só acontece se o carrossel NÃO estiver sendo arrastado */
-.carousel-track:not(.dragging):hover .especialidade-card:not(:hover) {
-    filter: blur(4px);
-    opacity: 0.5;
-}
+/* =========================================
+   EFEITO DE HOVER (EXCLUSIVO PARA COMPUTADOR)
+   ========================================= */
+/* O @media (hover: hover) garante que o celular ignore esses efeitos completamente */
+@media (hover: hover) and (pointer: fine) {
+    .carousel-track:not(.dragging):hover .especialidade-card:not(:hover) {
+        filter: blur(4px);
+        opacity: 0.5;
+    }
 
-/* O zoom do card também só acontece se NÃO estiver arrastando */
-.carousel-track:not(.dragging) .especialidade-card:hover {
-    transform: translateY(-10px);
-    filter: blur(0);
-    opacity: 1;
-    z-index: 2; 
-    box-shadow: 0 15px 35px rgba(0,0,0,0.1); 
+    .carousel-track:not(.dragging) .especialidade-card:hover {
+        transform: translateY(-10px);
+        filter: blur(0);
+        opacity: 1;
+        z-index: 2; 
+        box-shadow: 0 15px 35px rgba(0,0,0,0.1); 
+    }
 }
 /* Oculta os botões de seta em telas menores (celulares) para forçar o uso do toque */
 @media (max-width: 768px) {
@@ -743,4 +747,30 @@ body.destacar-links button {
     text-underline-offset: 4px !important;
     outline: 4px solid #FF8C00 !important; /* Laranja forte e grosso */
     outline-offset: 2px;
+}
+/* =========================================
+   ADAPTAÇÕES PARA CELULAR (Telas até 768px)
+   ========================================= */
+@media (max-width: 768px) {
+    /* 1. Reduz o tamanho do card para caber melhor na telinha */
+    .especialidade-card {
+        min-width: 250px; 
+        padding: 15px;
+    }
+    
+    /* 2. Reduz a altura das fotos */
+    .card-img-real {
+        height: 180px; 
+        margin-bottom: 15px;
+    }
+
+    /* 3. Esconde as setas laterais (no celular o usuário usa o dedo para arrastar, elas só poluem a tela) */
+    .carousel-btn {
+        display: none;
+    }
+
+    /* 4. Tira os espaços laterais largos que eram para as setas */
+    .carousel-wrapper {
+        padding: 0 10px; 
+    }
 }
