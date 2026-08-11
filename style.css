@@ -300,11 +300,11 @@ header {
    CARROSSEL DE ESPECIALIDADES
    ========================================= */
 .carousel-wrapper {
-    position: relative; /* OBRIGATÓRIO: É a âncora que prende os botões no lugar certo */
+    position: relative; 
     display: flex;
     align-items: center;
     width: 100%;
-    padding: 0 40px; /* Cria um "corredor" nas laterais para os botões não baterem nas fotos */
+    padding: 0 70px; /* Aumentamos de 40px para 70px para garantir que o botão nunca toque no card */
 }
 
 .carousel-track {
@@ -377,12 +377,12 @@ header {
     transform: translateY(-50%) scale(1.1); /* Dá um pequeno zoom no botão ao passar o mouse */
 }
 .prev-btn {
-    left: 0; 
+    left: 10px; 
 }
 
 /* Fixa o botão direito do lado direito */
 .next-btn {
-    right: 0; 
+    right: 10px; 
 }
 
 /* O desfoque só acontece se o carrossel NÃO estiver sendo arrastado */

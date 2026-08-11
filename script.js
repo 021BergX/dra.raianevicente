@@ -13,41 +13,62 @@ document.addEventListener('DOMContentLoaded', () => {
 // LÓGICA DE CLICAR E ARRASTAR (DRAG TO SCROLL) NO CARROSSEL
 /* CONTROLE DO CARROSSEL DE ESPECIALIDADES */
 /* CONTROLE DO CARROSSEL DE ESPECIALIDADES COM LOOP INFINITO */
+/* =========================================
+   CONTROLE DO CARROSSEL DE ESPECIALIDADES
+   ========================================= */
 const track = document.querySelector('.carousel-track');
 const btnPrev = document.querySelector('.prev-btn');
 const btnNext = document.querySelector('.next-btn');
 
 if (track) {
-    // 1. Lógica de Rolagem Infinita (Loop)
+    let isAnimating = false; // Trava de segurança para não bugar com cliques rápidos
+
+    // 1. Loop infinito (Avançar)
     btnNext.addEventListener('click', () => {
-        // Pega o primeiro card e move para o final da fila
-        const firstCard = track.firstElementChild;
+        if (isAnimating) return; // Se já estiver rodando, ignora o clique
+        isAnimating = true;
+
+        // Calcula exatamente a largura do card + o gap de 30px
+        const card = track.querySelector('.especialidade-card');
+        const moveDistance = card.offsetWidth + 30;
+
         track.style.scrollBehavior = 'smooth';
-        track.scrollBy({ left: 340, behavior: 'smooth' });
-        
-        // Espera a animação terminar e reorganiza o HTML em silêncio
+        track.scrollBy({ left: moveDistance, behavior: 'smooth' });
+
+        // Espera a rolagem acabar (500ms) e joga o primeiro card para o final
         setTimeout(() => {
-            track.style.scrollBehavior = 'auto'; // Tira a suavidade temporariamente
-            track.appendChild(firstCard); // Move o card
-            track.scrollLeft -= 340; // Reajusta a posição para o usuário não perceber o pulo
-        }, 400); 
+            track.style.scrollBehavior = 'auto'; // Desliga a suavidade para não piscar
+            track.appendChild(track.firstElementChild); // Move fisicamente o HTML
+            track.scrollLeft -= moveDistance; // Reajusta a posição invisível
+            isAnimating = false; // Libera para o próximo clique
+        }, 500); 
     });
 
+    // 2. Loop infinito (Voltar)
     btnPrev.addEventListener('click', () => {
-        // Pega o último card e move para o começo da fila
-        const lastCard = track.lastElementChild;
+        if (isAnimating) return;
+        isAnimating = true;
+
+        const card = track.querySelector('.especialidade-card');
+        const moveDistance = card.offsetWidth + 30;
+
+        // Joga o último card para o começo "escondido"
         track.style.scrollBehavior = 'auto';
-        track.prepend(lastCard);
-        track.scrollLeft += 340;
+        track.prepend(track.lastElementChild);
+        track.scrollLeft += moveDistance;
         
-        // Rola de volta com animação suave
+        // Dá 10ms para o navegador respirar e então rola suavemente
         setTimeout(() => {
             track.style.scrollBehavior = 'smooth';
-            track.scrollBy({ left: -340, behavior: 'smooth' });
+            track.scrollBy({ left: -moveDistance, behavior: 'smooth' });
         }, 10);
+
+        setTimeout(() => {
+            isAnimating = false;
+        }, 500);
     });
 
-    // 2. Controle por Arrasto do Mouse (Drag)
+    // 3. Controle por Arrasto do Mouse (Drag)
     let isDown = false;
     let startX;
     let scrollLeft;
