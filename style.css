@@ -808,15 +808,53 @@ body.destacar-links button {
 }/* =========================================
    LINHA INFERIOR DO RODAPÉ (CRÉDITOS E LEGAL)
    ========================================= */
+/* =========================================
+   LINHA INFERIOR DO RODAPÉ (CRÉDITOS E LEGAL)
+   ========================================= */
 .rodape-inferior {
-    border-top: 1px solid #EAEAEA; /* Linha de separação bem sutil */
-    background-color: #F8F9FA; /* Fundo cor de "gelo" para diferenciar do resto do rodapé */
-    padding: 20px 5%;
+    border-top: 1px solid #EAEAEA; 
+    background-color: #F8F9FA; 
+    padding: 30px 5%; /* Aumentamos o padding de 20px para 30px para dar mais respiro */
     display: flex;
-    justify-content: space-between; /* Empurra um bloco para a esquerda e outro para a direita */
+    justify-content: space-between; 
     align-items: center;
     font-size: 12px;
-    color: #666666; /* Cinza escuro elegante */
+    color: #666666; 
+}
+
+.rodape-legal p {
+    margin: 0 0 10px 0; /* Adiciona 10px de separação entre o aviso médico e os direitos autorais */
+    max-width: 700px; 
+    line-height: 1.6;
+}
+
+.rodape-legal p:last-child {
+    margin-bottom: 0; /* Garante que o último parágrafo não empurre a caixa para baixo */
+}
+
+.rodape-creditos {
+    padding-right: 70px; /* ÁREA DE SEGURANÇA: Empurra o texto para a esquerda para fugir do botão do WhatsApp */
+}
+
+.rodape-creditos p {
+    margin: 0;
+    font-weight: 500;
+}
+
+/* =========================================
+   AJUSTE DO RODAPÉ INFERIOR PARA CELULAR
+   ========================================= */
+@media (max-width: 768px) {
+    .rodape-inferior {
+        flex-direction: column; 
+        text-align: center;
+        /* Adiciona um espaço extra (80px) no fundo do celular para o WhatsApp não cobrir o texto */
+        padding: 30px 5% 80px 5%; 
+    }
+    .rodape-creditos {
+        padding-right: 0; /* Remove a área de segurança no celular, já que o texto fica centralizado */
+        margin-top: 15px; /* Separa os créditos do texto legal */
+    }
 }
 
 .rodape-legal p {
