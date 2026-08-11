@@ -571,11 +571,28 @@ footer {
 }
 
 /* Evita que o navegador tente arrastar o card como se fosse um link ou imagem solta */
-.especialidade-card, 
-.especialidade-card * {
-    user-select: none;
-    -webkit-user-drag: none;
+.especialidade-card {
+    /* ... (seus outros códigos do card vão estar aqui em cima) ... */
+    scroll-snap-align: start; 
+    cursor: grab; 
+    
+    /* ADICIONE ESTA LINHA AQUI: */
+    transition: transform 0.4s ease, filter 0.4s ease, opacity 0.4s ease;
 }
+ /* Quando o mouse entra na área do carrossel, desfoca e deixa mais transparentes os cards que NÃO estão com o mouse */
+.carousel-track:hover .especialidade-card:not(:hover) {
+    filter: blur(4px);
+    opacity: 0.5;
+}
+
+/* O card que ESTÁ com o mouse em cima ganha destaque, levanta um pouco e fica 100% nítido */
+.especialidade-card:hover {
+    transform: translateY(-10px);
+    filter: blur(0);
+    opacity: 1;
+    z-index: 2; /* Garante que a sombra dele passe por cima dos outros */
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1); /* Deixa a sombra um pouco mais forte para dar profundidade */
+}   
 /* ESTILO PARA AS IMAGENS REAIS DOS CARDS (QUADRADAS COM BORDAS ARREDONDADAS) */
 /* DEIXANDO AS IMAGENS DOS CARDS MAIS COMPACTAS */
 .card-img-real {
