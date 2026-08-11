@@ -84,13 +84,17 @@ if (track) {
         });
     });
 
-    // CONTROLE POR ARRASTO DO MOUSE
+// =========================================
+    // CONTROLE POR ARRASTO DO MOUSE (ATUALIZADO)
+    // =========================================
     let isDown = false;
     let startX;
     let scrollLeft;
+    let isDragging = false; // Nova variável para identificar o arrasto
 
     track.addEventListener('mousedown', (e) => {
         isDown = true;
+        isDragging = false; // Reseta sempre que clica
         track.classList.add('dragging');
         startX = e.pageX - track.offsetLeft;
         scrollLeft = track.scrollLeft;
@@ -109,9 +113,17 @@ if (track) {
     track.addEventListener('mousemove', (e) => {
         if (!isDown) return;
         e.preventDefault();
+        isDragging = true; // Se o mouse se moveu enquanto pressionado, é um arrasto
         const x = e.pageX - track.offsetLeft;
         const walk = (x - startX) * 1.5; 
         track.scrollLeft = scrollLeft - walk;
+    });
+
+    // PROTEÇÃO DOS LINKS: Cancela o clique APENAS se o usuário estiver arrastando
+    track.addEventListener('click', (e) => {
+        if (isDragging) {
+            e.preventDefault();
+        }
     });
 }
 let nivelZoom = 1;

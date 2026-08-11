@@ -328,10 +328,6 @@ header {
     cursor: grabbing; 
 }
 
-.carousel-track.dragging .especialidade-card {
-    pointer-events: none;
-}
-
 .especialidade-card {
     background: var(--white);
     padding: 25px;
