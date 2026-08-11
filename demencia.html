@@ -8,16 +8,21 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- CABEÇALHO COMPLETO (Com âncoras de retorno) -->
     <header>
         <div class="container header-container">
             <div class="logo">
-                <a href="index.html">
+                <a href="index.html#inicio">
                     <img src="IMG/logo.png" alt="Logo Dra. Raiane Vicente" class="logo-img">
                 </a>
             </div>
             <nav>
                 <ul class="nav-links">
-                    <li><a href="index.html">Voltar para o Início</a></li>
+                    <li><a href="index.html#inicio">Início</a></li>
+                    <li><a href="index.html#sobre">Dra. Raiane</a></li>
+                    <!-- A mágica acontece nesta linha: o link aponta direto para a ID do carrossel -->
+                    <li><a href="index.html#especialidades">Especialidades</a></li>
+                    <li><a href="index.html#contato">Contato</a></li>
                 </ul>
             </nav>
             <a href="https://wa.me/5513991482601" class="btn-agendar" target="_blank">Agendar consulta</a>

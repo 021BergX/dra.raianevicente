@@ -150,3 +150,28 @@ function toggleAltoContraste() {
 function toggleDestacarLinks() {
     document.body.classList.toggle('destacar-links');
 }
+/* =========================================
+   TRANSIÇÃO SUAVE ENTRE PÁGINAS (FADE OUT)
+   ========================================= */
+document.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', function(e) {
+        const destino = this.getAttribute('href');
+        
+        // Ignora links que abrem no WhatsApp (target="_blank"), links internos (como #inicio) ou botões sem destino
+        if (!destino || this.target === '_blank' || destino.startsWith('#') || destino.startsWith('http')) {
+            return;
+        }
+
+        // Segura a navegação padrão
+        e.preventDefault(); 
+        const url = this.href;
+
+        // Adiciona a classe que faz a página "apagar"
+        document.body.classList.add('fade-out');
+
+        // Espera 400ms (o tempo exato da animação do CSS) e então libera a troca de página
+        setTimeout(() => {
+            window.location.href = url;
+        }, 400); 
+    });
+});
