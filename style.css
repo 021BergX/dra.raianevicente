@@ -40,7 +40,7 @@ body {
 /* Classe que o JavaScript vai disparar antes de mudar de página */
 body.fade-out {
     opacity: 0 !important;
-    transition: opacity 0.4s ease-in-out;
+    transition: opacity 0.2s ease-in-out;
 }
 
 html {
@@ -794,4 +794,36 @@ body.destacar-links button {
 .especialidade-card a.btn-saiba-mais {
     position: relative;
     z-index: 10; 
+}/* =========================================
+   LINHA INFERIOR DO RODAPÉ (CRÉDITOS E LEGAL)
+   ========================================= */
+.rodape-inferior {
+    border-top: 1px solid #EAEAEA; /* Linha de separação bem sutil */
+    background-color: #F8F9FA; /* Fundo cor de "gelo" para diferenciar do resto do rodapé */
+    padding: 20px 5%;
+    display: flex;
+    justify-content: space-between; /* Empurra um bloco para a esquerda e outro para a direita */
+    align-items: center;
+    font-size: 12px;
+    color: #666666; /* Cinza escuro elegante */
+}
+
+.rodape-legal p {
+    margin: 5px 0;
+    max-width: 600px; /* Impede que o texto fique comprido demais em telas grandes */
+    line-height: 1.5;
+}
+
+.rodape-creditos p {
+    margin: 0;
+    font-weight: 500;
+}
+
+/* Ajuste automático para telas de celular */
+@media (max-width: 768px) {
+    .rodape-inferior {
+        flex-direction: column; /* Empilha os blocos */
+        text-align: center;
+        gap: 15px;
+    }
 }
