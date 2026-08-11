@@ -234,14 +234,15 @@ header {
     flex: 1;
 }
 /* CORRIGINDO A IMAGEM DA SEÇÃO SOBRE */
+/* CORREÇÃO PARA A FOTO NÃO SER CORTADA */
 .portrait-photo {
     width: 100%;
-    max-width: 450px; /* Limita a largura máxima da foto */
-    height: 500px; /* Trava a altura */
-    object-fit: cover; /* Garante que a imagem não fique esticada ou achatada */
-    border-radius: 20px 20px 0 20px; /* Restaura a borda curvada elegante */
-    margin: 0 auto; /* Centraliza a imagem se a tela for muito larga */
-    display: block; /* Evita espaços em branco indesejados abaixo da imagem */
+    max-width: 450px;
+    height: auto; /* A mágica está aqui: permite que a altura original da foto seja respeitada */
+    border-radius: 20px; /* Bordas suavemente arredondadas */
+    margin: 0 auto;
+    display: block;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08); /* Uma sombra leve para dar profundidade e elegância */
 }
 
 .sobre-content {
@@ -295,103 +296,98 @@ header {
 }
 /* REFORÇANDO OS CARDS E AS IMAGENS DE ESPECIALIDADES */
 /* AJUSTE OPCIONAL: DEIXANDO O CARD UM POUCO MAIS ESTREITO */
-.especialidade-card {
-    background: var(--white);
-    padding: 25px; /* Reduzi um pouco o espaçamento interno para ganhar espaço */
-    border-radius: 20px;
-    text-align: center;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.03);
-    
-    min-width: 280px; 
-    max-width: 310px; /* Card mais estreito = mais cards visíveis na tela */
-    flex: 0 0 auto; 
-    scroll-snap-align: center;
-    transition: transform 0.4s ease, filter 0.4s ease, opacity 0.4s ease;
+/* =========================================
+   CARROSSEL DE ESPECIALIDADES
+   ========================================= */
+.carousel-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
 }
 
-.card-img-real {
-    width: 100%; /* A imagem ocupa 100% da largura DO CARD, e não da tela */
-    aspect-ratio: 1 / 1; /* Força o formato quadrado perfeito */
-    height: auto; 
-    object-fit: cover; 
-    border-radius: 35px; /* Restaura as pontas bem arredondadas */
-    margin-bottom: 20px;
-    display: block;
-}
-
-/* CONTAINER DO CARROSSEL */
-.cards-grid {
+.carousel-track {
     display: flex;
     gap: 30px;
-    overflow-x: auto; /* Habilita a rolagem horizontal */
-    padding: 30px 10px; /* Espaço extra para o zoom não cortar as bordas */
-    scroll-snap-type: x mandatory; /* Deixa a rolagem suave e "puxa" o card */
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    padding: 20px 10px;
     
-    /* Estilo da barra de rolagem para navegadores modernos */
-    scrollbar-width: thin;
-    scrollbar-color: var(--primary-color) var(--bg-color);
+    /* Esconde a barra de rolagem para ficar mais limpo */
+    -ms-overflow-style: none;  
+    scrollbar-width: none;  
 }
 
-/* Estilo da barra de rolagem (Chrome/Edge/Safari) */
-.cards-grid::-webkit-scrollbar {
-    height: 8px;
-}
-.cards-grid::-webkit-scrollbar-thumb {
-    background-color: var(--primary-color);
-    border-radius: 10px;
+.carousel-track::-webkit-scrollbar {
+    display: none;
 }
 
-/* CARDS DO CARROSSEL */
+/* Quando o usuário estiver arrastando com o mouse */
+.carousel-track.dragging {
+    scroll-behavior: auto; /* Tira o smooth para o arraste ficar fluido */
+    cursor: grabbing; /* Muda o cursor para a "mãozinha fechada" */
+}
+
+/* Impede de clicar nos botões internos enquanto arrasta */
+.carousel-track.dragging .especialidade-card {
+    pointer-events: none;
+}
+
 .especialidade-card {
     background: var(--white);
-    padding: 30px;
+    padding: 25px;
     border-radius: 20px;
     text-align: center;
     box-shadow: 0 10px 30px rgba(0,0,0,0.03);
-    min-width: 320px; /* Define a largura fixa para o carrossel funcionar */
-    flex: 0 0 auto;
-    scroll-snap-align: center; /* Centraliza o card ao rolar */
     
-    /* Transições suaves para o zoom e o desfoque */
-    transition: transform 0.4s ease, filter 0.4s ease, opacity 0.4s ease;
-}
-/* 
-   O EFEITO CORRIGIDO: 
-   Usamos o :has() para detectar se EXATAMENTE um card está sendo focado.
-   Se sim, aplicamos o desfoque em todos os cards que NÃO estão com o mouse (:not(:hover)).
-*/
-.cards-grid:has(.especialidade-card:hover) .especialidade-card:not(:hover) {
-    filter: blur(4px);
-    opacity: 0.6;
+    /* Ajuste para o carrossel */
+    min-width: 280px;
+    max-width: 310px;
+    flex: 0 0 auto; 
+    scroll-snap-align: start; /* Alinha o card perfeitamente ao parar de rolar */
+    cursor: grab; /* Indica que pode ser arrastado */
 }
 
-/* 
-   O card que está com o mouse ganha o zoom e se mantém nítido.
-*/
-.especialidade-card:hover {
-    transform: scale(1.08);
-    filter: blur(0);
-    opacity: 1;
-    z-index: 2;
-}
-.placeholder-img {
-    height: 200px;
-    background-color: var(--bg-color);
-    border: 1px solid #ddd;
-    border-radius: 15px;
-    margin-bottom: 20px;
-    color: var(--text-muted);
-}
-
-.especialidade-card h4 {
-    font-size: 24px;
-    margin-bottom: 15px;
+/* Estilo dos botões laterais de navegação */
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: var(--white);
+    color: var(--primary-dark);
+    border: 1px solid rgba(0,0,0,0.1);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 10;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.especialidade-card p {
-    font-size: 14px;
-    color: var(--text-muted);
-    margin-bottom: 25px;
+.carousel-btn:hover {
+    background-color: var(--primary-dark);
+    color: var(--white);
+}
+
+.prev-btn {
+    left: -25px;
+}
+
+.next-btn {
+    right: -25px;
+}
+
+/* Oculta os botões de seta em telas menores (celulares) para forçar o uso do toque */
+@media (max-width: 768px) {
+    .carousel-btn {
+        display: none;
+    }
 }
 
 .btn-saiba-mais {
