@@ -11,47 +11,51 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 // LÓGICA DE CLICAR E ARRASTAR (DRAG TO SCROLL) NO CARROSSEL
-const slider = document.querySelector('.cards-grid');
-let isDown = false;
-let startX;
-let scrollLeft;
+/* CONTROLE DO CARROSSEL DE ESPECIALIDADES */
+const track = document.querySelector('.carousel-track');
+const btnPrev = document.querySelector('.prev-btn');
+const btnNext = document.querySelector('.next-btn');
 
-slider.addEventListener('mousedown', (e) => {
-    isDown = true;
-    slider.classList.add('active'); // Muda o cursor para "agarrando"
-    startX = e.pageX - slider.offsetLeft;
-    scrollLeft = slider.scrollLeft;
-});
+if (track) {
+    // 1. Controle por Botões Laterais
+    // Avança a largura de um card (aproximadamente 340px considerando o gap)
+    btnNext.addEventListener('click', () => {
+        track.scrollBy({ left: 340, behavior: 'smooth' });
+    });
 
-slider.addEventListener('mouseleave', () => {
-    isDown = false;
-    slider.classList.remove('active'); // Solta se o mouse sair da área
-});
+    btnPrev.addEventListener('click', () => {
+        track.scrollBy({ left: -340, behavior: 'smooth' });
+    });
 
-slider.addEventListener('mouseup', () => {
-    isDown = false;
-    slider.classList.remove('active'); // Solta o clique
-});
+    // 2. Controle por Arrasto do Mouse (Drag)
+    let isDown = false;
+    let startX;
+    let scrollLeft;
 
-slider.addEventListener('mousemove', (e) => {
-    if (!isDown) return; // Se não estiver clicando, não faz nada
-    e.preventDefault(); // Evita comportamentos indesejados do navegador
-    const x = e.pageX - slider.offsetLeft;
-    const walk = (x - startX) * 1.5; // Multiplicador de velocidade (1.5x)
-    slider.scrollLeft = scrollLeft - walk;
-});
+    track.addEventListener('mousedown', (e) => {
+        isDown = true;
+        track.classList.add('dragging');
+        // Registra onde o clique começou
+        startX = e.pageX - track.offsetLeft;
+        scrollLeft = track.scrollLeft;
+    });
 
-/* CONTROLE DE ACESSIBILIDADE: TAMANHO DA FONTE */
-let tamanhoFonteAtual = 100; // Porcentagem inicial (100%)
+    track.addEventListener('mouseleave', () => {
+        isDown = false;
+        track.classList.remove('dragging');
+    });
 
-function mudarTamanhoTexto(step) {
-    // Cada clique altera 5% para cima ou para baixo
-    tamanhoFonteAtual += (step * 5);
-    
-    // Limites de segurança para não quebrar o layout (entre 90% e 120%)
-    if(tamanhoFonteAtual > 120) tamanhoFonteAtual = 120;
-    if(tamanhoFonteAtual < 90) tamanhoFonteAtual = 90;
-    
-    // Aplica o novo tamanho no corpo do site
-    document.body.style.fontSize = tamanhoFonteAtual + '%';
+    track.addEventListener('mouseup', () => {
+        isDown = false;
+        track.classList.remove('dragging');
+    });
+
+    track.addEventListener('mousemove', (e) => {
+        if (!isDown) return; // Só executa se o mouse estiver pressionado
+        e.preventDefault();
+        // Calcula a distância que o mouse moveu
+        const x = e.pageX - track.offsetLeft;
+        const walk = (x - startX) * 1.5; // Multiplicador para a velocidade do scroll
+        track.scrollLeft = scrollLeft - walk;
+    });
 }
