@@ -12,19 +12,39 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 // LÓGICA DE CLICAR E ARRASTAR (DRAG TO SCROLL) NO CARROSSEL
 /* CONTROLE DO CARROSSEL DE ESPECIALIDADES */
+/* CONTROLE DO CARROSSEL DE ESPECIALIDADES COM LOOP INFINITO */
 const track = document.querySelector('.carousel-track');
 const btnPrev = document.querySelector('.prev-btn');
 const btnNext = document.querySelector('.next-btn');
 
 if (track) {
-    // 1. Controle por Botões Laterais
-    // Avança a largura de um card (aproximadamente 340px considerando o gap)
+    // 1. Lógica de Rolagem Infinita (Loop)
     btnNext.addEventListener('click', () => {
+        // Pega o primeiro card e move para o final da fila
+        const firstCard = track.firstElementChild;
+        track.style.scrollBehavior = 'smooth';
         track.scrollBy({ left: 340, behavior: 'smooth' });
+        
+        // Espera a animação terminar e reorganiza o HTML em silêncio
+        setTimeout(() => {
+            track.style.scrollBehavior = 'auto'; // Tira a suavidade temporariamente
+            track.appendChild(firstCard); // Move o card
+            track.scrollLeft -= 340; // Reajusta a posição para o usuário não perceber o pulo
+        }, 400); 
     });
 
     btnPrev.addEventListener('click', () => {
-        track.scrollBy({ left: -340, behavior: 'smooth' });
+        // Pega o último card e move para o começo da fila
+        const lastCard = track.lastElementChild;
+        track.style.scrollBehavior = 'auto';
+        track.prepend(lastCard);
+        track.scrollLeft += 340;
+        
+        // Rola de volta com animação suave
+        setTimeout(() => {
+            track.style.scrollBehavior = 'smooth';
+            track.scrollBy({ left: -340, behavior: 'smooth' });
+        }, 10);
     });
 
     // 2. Controle por Arrasto do Mouse (Drag)
@@ -35,7 +55,6 @@ if (track) {
     track.addEventListener('mousedown', (e) => {
         isDown = true;
         track.classList.add('dragging');
-        // Registra onde o clique começou
         startX = e.pageX - track.offsetLeft;
         scrollLeft = track.scrollLeft;
     });
@@ -51,11 +70,10 @@ if (track) {
     });
 
     track.addEventListener('mousemove', (e) => {
-        if (!isDown) return; // Só executa se o mouse estiver pressionado
+        if (!isDown) return;
         e.preventDefault();
-        // Calcula a distância que o mouse moveu
         const x = e.pageX - track.offsetLeft;
-        const walk = (x - startX) * 1.5; // Multiplicador para a velocidade do scroll
+        const walk = (x - startX) * 1.5; 
         track.scrollLeft = scrollLeft - walk;
     });
 }
