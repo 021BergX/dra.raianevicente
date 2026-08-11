@@ -325,8 +325,9 @@ header {
 
 /* Quando o usuário estiver arrastando com o mouse */
 .carousel-track.dragging {
-    scroll-behavior: auto; /* Tira o smooth para o arraste ficar fluido */
-    cursor: grabbing; /* Muda o cursor para a "mãozinha fechada" */
+    scroll-behavior: auto; 
+    cursor: grabbing; 
+    scroll-snap-type: none; /* Desliga a trava do carrossel enquanto você arrasta */
 }
 
 /* Impede de clicar nos botões internos enquanto arrasta */
@@ -370,19 +371,20 @@ header {
     align-items: center;
 }
 
-.carousel-btn:hover {
-    background-color: var(--primary-dark);
-    color: var(--white);
+/* O desfoque só acontece se o carrossel NÃO estiver sendo arrastado */
+.carousel-track:not(.dragging):hover .especialidade-card:not(:hover) {
+    filter: blur(4px);
+    opacity: 0.5;
 }
 
-.prev-btn {
-    left: -25px;
+/* O zoom do card também só acontece se NÃO estiver arrastando */
+.carousel-track:not(.dragging) .especialidade-card:hover {
+    transform: translateY(-10px);
+    filter: blur(0);
+    opacity: 1;
+    z-index: 2; 
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1); 
 }
-
-.next-btn {
-    right: -25px;
-}
-
 /* Oculta os botões de seta em telas menores (celulares) para forçar o uso do toque */
 @media (max-width: 768px) {
     .carousel-btn {
@@ -579,29 +581,21 @@ footer {
     /* ADICIONE ESTA LINHA AQUI: */
     transition: transform 0.4s ease, filter 0.4s ease, opacity 0.4s ease;
 }
- /* Quando o mouse entra na área do carrossel, desfoca e deixa mais transparentes os cards que NÃO estão com o mouse */
-.carousel-track:hover .especialidade-card:not(:hover) {
-    filter: blur(4px);
-    opacity: 0.5;
-}
+    
 
-/* O card que ESTÁ com o mouse em cima ganha destaque, levanta um pouco e fica 100% nítido */
-.especialidade-card:hover {
-    transform: translateY(-10px);
-    filter: blur(0);
-    opacity: 1;
-    z-index: 2; /* Garante que a sombra dele passe por cima dos outros */
-    box-shadow: 0 15px 35px rgba(0,0,0,0.1); /* Deixa a sombra um pouco mais forte para dar profundidade */
-}   
 /* ESTILO PARA AS IMAGENS REAIS DOS CARDS (QUADRADAS COM BORDAS ARREDONDADAS) */
 /* DEIXANDO AS IMAGENS DOS CARDS MAIS COMPACTAS */
 .card-img-real {
     width: 100%;
-    height: 220px; /* Fixamos uma altura bem menor para caber na tela */
-    object-fit: cover; /* Garante que a foto preencha esse novo espaço sem amassar */
-    border-radius: 25px; /* Mantém as pontas arredondadas e sofisticadas */
+    height: 220px; 
+    object-fit: cover; 
+    border-radius: 25px; 
     margin-bottom: 20px;
     display: block;
+    
+    /* AS DUAS LINHAS MÁGICAS: */
+    -webkit-user-drag: none; /* Impede o arrasto fantasma da imagem */
+    user-select: none; /* Impede selecionar o card sem querer */
 }/* =========================================
    SEÇÃO DE DEPOIMENTOS (LOW PROFILE)
    ========================================= */
