@@ -773,4 +773,8 @@ body.destacar-links button {
     .carousel-wrapper {
         padding: 0 10px; 
     }
+}/* Garante que os botões dentro do carrossel recebam o clique perfeitamente */
+.especialidade-card a.btn-saiba-mais {
+    position: relative;
+    z-index: 10; 
 }
