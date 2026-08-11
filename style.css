@@ -875,3 +875,70 @@ body.destacar-links button {
     color: #FFFFFF; /* O texto fica branco */
     /* A borda branca se mantém, criando um efeito sofisticado de "esvaziamento" */
 }
+/* =========================================
+   AVISO DE COOKIES (MINIMALISTA E LOW PROFILE)
+   ========================================= */
+.cookie-banner {
+    position: fixed;
+    bottom: -100px; /* Começa escondida para fora da tela */
+    left: 0;
+    width: 100%;
+    background-color: #1C1C1C; /* Fundo chumbo sofisticado */
+    color: #E0E0E0;
+    padding: 15px 0;
+    z-index: 9999;
+    box-shadow: 0 -5px 15px rgba(0,0,0,0.1);
+    transition: bottom 0.5s ease-in-out; /* Animação de subida */
+    display: flex;
+    justify-content: center;
+}
+
+.cookie-banner.show {
+    bottom: 0; /* O JavaScript adiciona essa classe para a barra subir */
+}
+
+.cookie-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1000px;
+    width: 90%;
+    gap: 20px;
+}
+
+.cookie-content p {
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+/* Botão no estilo "Ghost" (transparente com borda) */
+.btn-cookie {
+    background-color: transparent;
+    color: #FFFFFF;
+    border: 1px solid #FFFFFF;
+    padding: 8px 20px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap; /* Evita que o texto quebre em duas linhas */
+}
+
+.btn-cookie:hover {
+    background-color: #FFFFFF;
+    color: #1C1C1C;
+}
+
+/* Ajuste automático para telas de celular */
+@media (max-width: 768px) {
+    .cookie-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+    .btn-cookie {
+        width: 100%;
+    }
+}

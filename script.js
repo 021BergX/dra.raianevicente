@@ -175,3 +175,36 @@ document.querySelectorAll('a').forEach(link => {
         }, 400); 
     });
 });
+/* =========================================
+   CORREÇÃO DO BOTÃO VOLTAR DO NAVEGADOR (BFCACHE)
+   ========================================= */
+window.addEventListener('pageshow', function (event) {
+    // Verifica se a página está sendo restaurada do histórico (botão voltar)
+    if (event.persisted || document.body.classList.contains('fade-out')) {
+        // Remove a invisibilidade para a tela voltar ao normal
+        document.body.classList.remove('fade-out');
+    }
+});
+/* =========================================
+   CONTROLE DO AVISO DE COOKIES (LGPD)
+   ========================================= */
+document.addEventListener("DOMContentLoaded", function() {
+    const cookieBanner = document.getElementById("cookie-banner");
+    const btnAceitar = document.getElementById("aceitar-cookies");
+
+    // Verifica no navegador se o usuário já aceitou os termos no passado
+    if (!localStorage.getItem("cookiesAceitos")) {
+        // Se não aceitou, espera 1 segundo após o site carregar e sobe a barra suavemente
+        setTimeout(() => {
+            cookieBanner.classList.add("show");
+        }, 1000);
+    }
+
+    // Quando o usuário clica em "Estou ciente"
+    btnAceitar.addEventListener("click", function() {
+        // Desce a barra de volta
+        cookieBanner.classList.remove("show");
+        // Grava no navegador que ele já aceitou, para não incomodar nas próximas visitas
+        localStorage.setItem("cookiesAceitos", "true");
+    });
+});
