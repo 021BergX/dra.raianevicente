@@ -980,3 +980,24 @@ body.destacar-links button {
         width: 100%;
     }
 }
+/* =========================================
+   CORREÇÃO DOS CARDS DO CARROSSEL
+   ========================================= */
+
+/* 1. Dá um respiro e empurra o título para cima do botão, evitando a sobreposição */
+.especialidade-card h4 {
+    margin-bottom: 12px; /* Cria uma distância segura entre o texto e o botão */
+    position: relative;
+    z-index: 2;
+}
+
+/* 2. Mantém o botão clicable mas remove qualquer linha debaixo (sublinhado) */
+.especialidade-card a.btn-saiba-mais {
+    text-decoration: none !important; /* Força a remoção de qualquer risco embaixo */
+    display: inline-block;
+}
+
+/* Garante que o texto de dentro do botão também não fique sublinhado ao passar o mouse */
+.especialidade-card a.btn-saiba-mais:hover {
+    text-decoration: none !important;
+}
