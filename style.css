@@ -440,65 +440,76 @@ header {
 }
 
 /* FOOTER */
+/* =========================================
+   RODAPÉ PRINCIPAL (Estilo Limpo e Tipográfico)
+   ========================================= */
 footer {
-    background-color: var(--primary-color);
-    color: var(--white);
-    padding: 70px 0 30px 0;
+    background-color: #FFFFFF; /* Fundo totalmente branco e clínico */
+    color: #333333; 
+    padding-top: 50px;
 }
 
-.footer-container {
+.footer-colunas {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    flex-wrap: wrap; /* Permite que os itens quebrem a linha no celular */
-    gap: 40px;
-    margin-bottom: 40px;
+    padding-bottom: 40px;
+    gap: 30px; /* Dá um respiro entre as 3 colunas */
 }
 
-/* 1. TRAVANDO O TAMANHO DA LOGO GIGANTE */
-.footer-logo {
-    flex: 1;
-    min-width: 250px;
+/* Garante que as 3 colunas tenham larguras proporcionais */
+.footer-info {
+    flex: 1; 
 }
 
-.footer-logo img {
-    width: 100%;
-    max-width: 220px; /* Limite máximo para a logo não estourar a tela */
-    height: auto;
-    display: block;
-    margin-bottom: 20px;
+/* Tipografia de destaque para o nome da médica */
+.medica-nome {
+    font-family: 'Playfair Display', serif; 
+    font-size: 24px;
+    color: #1C1C1C;
+    margin-bottom: 5px;
 }
 
-/* 2. ALINHAMENTO DOS TEXTOS DO RODAPÉ */
-.footer-info, 
-.footer-social {
-    flex: 1;
-    min-width: 250px;
-}
-
-.footer-info h4 {
-    font-family: 'Playfair Display', serif;
-    font-size: 22px;
-    margin-bottom: 20px;
-    color: var(--white);
-}
-
-.footer-info p {
-    font-family: 'Montserrat', sans-serif;
+.medica-especialidade {
     font-size: 15px;
-    line-height: 1.8;
-    margin-bottom: 10px;
-    color: rgba(255, 255, 255, 0.8); /* Branco levemente transparente para contraste elegante */
+    color: #666666;
+    text-transform: uppercase; /* Dá um toque sofisticado */
+    letter-spacing: 1px;
 }
 
-/* 3. BARRA INFERIOR DE DIREITOS AUTORAIS */
-.footer-bottom {
-    text-align: center;
-    padding-top: 25px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1); /* Linha divisória sutil */
-    font-family: 'Montserrat', sans-serif;
-    font-size: 13px;
-    color: rgba(255, 255, 255, 0.6);
+/* Estilo dos títulos de contato */
+.footer-info h4 {
+    font-size: 16px;
+    color: #1C1C1C;
+    margin-bottom: 15px;
+}
+
+/* Estilo dos textos de contato */
+.footer-info p {
+    font-size: 14px;
+    color: #666666;
+    margin-bottom: 8px;
+    line-height: 1.6;
+}
+
+/* Empurra o botão para o lado direito da tela no computador */
+.btn-coluna {
+    display: flex;
+    justify-content: flex-end; 
+}
+
+/* =========================================
+   ADAPTAÇÃO DO RODAPÉ PARA CELULAR
+   ========================================= */
+@media (max-width: 768px) {
+    .footer-colunas {
+        flex-direction: column; /* Empilha as 3 colunas uma embaixo da outra */
+        text-align: left;
+    }
+    .btn-coluna {
+        justify-content: flex-start; /* Alinha o botão à esquerda no celular */
+        margin-top: 10px;
+    }
 }
 
 /* WHATSAPP FLOAT */
