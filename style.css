@@ -1051,3 +1051,159 @@ body.destacar-links button {
         text-align: left; /* No celular, o texto justificado pode gerar falhas de espaçamento, melhor alinhar à esquerda */
     }
 }
+.especialidade-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Garante que o movimento seja fluido */
+}
+
+.especialidade-card:hover {
+    transform: translateY(-10px); /* Faz o card dar a leve saltada para cima */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1); /* Adiciona uma sombra elegante de profundidade */
+    z-index: 2;
+}
+/* =========================================
+   ESTILIZAÇÃO DA SEÇÃO DE CONTATO E MAPA
+   ========================================= */
+.secao-contato {
+    padding: 80px 5%;
+    background-color: #F8F9FA;
+}
+
+.contato-header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 50px auto;
+}
+
+.subtitulo-secao {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #888888;
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.contato-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: #2C2C2C;
+    margin-bottom: 15px;
+}
+
+.contato-header p {
+    font-size: 1.05rem;
+    color: #666666;
+    line-height: 1.6;
+}
+
+/* Grid de Cards de Contato */
+.contato-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.contato-card {
+    background-color: #FFFFFF;
+    padding: 40px 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.contato-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+}
+
+.contato-icon {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.contato-card h3 {
+    font-size: 1.25rem;
+    color: #2C2C2C;
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+.contato-card p {
+    font-size: 0.95rem;
+    color: #666666;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+/* Botões e Links dentro dos Cards */
+.btn-contato-acao {
+    background-color: #25D366;
+    color: #FFFFFF;
+    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    text-align: center;
+}
+
+.btn-contato-acao:hover {
+    background-color: #20ba5a;
+}
+
+.link-mapa, .link-email {
+    color: #2C2C2C;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    border-bottom: 1px solid #2C2C2C;
+    padding-bottom: 2px;
+    transition: color 0.3s ease;
+}
+
+.link-mapa:hover, .link-email:hover {
+    color: #666666;
+    border-color: #666666;
+}
+
+/* Estilização do Mapa do Google Embutido */
+.mapa-container {
+    margin-top: 40px;
+    width: 100%;
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.mapa-container iframe {
+    width: 100%;
+    height: 400px;
+    border: 0;
+    display: block;
+}
+
+/* Ajustes para telas menores (Celular) */
+@media (max-width: 768px) {
+    .secao-contato {
+        padding: 50px 5%;
+    }
+    .contato-header h2 {
+        font-size: 2rem;
+    }
+    .mapa-container iframe {
+        height: 300px; /* Reduz um pouco a altura no celular para melhor encaixe */
+    }
+}
