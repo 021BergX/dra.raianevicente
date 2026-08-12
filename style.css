@@ -1277,12 +1277,14 @@ body.destacar-links button {
 /* mais um teste */
 
 .portrait-photo {
-    /* Mantenha as propriedades anteriores (sombra, borda) e adicione esta máscara */
-    -webkit-mask-image: linear-gradient(to left, rgba(0, 0, 0, 1) 90%, transparent 100%);
-    mask-image: linear-gradient(to left, rgba(0, 0, 0, 1) 90%, transparent 100%);
-    
-    /* Opcional: Adicionar um filtro leve na foto para suavizar a textura da pele */
-    /* filter: contrast(1.02) brightness(1.02); */
+    width: 100%;
+    max-width: 450px;
+    height: auto;
+    border-radius: 4px; /* Cantos arredondados sutis */
+    margin: 0 auto;
+    display: block;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15); /* Sombra difusa imponente */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Borda translúcida */
 }
 
 /* Ajuste para o container da imagem não 'quebrar' o layout */
@@ -1305,4 +1307,8 @@ body.destacar-links button {
         opacity: 1;
         transform: translateY(0);
     }
+}
+html {
+    scroll-behavior: smooth; /* Deixa a rolagem suave */
+    scroll-padding-top: 100px; /* Altura de resguardo para o menu fixo não cobrir o conteúdo */
 }
