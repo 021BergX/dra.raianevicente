@@ -143,47 +143,40 @@ header {
    AJUSTE PROPORCIONAL DA SEÇÃO PRINCIPAL (HERO)
    ========================================= */
 
-.hero-text h1 {
-    font-size: 2.5rem; /* Equivalente a cerca de 40px - Fica imponente, mas cabe perfeitamente na largura */
-    line-height: 1.25; /* Espaçamento elegante entre as linhas */
-    font-weight: 700;
-    color: #FFFFFF; /* Branco puro para dar o contraste máximo que conversamos */
-    margin-bottom: 20px;
-}
-
-.hero-text p {
-    font-size: 1.05rem; /* Equivalente a cerca de 17px - Excelente para leitura fluida */
-    line-height: 1.6;
-    color: #F5EBE6; /* Um tom de bege bem clarinho para o parágrafo de apoio */
-    margin-bottom: 30px;
-}
-
-/* Ajuste proporcional para celulares */
-@media (max-width: 768px) {
-    .hero-text h1 {
-        font-size: 1.8rem; /* Reduz proporcionalmente nas telas menores */
-    }
-    .hero-text p {
-        font-size: 0.95rem;
-    }
-}
 /* =========================================
-   AJUSTE PROPORCIONAL DA SEÇÃO PRINCIPAL (HERO)
+   CORREÇÃO DEFINITIVA DE PROPORÇÃO (HERO)
    ========================================= */
 
 .hero-text h1 {
-    font-size: 2.5rem; /* Equivalente a cerca de 40px - Fica imponente, mas cabe perfeitamente na largura */
-    line-height: 1.25; /* Espaçamento elegante entre as linhas */
+    /* O clamp define: (Tamanho mínimo, Tamanho ideal dinâmico, Tamanho máximo) */
+    font-size: clamp(1.5rem, 4vw, 2.3rem); 
+    line-height: 1.2;
     font-weight: 700;
-    color: #FFFFFF; /* Branco puro para dar o contraste máximo que conversamos */
+    color: #FFFFFF;
     margin-bottom: 20px;
 }
 
 .hero-text p {
-    font-size: 1.05rem; /* Equivalente a cerca de 17px - Excelente para leitura fluida */
-    line-height: 1.6;
-    color: #F5EBE6; /* Um tom de bege bem clarinho para o parágrafo de apoio */
-    margin-bottom: 30px;
+    font-size: clamp(0.9rem, 2vw, 1.05rem);
+    line-height: 1.5;
+    color: #F5EBE6;
+    margin-bottom: 25px;
+}
+
+/* Garante que o container principal da tela inicial mantenha os elementos lado a lado no PC e empilhados com respiro no celular */
+.hero-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    padding: 40px 5%;
+}
+
+@media (max-width: 768px) {
+    .hero-container {
+        flex-direction: column-reverse; /* Mantém a foto ou o texto na ordem correta no mobile */
+        text-align: center;
+    }
 }
 
 /* Ajuste proporcional para celulares */
