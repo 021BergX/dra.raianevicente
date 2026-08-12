@@ -1312,3 +1312,15 @@ html {
     scroll-behavior: smooth; /* Deixa a rolagem suave */
     scroll-padding-top: 100px; /* Altura de resguardo para o menu fixo não cobrir o conteúdo */
 }
+/* Estilização e animação sutil para a seta do botão */
+.btn-hero-outline .arrow {
+    display: inline-block;
+    margin-left: 6px;
+    font-weight: 300;
+    transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* Quando passar o mouse no botão, a seta dá um leve impulso para cima e para a direita */
+.btn-hero-outline:hover .arrow {
+    transform: translate(3px, -3px);
+}
