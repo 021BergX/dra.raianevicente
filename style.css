@@ -171,7 +171,14 @@ header {
     gap: 40px;
     padding: 40px 5%;
 }
-
+/* Garante que a foto apareça com o tamanho e formato corretos */
+.portrait-photo {
+    width: 100%;
+    max-width: 450px;
+    height: auto;
+    border-radius: 12px;
+    display: block;
+}
 @media (max-width: 768px) {
     .hero-container {
         flex-direction: column-reverse; /* Mantém a foto ou o texto na ordem correta no mobile */
