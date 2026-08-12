@@ -263,7 +263,7 @@ header {
 /* SOBRE SECTION */
 .sobre {
     padding: 100px 0;
-    background-color: var(--white);
+    background-color: #d5a485; /* Alterado para o tom desejado */
 }
 
 .sobre-container {
