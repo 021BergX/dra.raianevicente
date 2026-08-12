@@ -147,63 +147,42 @@ header {
    CORREÇÃO DEFINITIVA DE PROPORÇÃO (HERO)
    ========================================= */
 
-.hero-text h1 {
-    /* O clamp define: (Tamanho mínimo, Tamanho ideal dinâmico, Tamanho máximo) */
-    font-size: clamp(1.5rem, 4vw, 2.3rem); 
-    line-height: 1.2;
-    font-weight: 700;
-    color: #FFFFFF;
-    margin-bottom: 20px;
+.hero {
+    background-color: var(--primary-color);
+    padding: 0; 
+    overflow: hidden;
 }
 
-.hero-text p {
-    font-size: clamp(0.9rem, 2vw, 1.05rem);
-    line-height: 1.5;
-    color: #F5EBE6;
-    margin-bottom: 25px;
-}
-
-/* Garante que o container principal da tela inicial mantenha os elementos lado a lado no PC e empilhados com respiro no celular */
 .hero-container {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 40px;
-    padding: 40px 5%;
-}
-/* Garante que a foto apareça com o tamanho e formato corretos */
-.portrait-photo {
-    width: 100%;
-    max-width: 450px;
-    height: auto;
-    border-radius: 12px;
-    display: block;
-}
-@media (max-width: 768px) {
-    .hero-container {
-        flex-direction: column-reverse; /* Mantém a foto ou o texto na ordem correta no mobile */
-        text-align: center;
-    }
-}
-/* Garante que a foto principal apareça perfeitamente dimensionada */
-.main-photo {
-    width: 100%;
-    max-width: 450px;
-    height: auto;
-    border-radius: 12px;
-    display: block;
+    align-items: stretch;
+    gap: 50px;
 }
 
-/* Ajuste proporcional para celulares */
-@media (max-width: 768px) {
-    .hero-text h1 {
-        font-size: 1.8rem; /* Reduz proporcionalmente nas telas menores */
-    }
-    .hero-text p {
-        font-size: 0.95rem;
-    }
+.hero-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start; /* Garante que o texto fique alinhado à esquerda */
+    padding: 80px 0; 
 }
 
+/* =========================================
+   TEXTOS E BOTÃO DO HERO (ESTILO MODERNO)
+   ========================================= */
+.hero-badge {
+    display: inline-block;
+    background-color: rgba(255, 255, 255, 0.15);
+    color: var(--white);
+    padding: 6px 18px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+}
 /* =========================================
    TEXTOS E BOTÃO DO HERO (ESTILO MODERNO)
    ========================================= */
