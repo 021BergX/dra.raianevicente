@@ -185,6 +185,14 @@ header {
         text-align: center;
     }
 }
+/* Garante que a foto principal apareça perfeitamente dimensionada */
+.main-photo {
+    width: 100%;
+    max-width: 450px;
+    height: auto;
+    border-radius: 12px;
+    display: block;
+}
 
 /* Ajuste proporcional para celulares */
 @media (max-width: 768px) {
