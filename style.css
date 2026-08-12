@@ -420,24 +420,6 @@ header {
     right: 10px; 
 }
 
-/* =========================================
-   EFEITO DE HOVER (EXCLUSIVO PARA COMPUTADOR)
-   ========================================= */
-/* O @media (hover: hover) garante que o celular ignore esses efeitos completamente */
-@media (hover: hover) and (pointer: fine) {
-    .carousel-track:not(.dragging):hover .especialidade-card:not(:hover) {
-        filter: blur(4px);
-        opacity: 0.5;
-    }
-
-    .carousel-track:not(.dragging) .especialidade-card:hover {
-        transform: translateY(-10px);
-        filter: blur(0);
-        opacity: 1;
-        z-index: 2; 
-        box-shadow: 0 15px 35px rgba(0,0,0,0.1); 
-    }
-}
 /* Oculta os botões de seta em telas menores (celulares) para forçar o uso do toque */
 @media (max-width: 768px) {
     .carousel-btn {
