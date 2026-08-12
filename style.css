@@ -281,7 +281,7 @@ header {
     width: 100%;
     max-width: 450px;
     height: auto; /* A mágica está aqui: permite que a altura original da foto seja respeitada */
-    border-radius: 20px; /* Bordas suavemente arredondadas */
+    border-radius: 0px; /* Bordas suavemente arredondadas */
     margin: 0 auto;
     display: block;
     box-shadow: 0 10px 30px rgba(0,0,0,0.08); /* Uma sombra leve para dar profundidade e elegância */
