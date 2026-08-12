@@ -1324,3 +1324,18 @@ html {
 .btn-hero-outline:hover .arrow {
     transform: translate(3px, -3px);
 }
+/* Força o corte totalmente reto na foto do topo, anulando qualquer arredondamento anterior */
+.hero-image .main-photo,
+.portrait-photo {
+    border-radius: 0 !important;
+}
+.rodape-creditos a.link-creditos {
+    color: inherit; /* Mantém a mesma cor do texto ao redor */
+    text-decoration: none; /* Remove o sublinhado */
+    font-weight: 500; /* Opcional: deixa um pouco mais destacado */
+    transition: opacity 0.3s ease;
+}
+
+.rodape-creditos a.link-creditos:hover {
+    opacity: 0.7; /* Dá um efeito suave de transparência quando o mouse passa por cima */
+}
