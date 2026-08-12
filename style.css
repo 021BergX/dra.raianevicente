@@ -1229,22 +1229,40 @@ body.destacar-links button {
     border: 1px solid rgba(255, 255, 255, 0.3); /* Moldura sutil translúcida */
 }
 .btn-hero-outline {
-    background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.6);
+    background-color: transparent;
+    border: 1px solid #FFFFFF;
     color: #FFFFFF;
-    padding: 14px 28px;
-    border-radius: 30px;
-    font-weight: 500;
-    letter-spacing: 1px;
-    text-transform: uppercase;
+    padding: 14px 30px;
+    border-radius: 4px;
     font-size: 12px;
-    transition: all 0.3s ease;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1); /* Transição suave e sofisticada */
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+/* O efeito de fundo que cresce */
+.btn-hero-outline::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background-color: #FFFFFF;
+    transition: width 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    z-index: -1;
 }
 
 .btn-hero-outline:hover {
-    background: #FFFFFF;
-    color: #d5a485; /* Inverte as cores suavemente no hover */
-    border-color: #FFFFFF;
+    color: #d5a485; /* Cor do texto no hover */
+}
+
+.btn-hero-outline:hover::before {
+    width: 100%; /* O fundo branco cresce da esquerda para a direita */
 }
 .hero-badge {
     background-color: transparent;
@@ -1255,4 +1273,36 @@ body.destacar-links button {
     font-size: 11px;
     letter-spacing: 2px; /* Letras espaçadas transmitem luxo */
     text-transform: uppercase;
+}
+/* mais um teste */
+
+.portrait-photo {
+    /* Mantenha as propriedades anteriores (sombra, borda) e adicione esta máscara */
+    -webkit-mask-image: linear-gradient(to left, rgba(0, 0, 0, 1) 90%, transparent 100%);
+    mask-image: linear-gradient(to left, rgba(0, 0, 0, 1) 90%, transparent 100%);
+    
+    /* Opcional: Adicionar um filtro leve na foto para suavizar a textura da pele */
+    /* filter: contrast(1.02) brightness(1.02); */
+}
+
+/* Ajuste para o container da imagem não 'quebrar' o layout */
+.hero-image-container {
+    position: relative;
+}
+/* A classe que será aplicada aos elementos (título, texto, botão) via Javascript ou CSS animation */
+.fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+    opacity: 0; /* Começa invisível */
+    will-change: transform, opacity;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px); /* Começa 20px abaixo */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
