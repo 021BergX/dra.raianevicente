@@ -1207,3 +1207,52 @@ body.destacar-links button {
         height: 300px; /* Reduz um pouco a altura no celular para melhor encaixe */
     }
 }
+
+/* DAQUI PARA BAIXO É TESTE */
+
+.hero-content h2 {
+    font-family: 'Playfair Display', serif; /* Título com serifa para um toque sofisticado */
+    font-weight: 400;
+    font-size: 42px;
+    line-height: 1.3;
+    color: #FFFFFF; /* Texto branco puro traz mais elegância sobre o fundo bege */
+}
+
+/* Destacar trechos específicos do texto */
+.hero-content h2 strong {
+    font-weight: 700;
+    font-style: italic; /* O itálico dá um charme editorial refinado */
+}
+.portrait-photo {
+    border-radius: 4px; /* Cantos levemente arredondados, menos infantilizados */
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15); /* Sombra mais difusa e imponente */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Moldura sutil translúcida */
+}
+.btn-hero-outline {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    color: #FFFFFF;
+    padding: 14px 28px;
+    border-radius: 30px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 12px;
+    transition: all 0.3s ease;
+}
+
+.btn-hero-outline:hover {
+    background: #FFFFFF;
+    color: #d5a485; /* Inverte as cores suavemente no hover */
+    border-color: #FFFFFF;
+}
+.hero-badge {
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: #FFFFFF;
+    padding: 6px 16px;
+    border-radius: 4px; /* Cantos retos ou levemente arredondados dão aspecto mais sério e formal */
+    font-size: 11px;
+    letter-spacing: 2px; /* Letras espaçadas transmitem luxo */
+    text-transform: uppercase;
+}
