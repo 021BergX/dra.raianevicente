@@ -139,25 +139,33 @@ header {
 /* =========================================
    ESTRUTURA DA SEÇÃO HERO
    ========================================= */
-.hero {
-    background-color: var(--primary-color);
-    padding: 0; 
-    overflow: hidden;
+/* =========================================
+   AJUSTE PROPORCIONAL DA SEÇÃO PRINCIPAL (HERO)
+   ========================================= */
+
+.hero-text h1 {
+    font-size: 2.5rem; /* Equivalente a cerca de 40px - Fica imponente, mas cabe perfeitamente na largura */
+    line-height: 1.25; /* Espaçamento elegante entre as linhas */
+    font-weight: 700;
+    color: #FFFFFF; /* Branco puro para dar o contraste máximo que conversamos */
+    margin-bottom: 20px;
 }
 
-.hero-container {
-    display: flex;
-    align-items: stretch;
-    gap: 50px;
+.hero-text p {
+    font-size: 1.05rem; /* Equivalente a cerca de 17px - Excelente para leitura fluida */
+    line-height: 1.6;
+    color: #F5EBE6; /* Um tom de bege bem clarinho para o parágrafo de apoio */
+    margin-bottom: 30px;
 }
 
-.hero-content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start; /* Garante que o texto fique alinhado à esquerda */
-    padding: 80px 0; 
+/* Ajuste proporcional para celulares */
+@media (max-width: 768px) {
+    .hero-text h1 {
+        font-size: 1.8rem; /* Reduz proporcionalmente nas telas menores */
+    }
+    .hero-text p {
+        font-size: 0.95rem;
+    }
 }
 /* =========================================
    AJUSTE PROPORCIONAL DA SEÇÃO PRINCIPAL (HERO)
@@ -1028,4 +1036,49 @@ body.destacar-links button {
 /* Garante que o texto de dentro do botão também não fique sublinhado ao passar o mouse */
 .especialidade-card a.btn-saiba-mais:hover {
     text-decoration: none !important;
+}
+/* =========================================
+   PADRÃO EDITORIAL PARA PÁGINAS DE CONTEÚDO
+   ========================================= */
+
+.conteudo-especialidade {
+    max-width: 800px; /* Trava a largura máxima para o texto não ficar longo demais na tela do PC */
+    margin: 40px auto; /* Centraliza o bloco na página com respiro em cima e embaixo */
+    padding: 0 20px;   /* Margem de segurança para não colar nas bordas no celular */
+}
+
+.conteudo-especialidade .subtitulo-pagina {
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #888888;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.conteudo-especialidade h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: #2C2C2C;
+    margin-bottom: 30px;
+}
+
+/* Configuração de parágrafos uniforme e limpa */
+.conteudo-especialidade p {
+    font-size: 1.05rem;       /* Tamanho perfeito para leitura confortável (cerca de 17px) */
+    line-height: 1.8;         /* Espaçamento elegante entre as linhas (equivalente ao 1,5 da ABNT) */
+    color: #4A4A4A;           /* Cinza escuro sofisticado (evita o preto chapado que cansa a vista) */
+    margin-bottom: 20px;      /* Distância limpa entre um parágrafo e outro */
+    text-align: justify;      /* Justifica as margens para manter o bloco uniforme */
+}
+
+/* Ajuste proporcional para celulares */
+@media (max-width: 768px) {
+    .conteudo-especialidade h1 {
+        font-size: 2rem;
+    }
+    .conteudo-especialidade p {
+        font-size: 1rem;
+        text-align: left; /* No celular, o texto justificado pode gerar falhas de espaçamento, melhor alinhar à esquerda */
+    }
 }
