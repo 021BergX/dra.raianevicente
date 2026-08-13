@@ -1463,6 +1463,7 @@ header {
   font-weight: 600;
 }
     /* Correção total e forçada para dispositivos móveis */
+    /* Correção definitiva de empilhamento para Mobile */
     @media screen and (max-width: 768px) {
       header {
         position: relative !important;
@@ -1472,26 +1473,31 @@ header {
       }
 
       .header-container {
-        display: block !important; /* Força o comportamento em bloco para evitar conflitos de flexbox */
-        text-align: center !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 15px !important;
         width: 100% !important;
         max-width: 100% !important;
-        padding: 0 !important;
       }
 
       .logo {
+        order: 1 !important; /* Garante que a logo é o primeiro elemento */
         display: block !important;
-        margin: 0 auto 12px auto !important; /* Cria um espaçamento fixo abaixo da logo */
         text-align: center !important;
+        width: 100% !important;
+        margin: 0 !important;
       }
 
       .logo-img {
-        height: 48px !important;
+        height: 50px !important;
         width: auto !important;
         display: inline-block !important;
       }
 
       nav {
+        order: 2 !important; /* Garante que o menu vem logo abaixo da logo */
         display: block !important;
         width: 100% !important;
       }
@@ -1523,6 +1529,4 @@ header {
         white-space: nowrap !important;
       }
     }
-
-
 
