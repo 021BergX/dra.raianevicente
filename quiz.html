@@ -280,15 +280,21 @@
   <script>
     function nextStep(stepId) {
       const currentActive = document.querySelector('.quiz-step.active');
-      currentActive.classList.remove('active');
       
-      setTimeout(() => {
-        if (stepId === 'result') {
-          document.getElementById('step-result').classList.add('active');
-        } else {
-          document.getElementById('step-' + stepId).classList.add('active');
-        }
-      }, 200); // Pequeno atraso para suavizar a troca visual
+      if (currentActive) {
+        currentActive.classList.remove('active');
+        currentActive.classList.add('exit');
+        
+        setTimeout(() => {
+          currentActive.classList.remove('exit');
+          
+          if (stepId === 'result') {
+            document.getElementById('step-result').classList.add('active');
+          } else {
+            document.getElementById('step-' + stepId).classList.add('active');
+          }
+        }, 350); // Tempo sincronizado com a animação CSS
+      }
     }
   </script>
 
