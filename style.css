@@ -1377,3 +1377,13 @@ html {
   color: #ffffff !important;
   transform: translateY(-1px);
 }
+.menu-navegacao {
+  display: flex;
+  align-items: center; /* <-- Esta linha força o alinhamento vertical perfeito */
+  gap: 25px;
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Alinha a logo, o menu e o botão no mesmo eixo */
+}

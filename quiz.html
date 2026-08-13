@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz de Saúde | Dra. Raiane dos Santos Vicente</title>
+    <style>
+        :root {
+            --dourado: #c5a059;
+            --cinza-escuro: #2c3e50;
+            --fundo: #fcfcfc;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--fundo);
+            color: var(--cinza-escuro);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .quiz-container {
+            width: 90%;
+            max-width: 500px;
+            perspective: 1000px;
+        }
+
+        .quiz-card {
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+            text-align: center;
+        }
+
+        .quiz-step {
+            display: none;
+        }
+
+        .quiz-step.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 { margin-bottom: 25px; font-weight: 500; }
+
+        .options button {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            background: transparent;
+            border: 1px solid var(--dourado);
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            color: var(--cinza-escuro);
+            transition: all 0.3s;
+        }
+
+        .options button:hover {
+            background: var(--dourado);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<div class="quiz-container">
+    <div class="quiz-card" id="quizCard">
+        <!-- Passo 1 -->
+        <div class="quiz-step active" data-step="1">
+            <h2>Como você avalia sua memória no dia a dia?</h2>
+            <div class="options">
+                <button onclick="nextStep(1, 'ok')">Ótima, normal</button>
+                <button onclick="nextStep(1, 'atencao')">Esqueço coisas simples</button>
+                <button onclick="nextStep(1, 'alerta')">Esquecimentos frequentes</button>
+            </div>
+        </div>
+
+        <!-- Passo 2 -->
+        <div class="quiz-step" data-step="2">
+            <h2>Como está seu ânimo para realizar tarefas?</h2>
+            <div class="options">
+                <button onclick="nextStep(2, 'ok')">Motivado(a)</button>
+                <button onclick="nextStep(2, 'atencao')">Cansado(a) frequentemente</button>
+                <button onclick="nextStep(2, 'alerta')">Sem vontade de realizar tarefas</button>
+            </div>
+        </div>
+
+        <!-- Resultado -->
+        <div class="quiz-step" data-step="resultado">
+            <h2>Diagnóstico Preliminar</h2>
+            <p id="resultadoTexto"></p>
+            <button onclick="window.location.href='index.html'">Voltar ao Site</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    let pontos = 0;
+
+    function nextStep(step, val) {
+        if(val === 'atencao') pontos += 1;
+        if(val === 'alerta') pontos += 2;
+
+        document.querySelector(`.quiz-step[data-step="${step}"]`).classList.remove('active');
+        
+        let next = step + 1;
+        if(document.querySelector(`.quiz-step[data-step="${next}"]`)) {
+            document.querySelector(`.quiz-step[data-step="${next}"]`).classList.add('active');
+        } else {
+            document.querySelector('.quiz-step[data-step="resultado"]').classList.add('active');
+            let msg = pontos > 2 ? "Recomendamos uma avaliação presencial para garantir seu bem-estar." : "Seu quadro está dentro da normalidade, continue cuidando da saúde!";
+            document.getElementById('resultadoTexto').innerText = msg;
+        }
+    }
+</script>
+</body>
+</html>
