@@ -45,6 +45,7 @@ body.fade-out {
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: 100px; /* Garante que o navegador pare a rolagem antes de esconder o topo da seção por causa do cabeçalho fixo */
 }
 
 .container {

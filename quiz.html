@@ -118,14 +118,15 @@
     .quiz-step {
       display: none;
       opacity: 0;
-      transition: opacity 0.4s ease-in-out;
+      transform: translateY(10px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
     }
 
     .quiz-step.active {
       display: block;
       opacity: 1;
+      transform: translateY(0);
     }
-
     .quiz-question {
       font-size: 22px;
       font-weight: 600;
@@ -281,18 +282,28 @@
       const currentActive = document.querySelector('.quiz-step.active');
       
       if (currentActive) {
-        currentActive.classList.remove('active');
-        currentActive.classList.add('exit');
+        // Faz a pergunta atual sumir suavemente
+        currentActive.style.opacity = '0';
+        currentActive.style.transform = 'translateY(-10px)';
         
         setTimeout(() => {
-          currentActive.classList.remove('exit');
+          currentActive.classList.remove('active');
+          // Reseta os estilos para a próxima vez
+          currentActive.style.opacity = '';
+          currentActive.style.transform = '';
           
+          // Ativa a nova pergunta
+          let nextElement;
           if (stepId === 'result') {
-            document.getElementById('step-result').classList.add('active');
+            nextElement = document.getElementById('step-result');
           } else {
-            document.getElementById('step-' + stepId).classList.add('active');
+            nextElement = document.getElementById('step-' + stepId);
           }
-        }, 350); // Tempo sincronizado com a animação CSS
+          
+          if (nextElement) {
+            nextElement.classList.add('active');
+          }
+        }, 300); // Sincronizado com o tempo do CSS
       }
     }
   </script>
