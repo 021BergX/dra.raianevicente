@@ -71,17 +71,18 @@ header {
 }
 
 .header-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 40px; /* Adiciona uma margem interna à esquerda para a logo não colar na ponta */
 }
 
-/* ESTILO DA NOVA LOGO OFICIAL */
 .logo-img {
-    height: 70px; /* Você pode aumentar ou diminuir esse valor para ajustar o tamanho */
-    width: auto;
-    display: block;
-    transition: transform 0.3s ease;
+  height: 70px;
+  width: auto;
+  display: block;
+  margin-left: 20px; /* Aumente ou diminua este valor para mover a logo para a direita */
+  transition: transform 0.3s ease;
 }
 
 .logo-img:hover {
