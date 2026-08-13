@@ -1462,3 +1462,32 @@ header {
   border-radius: 50px;
   font-weight: 600;
 }
+    /* Ajustes específicos para Celulares e Telas Pequenas */
+    @media screen and (max-width: 768px) {
+      header {
+        padding: 10px 15px;
+      }
+
+      .header-container {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .logo-img {
+        height: 50px; /* Reduz um pouco o tamanho da logo no mobile para economizar espaço */
+      }
+
+      .nav-links {
+        gap: 10px; /* Reduz o espaço gigante entre os itens */
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .nav-links a, 
+      .nav-links .btn-menu-quiz, 
+      .nav-links .btn-agendar,
+      .nav-links .btn-whatsapp {
+        font-size: 13px !important;
+        padding: 6px 10px !important;
+      }
+    }
