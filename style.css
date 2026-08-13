@@ -1462,10 +1462,10 @@ header {
   border-radius: 50px;
   font-weight: 600;
 }
-    /* Ajustes definitivos para o Menu Mobile */
+    /* Ajustes perfeitos para o Menu Mobile */
     @media screen and (max-width: 768px) {
       header {
-        position: relative !important; /* Desativa o sticky no celular para evitar sobreposição no conteúdo */
+        position: relative !important;
         padding: 15px 10px !important;
         height: auto !important;
       }
@@ -1475,7 +1475,7 @@ header {
         flex-direction: column !important;
         align-items: center !important;
         justify-content: center !important;
-        gap: 12px !important;
+        gap: 15px !important; /* Dá um respiro adequado entre a logo e os links */
         max-width: 100% !important;
       }
 
@@ -1483,15 +1483,18 @@ header {
         display: flex !important;
         justify-content: center !important;
         width: 100% !important;
+        margin-bottom: 0 !important;
       }
 
       .logo-img {
-        height: 48px !important; /* Tamanho ideal para não estourar a tela */
+        height: 52px !important; /* Tamanho ideal e nítido */
         width: auto !important;
       }
 
       nav {
         width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
       }
 
       .nav-links {
@@ -1510,15 +1513,16 @@ header {
         margin: 2px !important;
       }
 
-      /* Estilo compacto e limpo para os links e botões no celular */
+      /* Links e botões compactos e alinhados */
       .nav-links a, 
       .nav-links .btn-menu-quiz, 
       .nav-links .btn-agendar,
       .nav-links .btn-whatsapp {
         font-size: 11px !important;
-        padding: 5px 10px !important;
+        padding: 6px 10px !important;
         border-radius: 6px !important;
         white-space: nowrap !important;
       }
     }
+
 
