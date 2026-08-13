@@ -81,7 +81,7 @@ header {
   height: 70px;
   width: auto;
   display: block;
-  margin-left: 20px; /* Aumente ou diminua este valor para mover a logo para a direita */
+  margin-left: 30px; /* Aumente ou diminua este valor para mover a logo para a direita */
   transition: transform 0.3s ease;
 }
 
