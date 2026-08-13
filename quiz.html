@@ -254,11 +254,12 @@
       margin-top: 30px;
     }
 
+    /* Botão Principal (Agendar Consulta): Branco por padrão, marrom ao passar o mouse */
     .btn-resultado-principal {
       display: inline-block;
       padding: 12px 28px;
-      background-color: var(--primary-gold);
-      color: #ffffff !important;
+      background-color: #ffffff;
+      color: var(--text-dark) !important;
       border: 2px solid var(--primary-gold);
       border-radius: 8px;
       font-weight: 600;
@@ -269,15 +270,17 @@
     }
 
     .btn-resultado-principal:hover {
-      opacity: 0.9;
+      background-color: var(--primary-gold);
+      color: #ffffff !important;
       transform: translateY(-2px);
       box-shadow: 0 4px 12px rgba(197, 160, 89, 0.3);
     }
 
+    /* Botão Secundário (Escolher Outro Teste): Igualzinho, fundo branco e marrom no hover */
     .btn-resultado-secundario {
       display: inline-block;
       padding: 12px 28px;
-      background-color: transparent;
+      background-color: #ffffff;
       color: var(--text-dark) !important;
       border: 2px solid var(--primary-gold);
       border-radius: 8px;
