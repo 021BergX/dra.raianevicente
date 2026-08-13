@@ -1361,15 +1361,19 @@ html {
 }
 
 /* Estilo específico do botão de teste no cabeçalho */
-.btn-menu-quiz {
-  background-color: #2c3e50;
-  color: #ffffff !important;
-  padding: 10px 18px;
-  border-radius: 6px;
-  transition: background-color 0.3s, transform 0.2s !important;
+/* Exemplo para o botão "Fazer Teste" se alinhar à identidade visual */
+.fazer-teste-btn, a[href="quiz.html"] {
+  background-color: transparent; /* Remove o fundo pesado */
+  color: #2c3e50 !important; /* Cor padrão do menu */
+  border: 1px solid #c5a059; /* Borda sutil no tom dourado da logo */
+  padding: 8px 16px;
+  border-radius: 4px; /* Cantos levemente arredondados, mais sofisticados */
+  font-weight: 500;
+  transition: all 0.3s ease;
 }
 
-.btn-menu-quiz:hover {
-  background-color: #0077b6;
-  transform: translateY(-2px);
+.fazer-teste-btn:hover, a[href="quiz.html"]:hover {
+  background-color: #c5a059; /* Preenche com o dourado ao passar o mouse */
+  color: #ffffff !important;
+  transform: translateY(-1px);
 }
