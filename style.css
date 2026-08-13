@@ -1390,3 +1390,28 @@ header {
 .fazer-teste-btn, a[href="quiz.html"] {
   margin-right: 15px; /* Cria o espaço exato entre os dois botões */
 }
+
+/* alterações começaram aqui */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px; /* Adiciona respiro nas extremidades para a logo não colar na borda */
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 32px; /* Mantém um espaço consistente entre Início, Dra. Raiane, etc. */
+}
+
+.logo-container {
+  margin-right: 20px; /* Afasta um pouco mais a logo dos primeiros links se necessário */
+}
+
+.btn-fazer-teste {
+  /* Garanta que o padding e a altura estejam nivelados com o botão verde ao lado */
+  padding: 10px 20px;
+  border: 1px solid #c5a059; /* Tom dourado da identidade */
+  border-radius: 8px;
+}
