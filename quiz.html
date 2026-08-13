@@ -245,11 +245,54 @@
       line-height: 1.6;
     }
 
+    /* Estilo padronizado e legível para os botões da tela final */
     .result-actions {
       display: flex;
       gap: 15px;
       justify-content: center;
       flex-wrap: wrap;
+      margin-top: 30px;
+    }
+
+    .btn-resultado-principal {
+      display: inline-block;
+      padding: 12px 28px;
+      background-color: var(--primary-gold);
+      color: #ffffff !important;
+      border: 2px solid var(--primary-gold);
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 15px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .btn-resultado-principal:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(197, 160, 89, 0.3);
+    }
+
+    .btn-resultado-secundario {
+      display: inline-block;
+      padding: 12px 28px;
+      background-color: transparent;
+      color: var(--text-dark) !important;
+      border: 2px solid var(--primary-gold);
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 15px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .btn-resultado-secundario:hover {
+      background-color: var(--primary-gold);
+      color: #ffffff !important;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(197, 160, 89, 0.3);
     }
 
     /* Botão Padrão Elegante */
@@ -366,8 +409,8 @@
           <div class="result-title">Diagnóstico Preliminar</div>
           <div class="result-text">Recomendamos uma avaliação presencial especializada para garantir o bem-estar, a segurança e a qualidade de vida da família.</div>
           <div class="result-actions">
-            <a href="index.html#contato" class="btn-voltar-padrao">Agendar Consulta</a>
-            <button class="btn-voltar-padrao" onclick="resetQuiz()" style="background: transparent;">Escolher Outro Teste</button>
+            <a href="index.html#contato" class="btn-resultado-principal">Agendar Consulta</a>
+            <button class="btn-resultado-secundario" onclick="resetQuiz()">Escolher Outro Teste</button>
           </div>
         </div>
       </div>
