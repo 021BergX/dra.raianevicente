@@ -1379,11 +1379,14 @@ html {
 }
 .menu-navegacao {
   display: flex;
-  align-items: center; /* <-- Esta linha força o alinhamento vertical perfeito */
-  gap: 25px;
+  align-items: center;
+  gap: 20px; /* Aumenta levemente o espaço entre todos os itens, incluindo os botões */
 }
 header {
   display: flex;
   justify-content: space-between;
   align-items: center; /* Alinha a logo, o menu e o botão no mesmo eixo */
+}
+.fazer-teste-btn, a[href="quiz.html"] {
+  margin-right: 15px; /* Cria o espaço exato entre os dois botões */
 }
