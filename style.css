@@ -1462,32 +1462,63 @@ header {
   border-radius: 50px;
   font-weight: 600;
 }
-    /* Ajustes específicos para Celulares e Telas Pequenas */
+    /* Ajustes definitivos para o Menu Mobile */
     @media screen and (max-width: 768px) {
       header {
-        padding: 10px 15px;
+        position: relative !important; /* Desativa o sticky no celular para evitar sobreposição no conteúdo */
+        padding: 15px 10px !important;
+        height: auto !important;
       }
 
       .header-container {
-        flex-direction: column;
-        gap: 12px;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 12px !important;
+        max-width: 100% !important;
+      }
+
+      .logo {
+        display: flex !important;
+        justify-content: center !important;
+        width: 100% !important;
       }
 
       .logo-img {
-        height: 50px; /* Reduz um pouco o tamanho da logo no mobile para economizar espaço */
+        height: 48px !important; /* Tamanho ideal para não estourar a tela */
+        width: auto !important;
+      }
+
+      nav {
+        width: 100% !important;
       }
 
       .nav-links {
-        gap: 10px; /* Reduz o espaço gigante entre os itens */
-        flex-wrap: wrap;
-        justify-content: center;
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 6px !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        list-style: none !important;
       }
 
+      .nav-links li {
+        margin: 2px !important;
+      }
+
+      /* Estilo compacto e limpo para os links e botões no celular */
       .nav-links a, 
       .nav-links .btn-menu-quiz, 
       .nav-links .btn-agendar,
       .nav-links .btn-whatsapp {
-        font-size: 13px !important;
-        padding: 6px 10px !important;
+        font-size: 11px !important;
+        padding: 5px 10px !important;
+        border-radius: 6px !important;
+        white-space: nowrap !important;
       }
     }
+
