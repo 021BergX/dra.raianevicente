@@ -97,7 +97,7 @@
     .quiz-card {
       background: var(--white);
       width: 100%;
-      max-width: 600px;
+      max-width: 700px;
       padding: 40px;
       border-radius: 16px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
@@ -120,6 +120,8 @@
       opacity: 0;
       transform: translateY(10px);
       transition: opacity 0.3s ease, transform 0.3s ease;
+      width: 100%;
+      max-width: 700px;
     }
 
     .quiz-step.active {
@@ -127,12 +129,69 @@
       opacity: 1;
       transform: translateY(0);
     }
+
     .quiz-question {
       font-size: 22px;
       font-weight: 600;
       text-align: center;
       margin-bottom: 30px;
       color: var(--text-dark);
+    }
+
+    /* Grid de Seleção dos 10 Cards */
+    .quiz-intro-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .quiz-intro-header h1 {
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 10px;
+    }
+
+    .quiz-intro-header p {
+      font-size: 15px;
+      color: #555;
+    }
+
+    .disease-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      max-height: 500px;
+      overflow-y: auto;
+      padding-right: 5px;
+    }
+
+    .disease-card {
+      background: var(--white);
+      padding: 20px;
+      border-radius: 12px;
+      border: 2px solid #e2d9cd;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      text-align: left;
+    }
+
+    .disease-card:hover {
+      border-color: var(--primary-gold);
+      background-color: #fbf9f6;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(197, 160, 89, 0.15);
+    }
+
+    .disease-card h3 {
+      font-size: 16px;
+      color: var(--text-dark);
+      margin-bottom: 6px;
+    }
+
+    .disease-card p {
+      font-size: 13px;
+      color: #666;
+      line-height: 1.4;
     }
 
     /* Opções com Efeito Dinâmico e Hover Fluido */
@@ -186,6 +245,13 @@
       line-height: 1.6;
     }
 
+    .result-actions {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
     /* Botão Padrão Elegante */
     .btn-voltar-padrao {
       display: inline-block;
@@ -198,6 +264,7 @@
       text-decoration: none;
       transition: all 0.3s ease;
       box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+      cursor: pointer;
     }
 
     .btn-voltar-padrao:hover {
@@ -225,43 +292,71 @@
                 <li><a href="index.html#especialidades">Especialidades</a></li>
                 <li><a href="index.html#contato">Contato</a></li>
                 <li><a href="quiz.html" class="btn-menu-quiz">Fazer Teste</a></li>
-                <li><a href="https://api.whatsapp.com/send/?phone=5511950460616&text=Olá!%20Gostaria%20de%20mais%20informações%20sobre%20as%20consultas%20com%20a%20Dra.%20Raiane.&type=phone_number&app_absent=0" class="btn-agendar" target="_blank">Agendar consulta</a></li>
+                <li><a href="https://api.whatsapp.com/send/?phone=5511950460616&text=Olá!%20Gostaria%20de%20mais%20informações%20sobre%20as%20consultas%20com%20a%20Dra.%20Raiane.&type=phone_number&app_absent=0" class="btn-whatsapp" target="_blank">Agendar consulta</a></li>
             </ul>
         </nav>
     </div>
-    </header>
+  </header>
 
-  <!-- Área do Quiz Dinâmico -->
+  <!-- Área do Quiz Dinâmico com os 10 Cards -->
   <main>
     <div class="quiz-card">
       
-      <!-- Questão 1 -->
-      <div class="quiz-step active" id="step-1">
-        <div class="quiz-question">Como você avalia sua memória no dia a dia?</div>
-        <div class="quiz-options">
-          <button class="quiz-option" onclick="nextStep(2)">Ótima, normal</button>
-          <button class="quiz-option" onclick="nextStep(2)">Esqueço coisas simples ocasionalmente</button>
-          <button class="quiz-option" onclick="nextStep(2)">Esquecimentos frequentes e perceptíveis</button>
+      <!-- ETAPA 0: Seleção das 10 Condições -->
+      <div class="quiz-step active" id="step-selector">
+        <div class="quiz-intro-header">
+          <h1>Avaliações Especializadas</h1>
+          <p>Selecione abaixo a condição para iniciar o rastreio específico:</p>
+        </div>
+
+        <div class="disease-cards-grid">
+          <div class="disease-card" onclick="startDiseaseQuiz('parkinson')">
+            <h3>Parkinson</h3>
+            <p>Sintomas motores e rigidez.</p>
+          </div>
+          <div class="disease-card" onclick="startDiseaseQuiz('alzheimer')">
+            <h3>Alzheimer</h3>
+            <p>Memória e cognição global.</p>
+          </div>
+          <div class="disease-card" onclick="startDiseaseQuiz('dor-cronica')">
+            <h3>Dores Crônicas</h3>
+            <p>Intensidade e impacto diário.</p>
+          </div>
+          <div class="disease-card" onclick="startDiseaseQuiz('fragilidade')">
+            <h3>Fragilidade</h3>
+            <p>Fadiga, força e mobilidade.</p>
+          </div>
+          <div class="disease-card" onclick="startDiseaseQuiz('quedas')">
+            <h3>Risco de Quedas</h3>
+            <p>Equilíbrio e segurança em casa.</p>
+          </div>
+          <div class="disease-card" onclick="startDiseaseQuiz('insonia')">
+            <h3>Distúrbios do Sono</h3>
+            <p>Qualidade do descanso noturno.</p>
+          </div>
+          <div class="disease-card" onclick="startDiseaseQuiz('humor')">
+            <h3>Saúde Emocional</h3>
+            <p>Sinais de apatia ou humor.</p>
+          </div>
+          <div class="disease-card" onclick="startDiseaseQuiz('nutricao')">
+            <h3>Estado Nutricional</h3>
+            <p>Apetite e variação de peso.</p>
+          </div>
+          <div class="disease-card" onclick="startDiseaseQuiz('mobilidade')">
+            <h3>Mobilidade</h3>
+            <p>Independência para marcha.</p>
+          </div>
+          <div class="disease-card" onclick="startDiseaseQuiz('geral')">
+            <h3>Saúde Global</h3>
+            <p>Check-up geral de autonomia.</p>
+          </div>
         </div>
       </div>
 
-      <!-- Questão 2 -->
-      <div class="quiz-step" id="step-2">
-        <div class="quiz-question">Há dificuldades recentes para realizar tarefas rotineiras?</div>
-        <div class="quiz-options">
-          <button class="quiz-option" onclick="nextStep(3)">Não, realizo tudo com facilidade</button>
-          <button class="quiz-option" onclick="nextStep(3)">Às vezes levo mais tempo que o habitual</button>
-          <button class="quiz-option" onclick="nextStep(3)">Sim, preciso de ajuda com frequência</button>
-        </div>
-      </div>
-
-      <!-- Questão 3 -->
-      <div class="quiz-step" id="step-3">
-        <div class="quiz-question">Como tem sido o humor e a disposição geral recentemente?</div>
-        <div class="quiz-options">
-          <button class="quiz-option" onclick="nextStep('result')">Estável e ativo</button>
-          <button class="quiz-option" onclick="nextStep('result')">Cansaço fácil ou desânimo leve</button>
-          <button class="quiz-option" onclick="nextStep('result')">Apatia, isolamento ou alterações de humor</button>
+      <!-- FLUXO DINÂMICO DE PERGUNTAS -->
+      <div class="quiz-step" id="quiz-flow-area">
+        <div id="dynamic-question-container">
+          <!-- O conteúdo das perguntas injetadas via JS aparece aqui -->
         </div>
       </div>
 
@@ -270,42 +365,132 @@
         <div class="result-container">
           <div class="result-title">Diagnóstico Preliminar</div>
           <div class="result-text">Recomendamos uma avaliação presencial especializada para garantir o bem-estar, a segurança e a qualidade de vida da família.</div>
-          <a href="index.html" class="btn-voltar-padrao">Voltar ao Site</a>
+          <div class="result-actions">
+            <a href="index.html#contato" class="btn-voltar-padrao">Agendar Consulta</a>
+            <button class="btn-voltar-padrao" onclick="resetQuiz()" style="background: transparent;">Escolher Outro Teste</button>
+          </div>
         </div>
       </div>
 
     </div>
   </main>
 
-  <!-- Script Simples para Controlar as Animações e Passos -->
+  <!-- Script Dinâmico para os 10 Cards e Transições -->
   <script>
-    function nextStep(stepId) {
-      const currentActive = document.querySelector('.quiz-step.active');
+    const questionnaires = {
+      parkinson: [
+        { q: "Notou lentidão para iniciar movimentos ou caminhar?", opts: ["Não", "Às vezes", "Sim, com frequência"] },
+        { q: "Percebeu tremores em repouso nas mãos ou pernas?", opts: ["Não", "Ocasionalmente", "Sim, frequentemente"] },
+        { q: "Há rigidez ou enrijecimento nos membros?", opts: ["Não", "Leve", "Sim, intensa"] }
+      ],
+      alzheimer: [
+        { q: "Como você avalia sua memória para fatos recentes?", opts: ["Ótima", "Esqueço detalhes menores", "Esquecimentos frequentes"] },
+        { q: "Dificuldade em gerenciar finanças ou contas da casa?", opts: ["Nenhuma", "Preciso de supervisão", "Totalmente dependente"] },
+        { q: "Desorientação em ruas conhecidas?", opts: ["Nunca", "Raramente", "Sim, aconteceu"] }
+      ],
+      "dor-cronica": [
+        { q: "Sente dores constantes nas articulações ou coluna?", opts: ["Não", "Sim, moderada", "Sim, intensa e diária"] },
+        { q: "A dor interfere nas suas atividades de lazer?", opts: ["Não", "Parcialmente", "Impedimento total"] },
+        { q: "Uso frequente de analgésicos?", opts: ["Raramente", "Alguns dias na semana", "Diariamente"] }
+      ],
+      fragilidade: [
+        { q: "Sente cansaço extremo sem motivo aparente?", opts: ["Nunca", "Às vezes", "Constantemente"] },
+        { q: "Perda de peso não intencional recente?", opts: ["Não", "Pouco", "Sim, perceptível"] },
+        { q: "Dificuldade para caminhar um quarteirão?", opts: ["Facilidade", "Com esforço", "Não consigo"] }
+      ],
+      quedas: [
+        { q: "Sofreu alguma queda nos últimos 6 meses?", opts: ["Não", "1 queda", "2 ou mais quedas"] },
+        { q: "Usa tapetes soltos ou falta iluminação em casa?", opts: ["Não", "Parcialmente", "Sim"] },
+        { q: "Tontura ao levantar-se?", opts: ["Nunca", "Às vezes", "Frequente"] }
+      ],
+      insonia: [
+        { q: "Dificuldade para pegar no sono à noite?", opts: ["Raramente", "Algumas noites", "Todas as noites"] },
+        { q: "Acorda cansado(a) pela manhã?", opts: ["Não", "Às vezes", "Sempre"] },
+        { q: "Usa medicamentos para dormir?", opts: ["Não", "Ocasionalmente", "Uso contínuo"] }
+      ],
+      humor: [
+        { q: "Sentimento de desânimo ou tristeza persistente?", opts: ["Não", "De vez em quando", "Quase sempre"] },
+        { q: "Perda de interesse em hobbies antigos?", opts: ["Não", "Parcial", "Total"] },
+        { q: "Isolamento social voluntário?", opts: ["Não", "Um pouco", "Prefiro ficar totalmente isolado"] }
+      ],
+      nutricao: [
+        { q: "Como está o seu apetite ultimamente?", opts: ["Normal", "Diminuiu um pouco", "Sem apetite nenhum"] },
+        { q: "Dificuldade para mastigar ou engolir alimentos?", opts: ["Nenhuma", "Leve", "Significativa"] },
+        { q: "Ingestão adequada de água diária?", opts: ["Boa", "Regular", "Baixa"] }
+      ],
+      mobilidade: [
+        { q: "Usa algum apoio para caminhar (bengala, andador)?", opts: ["Não", "Às vezes", "Uso constante"] },
+        { q: "Dificuldade para levantar de uma cadeira sem ajuda?", opts: ["Nenhuma", "Com esforço", "Preciso de ajuda"] },
+        { q: "Fôlego curto ao caminhar curtas distâncias?", opts: ["Não", "Moderado", "Intenso"] }
+      ],
+      geral: [
+        { q: "Como avalia sua saúde e autonomia geral hoje?", opts: ["Excelente", "Boa com pequenas limitações", "Preciso de apoio frequente"] },
+        { q: "Realiza exames de rotina regularmente?", opts: ["Sim, anualmente", "Esporadicamente", "Faz muito tempo"] },
+        { q: "Sente-se seguro(a) com sua rede de apoio familiar?", opts: ["Totalmente", "Parcialmente", "Não tenho apoio"] }
+      ]
+    };
+
+    let currentDisease = '';
+    let currentQuestionIndex = 0;
+
+    function startDiseaseQuiz(diseaseKey) {
+      currentDisease = diseaseKey;
+      currentQuestionIndex = 0;
       
-      if (currentActive) {
-        // Faz a pergunta atual sumir suavemente
-        currentActive.style.opacity = '0';
-        currentActive.style.transform = 'translateY(-10px)';
+      const selector = document.getElementById('step-selector');
+      selector.style.opacity = '0';
+      
+      setTimeout(() => {
+        selector.classList.remove('active');
+        selector.style.opacity = '';
         
-        setTimeout(() => {
-          currentActive.classList.remove('active');
-          // Reseta os estilos para a próxima vez
-          currentActive.style.opacity = '';
-          currentActive.style.transform = '';
-          
-          // Ativa a nova pergunta
-          let nextElement;
-          if (stepId === 'result') {
-            nextElement = document.getElementById('step-result');
-          } else {
-            nextElement = document.getElementById('step-' + stepId);
-          }
-          
-          if (nextElement) {
-            nextElement.classList.add('active');
-          }
-        }, 300); // Sincronizado com o tempo do CSS
+        const flowArea = document.getElementById('quiz-flow-area');
+        flowArea.classList.add('active');
+        renderQuestion();
+      }, 300);
+    }
+
+    function renderQuestion() {
+      const questionsList = questionnaires[currentDisease];
+      const container = document.getElementById('dynamic-question-container');
+      
+      if (currentQuestionIndex < questionsList.length) {
+        const currentQ = questionsList[currentQuestionIndex];
+        
+        let optionsHTML = '';
+        currentQ.opts.forEach(opt => {
+          optionsHTML += `<button class="quiz-option" onclick="nextQuestion()">${opt}</button>`;
+        });
+
+        container.innerHTML = `
+          <div class="quiz-question">${currentQ.q}</div>
+          <div class="quiz-options">${optionsHTML}</div>
+          <div style="margin-top: 25px; font-size: 13px; color: #7f8c8d; text-align: center;">Questão ${currentQuestionIndex + 1} de ${questionsList.length}</div>
+        `;
+      } else {
+        const flowArea = document.getElementById('quiz-flow-area');
+        flowArea.classList.remove('active');
+        document.getElementById('step-result').classList.add('active');
       }
+    }
+
+    function nextQuestion() {
+      const container = document.getElementById('dynamic-question-container');
+      container.style.opacity = '0';
+      container.style.transform = 'translateY(-10px)';
+
+      setTimeout(() => {
+        currentQuestionIndex++;
+        renderQuestion();
+        container.style.opacity = '1';
+        container.style.transform = 'translateY(0)';
+      }, 250);
+    }
+
+    function resetQuiz() {
+      document.getElementById('step-result').classList.remove('active');
+      const selector = document.getElementById('step-selector');
+      selector.classList.add('active');
     }
   </script>
 

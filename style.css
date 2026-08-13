@@ -1295,7 +1295,7 @@ body.destacar-links button {
 }
 /* A classe que será aplicada aos elementos (título, texto, botão) via Javascript ou CSS animation */
 .fade-in-up {
-    animation: fadeInUp 0.8s ease-out forwards;
+    animation: fadeInUp 0.3s ease-out forwards;
     opacity: 0; /* Começa invisível */
     will-change: transform, opacity;
 }

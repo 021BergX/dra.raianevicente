@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz Interativo | Dra. Raiane dos Santos Vicente</title>
+  
+  <style>
+    :root {
+      --primary-gold: #c5a059;
+      --text-dark: #2c3e50;
+      --bg-light: #fcfbfa;
+      --white: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-light);
+      color: var(--text-dark);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Cabeçalho Padrão */
+    header {
+      background-color: var(--white);
+      padding: 15px 40px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .logo-img {
+      height: 70px;
+      width: auto;
+      display: block;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-dark);
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary-gold);
+    }
+
+    .btn-menu-quiz {
+      padding: 10px 20px;
+      border: 1px solid var(--primary-gold);
+      border-radius: 8px;
+      color: var(--primary-gold) !important;
+    }
+
+    .btn-whatsapp {
+      background-color: #25d366;
+      color: #ffffff !important;
+      padding: 10px 22px;
+      border-radius: 50px;
+      font-weight: 600;
+    }
+
+    /* Container Principal do Quiz com Animação de Entrada */
+    main {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 20px;
+    }
+
+    .quiz-card {
+      background: var(--white);
+      width: 100%;
+      max-width: 600px;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      animation: fadeInCard 0.6s ease-out forwards;
+    }
+
+    @keyframes fadeInCard {
+      from {
+        opacity: 0;
+        transform: translateY(15px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .quiz-step {
+      display: none;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .quiz-step.active {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .quiz-question {
+      font-size: 22px;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 30px;
+      color: var(--text-dark);
+    }
+
+    /* Opções com Efeito Dinâmico e Hover Fluido */
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .quiz-option {
+      width: 100%;
+      padding: 15px 20px;
+      background-color: var(--white);
+      border: 2px solid #e2d9cd;
+      border-radius: 10px;
+      color: var(--text-dark);
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .quiz-option:hover {
+      border-color: var(--primary-gold);
+      background-color: #fbf9f6;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(197, 160, 89, 0.15);
+    }
+
+    .quiz-option:active {
+      transform: scale(0.98);
+    }
+
+    /* Tela de Resultado Dinâmica */
+    .result-container {
+      text-align: center;
+    }
+
+    .result-title {
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 15px;
+    }
+
+    .result-text {
+      font-size: 16px;
+      color: #555;
+      margin-bottom: 30px;
+      line-height: 1.6;
+    }
+
+    /* Botão Padrão Elegante */
+    .btn-voltar-padrao {
+      display: inline-block;
+      padding: 12px 32px;
+      background-color: transparent;
+      color: var(--text-dark);
+      border: 2px solid var(--primary-gold);
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+    }
+
+    .btn-voltar-padrao:hover {
+      background-color: var(--primary-gold);
+      color: #ffffff;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(197, 160, 89, 0.3);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Cabeçalho Integrado -->
+  <header>
+    <div class="container header-container">
+        <div class="logo">
+            <a href="index.html">
+                <img src="IMG/logo.png" alt="Logo Dra. Raiane dos Santos Vicente" class="logo-img">
+            </a>
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html#inicio">Início</a></li>
+                <li><a href="index.html#sobre">Dra. Raiane</a></li>
+                <li><a href="index.html#especialidades">Especialidades</a></li>
+                <li><a href="index.html#contato">Contato</a></li>
+                <li><a href="quiz.html" class="btn-menu-quiz">Fazer Teste</a></li>
+                <li><a href="https://api.whatsapp.com/send/?phone=5511950460616&text=Olá!%20Gostaria%20de%20mais%20informações%20sobre%20as%20consultas%20com%20a%20Dra.%20Raiane.&type=phone_number&app_absent=0" class="btn-agendar" target="_blank">Agendar consulta</a></li>
+            </ul>
+        </nav>
+    </div>
+    </header>
+
+  <!-- Área do Quiz Dinâmico -->
+  <main>
+    <div class="quiz-card">
+      
+      <!-- Questão 1 -->
+      <div class="quiz-step active" id="step-1">
+        <div class="quiz-question">Como você avalia sua memória no dia a dia?</div>
+        <div class="quiz-options">
+          <button class="quiz-option" onclick="nextStep(2)">Ótima, normal</button>
+          <button class="quiz-option" onclick="nextStep(2)">Esqueço coisas simples ocasionalmente</button>
+          <button class="quiz-option" onclick="nextStep(2)">Esquecimentos frequentes e perceptíveis</button>
+        </div>
+      </div>
+
+      <!-- Questão 2 -->
+      <div class="quiz-step" id="step-2">
+        <div class="quiz-question">Há dificuldades recentes para realizar tarefas rotineiras?</div>
+        <div class="quiz-options">
+          <button class="quiz-option" onclick="nextStep(3)">Não, realizo tudo com facilidade</button>
+          <button class="quiz-option" onclick="nextStep(3)">Às vezes levo mais tempo que o habitual</button>
+          <button class="quiz-option" onclick="nextStep(3)">Sim, preciso de ajuda com frequência</button>
+        </div>
+      </div>
+
+      <!-- Questão 3 -->
+      <div class="quiz-step" id="step-3">
+        <div class="quiz-question">Como tem sido o humor e a disposição geral recentemente?</div>
+        <div class="quiz-options">
+          <button class="quiz-option" onclick="nextStep('result')">Estável e ativo</button>
+          <button class="quiz-option" onclick="nextStep('result')">Cansaço fácil ou desânimo leve</button>
+          <button class="quiz-option" onclick="nextStep('result')">Apatia, isolamento ou alterações de humor</button>
+        </div>
+      </div>
+
+      <!-- Tela de Resultado / Diagnóstico Preliminar -->
+      <div class="quiz-step" id="step-result">
+        <div class="result-container">
+          <div class="result-title">Diagnóstico Preliminar</div>
+          <div class="result-text">Recomendamos uma avaliação presencial especializada para garantir o bem-estar, a segurança e a qualidade de vida da família.</div>
+          <a href="index.html" class="btn-voltar-padrao">Voltar ao Site</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Script Simples para Controlar as Animações e Passos -->
+  <script>
+    function nextStep(stepId) {
+      const currentActive = document.querySelector('.quiz-step.active');
+      
+      if (currentActive) {
+        // Faz a pergunta atual sumir suavemente
+        currentActive.style.opacity = '0';
+        currentActive.style.transform = 'translateY(-10px)';
+        
+        setTimeout(() => {
+          currentActive.classList.remove('active');
+          // Reseta os estilos para a próxima vez
+          currentActive.style.opacity = '';
+          currentActive.style.transform = '';
+          
+          // Ativa a nova pergunta
+          let nextElement;
+          if (stepId === 'result') {
+            nextElement = document.getElementById('step-result');
+          } else {
+            nextElement = document.getElementById('step-' + stepId);
+          }
+          
+          if (nextElement) {
+            nextElement.classList.add('active');
+          }
+        }, 300); // Sincronizado com o tempo do CSS
+      }
+    }
+  </script>
+
+</body>
+</html>
