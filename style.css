@@ -154,6 +154,7 @@ header {
     padding: 0; 
     overflow: hidden;
 }
+/* Botão principal do Hero com animação sincronizada */
 .hero .btn-hero-outline,
 .hero-content .btn-hero-outline {
     background-color: transparent !important;
@@ -166,14 +167,15 @@ header {
     text-transform: uppercase;
     text-decoration: none !important;
     cursor: pointer;
-    transition: color 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    /* Transição do texto exatamente igual ao tempo da barra */
+    transition: color 0.4s cubic-bezier(0.23, 1, 0.32, 1) !important;
     position: relative;
     overflow: hidden;
     z-index: 1;
     display: inline-block;
 }
 
-/* A barra lateral/fundo que preenche em branco ao passar o mouse (só no hero) */
+/* A barra branca que preenche o fundo */
 .hero .btn-hero-outline::before,
 .hero-content .btn-hero-outline::before {
     content: "";
@@ -183,11 +185,11 @@ header {
     width: 0;
     height: 100%;
     background-color: #FFFFFF !important;
-    transition: width 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    transition: width 0.4s cubic-bezier(0.23, 1, 0.32, 1) !important;
     z-index: -1;
 }
 
-/* Quando o mouse passa em cima: texto assume a cor exata do fundo da imagem */
+/* Quando o mouse passa em cima: o texto só muda de cor ao completar a barra */
 .hero .btn-hero-outline:hover,
 .hero .btn-hero-outline:focus,
 .hero-content .btn-hero-outline:hover,
@@ -196,7 +198,7 @@ header {
     text-decoration: none !important;
 }
 
-/* O fundo branco preenche a largura inteira no hover */
+/* Expande a barra branca por completo */
 .hero .btn-hero-outline:hover::before,
 .hero-content .btn-hero-outline:hover::before {
     width: 100% !important;
