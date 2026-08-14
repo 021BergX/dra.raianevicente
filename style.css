@@ -154,7 +154,53 @@ header {
     padding: 0; 
     overflow: hidden;
 }
+.hero .btn-hero-outline,
+.hero-content .btn-hero-outline {
+    background-color: transparent !important;
+    border: 1px solid #FFFFFF !important;
+    color: #FFFFFF !important;
+    padding: 14px 30px;
+    border-radius: 4px;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none !important;
+    cursor: pointer;
+    transition: color 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    display: inline-block;
+}
 
+/* A barra lateral/fundo que preenche em branco ao passar o mouse (só no hero) */
+.hero .btn-hero-outline::before,
+.hero-content .btn-hero-outline::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background-color: #FFFFFF !important;
+    transition: width 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    z-index: -1;
+}
+
+/* Quando o mouse passa em cima: texto assume a cor exata do fundo da imagem */
+.hero .btn-hero-outline:hover,
+.hero .btn-hero-outline:focus,
+.hero-content .btn-hero-outline:hover,
+.hero-content .btn-hero-outline:focus {
+    color: #d5a485 !important;
+    text-decoration: none !important;
+}
+
+/* O fundo branco preenche a largura inteira no hover */
+.hero .btn-hero-outline:hover::before,
+.hero-content .btn-hero-outline:hover::before {
+    width: 100% !important;
+}
 .hero-container {
     display: flex;
     align-items: stretch;
@@ -1463,12 +1509,16 @@ header {
   color: #ffffff !important;
 }
 
-.btn-whatsapp {
-  background-color: #25d366;
-  color: #ffffff !important;
-  padding: 10px 22px;
-  border-radius: 50px;
-  font-weight: 600;
+.btn-whatsapp, 
+a.whatsapp-float, 
+a[href*="whatsapp.com"] {
+    color: #ffffff !important;
+}
+
+.btn-whatsapp:hover, 
+a.whatsapp-float:hover, 
+a[href*="whatsapp.com"]:hover {
+    color: #ffffff !important;
 }
     /* Correção total e forçada para dispositivos móveis */
     /* Correção definitiva de empilhamento para Mobile */
