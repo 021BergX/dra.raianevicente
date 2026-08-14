@@ -1537,12 +1537,13 @@ header {
   margin-top: 30px;
 }
 
+/* Botão de Fazer Teste */
 .especialidade-actions .btn-hero-outline {
   display: inline-block;
   padding: 12px 24px;
-  background-color: #ffffff;
-  color: #2c3e50;
-  border: 2px solid #c5a059;
+  background-color: #ffffff !important;
+  color: #2c3e50 !important;
+  border: 2px solid #c5a059 !important;
   border-radius: 8px;
   font-weight: 600;
   font-size: 14px;
@@ -1550,8 +1551,15 @@ header {
   transition: all 0.3s ease;
 }
 
+/* Hover: Fundo dourado/marrom e texto branco visível */
 .especialidade-actions .btn-hero-outline:hover {
-  background-color: #c5a059;
-  color: #ffffff;
+  background-color: #c5a059 !important;
+  color: #ffffff !important;
+  border-color: #c5a059 !important;
   transform: translateY(-2px);
+}
+.btn-hero-outline:hover,
+.btn-hero-outline:focus {
+    text-decoration: none; /* Garante que também não sublinhe ao passar o mouse */
+    color: #d5a485;
 }
