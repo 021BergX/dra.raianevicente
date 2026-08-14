@@ -1247,24 +1247,32 @@ body.destacar-links button {
 }
 
 /* O efeito de fundo que cresce */
-.btn-hero-outline::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 100%;
-    background-color: #FFFFFF;
-    transition: width 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-    z-index: -1;
+.btn-hero-outline {
+    background-color: transparent;
+    border: 1px solid #FFFFFF;
+    color: #FFFFFF;
+    padding: 14px 30px;
+    border-radius: 4px;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none !important; /* Remove qualquer sublinhado */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
 }
 
-.btn-hero-outline:hover {
-    color: #d5a485; /* Cor do texto no hover */
-}
-
-.btn-hero-outline:hover::before {
-    width: 100%; /* O fundo branco cresce da esquerda para a direita */
+/* Garante que o hover preencha com o tom dourado/marrom e mantenha o texto legível */
+.btn-hero-outline:hover,
+.btn-hero-outline:focus {
+    background-color: #c5a059 !important;
+    border-color: #c5a059 !important;
+    color: #ffffff !important;
+    text-decoration: none !important;
+    transform: translateY(-2px);
 }
 .hero-badge {
     background-color: transparent;
