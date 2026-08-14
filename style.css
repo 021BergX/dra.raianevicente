@@ -1623,3 +1623,10 @@ a[href*="whatsapp.com"]:hover {
     text-decoration: none; /* Garante que também não sublinhe ao passar o mouse */
     color: #d5a485;
 }
+/* Garante que o botão de agendamento nas especialidades não fique totalmente branco no hover */
+.especialidade-actions .btn-hero-solid:hover,
+.especialidade-actions a[href*="whatsapp.com"]:hover {
+    background-color: #b08d4c !important; /* Tom dourado escurecido no hover */
+    color: #ffffff !important;
+    border-color: #b08d4c !important;
+}
