@@ -1630,3 +1630,28 @@ a[href*="whatsapp.com"]:hover {
     color: #ffffff !important;
     border-color: #b08d4c !important;
 }
+/* Garante que o botão de agendamento nas especialidades seja sempre sólido e visível */
+.especialidade-actions .btn-hero-solid,
+.especialidade-actions a[href*="whatsapp.com"] {
+    display: inline-block !important;
+    background-color: #c5a059 !important; /* Cor dourada sólida padrão */
+    color: #ffffff !important;
+    border: 2px solid #c5a059 !important;
+    padding: 12px 24px !important;
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+    font-size: 14px !important;
+    text-decoration: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transition: all 0.3s ease !important;
+}
+
+/* Efeito ao passar o mouse (hover) */
+.especialidade-actions .btn-hero-solid:hover,
+.especialidade-actions a[href*="whatsapp.com"]:hover {
+    background-color: #b08d4c !important; /* Dourado um pouco mais escuro */
+    border-color: #b08d4c !important;
+    color: #ffffff !important;
+    transform: translateY(-2px);
+}
