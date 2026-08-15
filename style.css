@@ -1656,21 +1656,30 @@ a[href*="whatsapp.com"]:hover {
     transform: translateY(-2px);
 }
 /* =========================================
-   CORREÇÃO DO LOGO NO MOBILE
+   CORREÇÃO FORÇADA DO LOGO NO MOBILE
    ========================================= */
 @media (max-width: 768px) {
-    .logo-img {
-        max-width: 80px !important; /* Reduz o logo para caber perfeitamente no menu */
-        height: auto !important;    /* Mantém a proporção sem distorcer */
+    /* Ataca o logo e qualquer link que envolva o logo */
+    .logo-img, 
+    header a img {
+        max-width: 80px !important;
+        height: auto !important;
         position: relative !important;
+        top: initial !important;
+        left: initial !important;
         margin: 0 !important;
         transform: none !important;
+        z-index: 10 !important;
     }
     
-    /* Garante que o cabeçalho segure o logo e o botão do menu nas pontas */
+    /* Garante que o cabeçalho segure o logo na esquerda e os menus na direita */
+    header, 
     header .container {
         display: flex !important;
+        flex-direction: row !important;
         justify-content: space-between !important;
         align-items: center !important;
+        width: 100% !important;
+        position: relative !important;
     }
 }
