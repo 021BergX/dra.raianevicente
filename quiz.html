@@ -329,6 +329,17 @@
       transform: translateY(-2px);
       box-shadow: 0 6px 15px rgba(197, 160, 89, 0.3);
     }
+    /* 👇 COLE O CÓDIGO NOVO AQUI 👇 */
+    @media (max-width: 768px) {
+        header { padding: 10px !important; }
+        .header-container { flex-direction: column !important; align-items: center !important; justify-content: center !important; }
+        .logo { margin-bottom: 15px !important; }
+        .logo-img { max-width: 70px !important; height: auto !important; }
+        nav { width: 100% !important; }
+        .nav-links { flex-direction: row !important; flex-wrap: wrap !important; justify-content: center !important; align-items: center !important; gap: 12px !important; padding: 0 !important; }
+        .btn-menu-quiz, .btn-whatsapp { display: inline-block !important; text-align: center !important; margin-top: 5px !important; }
+    }
+    
   </style>
 </head>
 <body>
