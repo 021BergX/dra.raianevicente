@@ -192,19 +192,27 @@ document.addEventListener("DOMContentLoaded", function() {
     const cookieBanner = document.getElementById("cookie-banner");
     const btnAceitar = document.getElementById("aceitar-cookies");
 
+// Verifica se o banner de cookies existe na página antes de executar
+const cookieBanner = document.getElementById("cookieBanner"); // Ajuste o seletor se for classe (.cookie-banner)
+const btnAceitar = document.getElementById("btnAceitar");     // Ajuste o seletor se for classe (.btn-aceitar)
+
+if (cookieBanner) {
     // Verifica no navegador se o usuário já aceitou os termos no passado
     if (!localStorage.getItem("cookiesAceitos")) {
-        // Se não aceitou, espera 1 segundo após o site carregar e sobe a barra suavemente
+        // Se não aceitou, espera 1 segundo após o site carregar e exibe a barra
         setTimeout(() => {
             cookieBanner.classList.add("show");
         }, 1000);
     }
+}
 
-    // Quando o usuário clica em "Estou ciente"
+// Configura o botão de aceitar apenas se ele existir na página
+if (btnAceitar && cookieBanner) {
     btnAceitar.addEventListener("click", function() {
         // Desce a barra de volta
         cookieBanner.classList.remove("show");
-        // Grava no navegador que ele já aceitou, para não incomodar nas próximas visitas
+        // Grava no navegador que ele já aceitou
         localStorage.setItem("cookiesAceitos", "true");
     });
+}
 });
