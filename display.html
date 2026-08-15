@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Display de Mesa - Dra. Raiane</title>
+    <style>
+        /* Define as cores oficiais da clínica */
+        :root {
+            --primary-gold: #c5a059;
+            --text-dark: #2c3e50;
+            --bg-light: #ffffff;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Tamanho padrão de um display de acrílico pequeno (A6 / 10x15cm) */
+        .display-card {
+            width: 10cm;
+            height: 15cm;
+            background-color: var(--bg-light);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 20px;
+            box-sizing: border-box;
+            border-top: 6px solid var(--primary-gold);
+            text-align: center;
+        }
+
+        .logo-img {
+            max-width: 100px;
+            height: auto;
+        }
+
+        .headline {
+            color: var(--text-dark);
+            font-size: 18px;
+            font-weight: 600;
+            margin: 15px 0 5px 0;
+            line-height: 1.3;
+        }
+
+        .subtitle {
+            color: var(--primary-gold);
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+        .qr-code {
+            width: 150px;
+            height: 150px;
+            border: 2px solid var(--primary-gold);
+            padding: 10px;
+            border-radius: 10px;
+            background-color: #fff;
+        }
+
+        .footer-text {
+            color: var(--text-dark);
+            font-size: 15px;
+            font-weight: 700;
+            margin-top: 15px;
+        }
+
+        .footer-sub {
+            color: #666;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="display-card">
+        <!-- Substitua pelo caminho correto da sua logo se precisar -->
+        <img src="IMG/logo.png" alt="Logo Dra Raiane" class="logo-img" onerror="this.src='https://via.placeholder.com/100x80?text=Logo+RV'">
+        
+        <div>
+            <div class="headline">Acesse nosso<br>Quiz Interativo</div>
+            <div class="subtitle">Faça um teste preliminar de saúde</div>
+        </div>
+
+        <!-- Este link da API gera o QR Code automaticamente para o site da Dra. Raiane -->
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://www.draraianevicente.com.br/quiz.html" alt="QR Code para o Quiz" class="qr-code">
+
+        <div>
+            <div class="footer-text">Aponte a câmera do seu celular</div>
+            <div class="footer-sub">draraianevicente.com.br</div>
+        </div>
+    </div>
+
+</body>
+</html>
