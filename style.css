@@ -1656,30 +1656,43 @@ a[href*="whatsapp.com"]:hover {
     transform: translateY(-2px);
 }
 /* =========================================
-   CORREÇÃO FORÇADA DO LOGO NO MOBILE
+   CORREÇÃO DEFINITIVA DO CABEÇALHO MOBILE
    ========================================= */
 @media (max-width: 768px) {
-    /* Ataca o logo e qualquer link que envolva o logo */
-    .logo-img, 
-    header a img {
+    /* 1. Organiza a caixa principal para empilhar (Logo em cima, Menu embaixo) */
+    .header-container {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        padding: 15px 10px !important;
+        height: auto !important;
+    }
+
+    /* 2. Tira o logo do modo 'flutuante', diminui o tamanho e centraliza */
+    .logo, 
+    .logo-img {
+        position: relative !important;
         max-width: 80px !important;
         height: auto !important;
-        position: relative !important;
-        top: initial !important;
-        left: initial !important;
-        margin: 0 !important;
+        top: 0 !important;
+        left: 0 !important;
         transform: none !important;
-        z-index: 10 !important;
+        margin: 0 auto 15px auto !important; /* Espaço entre o logo e os botões */
+        display: block !important;
+    }
+
+    /* 3. Organiza os botões do menu para não vazarem da tela */
+    nav {
+        width: 100% !important;
     }
     
-    /* Garante que o cabeçalho segure o logo na esquerda e os menus na direita */
-    header, 
-    header .container {
+    .nav-links {
         display: flex !important;
-        flex-direction: row !important;
-        justify-content: space-between !important;
+        flex-wrap: wrap !important; /* Permite que os botões quebrem linha ordenadamente */
+        justify-content: center !important;
         align-items: center !important;
-        width: 100% !important;
-        position: relative !important;
+        gap: 10px !important;
+        padding: 0 !important;
     }
 }
