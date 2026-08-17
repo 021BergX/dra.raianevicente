@@ -364,6 +364,80 @@
         padding-top: 40px !important; /* Adiciona respiro */
     }
 }
+/* =========================================
+   UX: ESTILO DA TELA DE RESULTADO DO QUIZ
+   ========================================= */
+.caixa-resultado {
+    background-color: #fcfbfa;
+    border: 2px solid #c5a059; /* Borda dourada passando autoridade */
+    border-radius: 12px;
+    padding: 40px 30px;
+    text-align: center;
+    max-width: 600px;
+    margin: 30px auto;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    animation: surgir 0.6s ease-out; /* Animação suave ao aparecer */
+}
+
+.icone-alerta {
+    font-size: 40px;
+    margin-bottom: 15px;
+}
+
+.titulo-resultado {
+    color: #2c3e50;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    line-height: 1.3;
+}
+
+.texto-resultado {
+    color: #34495e;
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    text-align: left; /* Alinhado à esquerda facilita a leitura de textos longos */
+}
+
+.chamada-acao {
+    margin-top: 30px;
+    padding-top: 25px;
+    border-top: 1px solid #e1e1e1; /* Linha sutil separando o botão */
+}
+
+.chamada-acao p {
+    color: #2c3e50;
+    font-weight: 600;
+    font-size: 15px;
+    margin-bottom: 20px;
+}
+
+.btn-whatsapp-resultado {
+    display: inline-block;
+    background-color: #25d366;
+    color: #ffffff !important;
+    text-decoration: none;
+    padding: 16px 30px;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: 700;
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+    transition: all 0.3s ease;
+    width: 100%; /* Ocupa a largura toda no celular */
+    box-sizing: border-box;
+}
+
+.btn-whatsapp-resultado:hover {
+    background-color: #20bd5a;
+    transform: translateY(-2px);
+}
+
+/* Efeito de surgimento da caixa */
+@keyframes surgir {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
     
   </style>
 </head>
@@ -452,16 +526,30 @@
         </div>
       </div>
 
-      <!-- Tela de Resultado / Diagnóstico Preliminar -->
-      <div class="quiz-step" id="step-result">
-        <div class="result-container">
-          <div class="result-title">Diagnóstico Preliminar</div>
-          <div class="result-text">Recomendamos uma avaliação presencial especializada para garantir o bem-estar, a segurança e a qualidade de vida da família.</div>
-          <div class="result-actions">
-            <a href="index.html#contato" class="btn-resultado-principal">Agendar Consulta</a>
-            <button class="btn-resultado-secundario" onclick="resetQuiz()">Escolher Outro Teste</button>
-          </div>
-        </div>
+      <!-- =========================================
+     UX: CAIXA DE RESULTADO DO QUIZ (ALTA CONVERSÃO)
+     ========================================= -->
+<div class="caixa-resultado" id="tela-resultado">
+    <div class="icone-alerta">💡</div>
+    <h3 class="titulo-resultado">Seus sinais merecem atenção especializada.</h3>
+    
+    <p class="texto-resultado">
+        Com base nas suas respostas, identificamos pontos importantes na sua rotina que estão limitando a sua qualidade de vida. 
+        Muitas pessoas acreditam que dores, cansaço extremo ou esquecimentos são "normais da idade", <strong>mas isso não é verdade.</strong>
+    </p>
+    
+    <p class="texto-resultado">
+        O envelhecimento deve ser vivido com autonomia e vitalidade. A <strong>Dra. Raiane Vicente</strong> realiza a Avaliação Geriátrica Ampla (AGA) para investigar a raiz desses sintomas e criar um plano de cuidado personalizado para você.
+    </p>
+
+    <div class="chamada-acao">
+        <p>Não adie o seu bem-estar. Nossa equipe está pronta para tirar suas dúvidas.</p>
+        <!-- Este botão leva direto para o WhatsApp com uma mensagem pré-pronta -->
+        <a href="https://wa.me/5511950460616?text=Olá!%20Acabei%20de%20fazer%20o%20teste%20no%20site%20da%20Dra.%20Raiane%20e%20gostaria%20de%20informações%20sobre%20agendamento." target="_blank" class="btn-whatsapp-resultado">
+            <i class="fab fa-whatsapp"></i> Falar com a Equipe no WhatsApp
+        </a>
+    </div>
+</div>
       </div>
 
     </div>
@@ -471,56 +559,57 @@
   <script>
     const questionnaires = {
       parkinson: [
-        { q: "Notou lentidão para iniciar movimentos ou caminhar?", opts: ["Não", "Às vezes", "Sim, com frequência"] },
-        { q: "Percebeu tremores em repouso nas mãos ou pernas?", opts: ["Não", "Ocasionalmente", "Sim, frequentemente"] },
-        { q: "Há rigidez ou enrijecimento nos membros?", opts: ["Não", "Leve", "Sim, intensa"] }
+        { q: "Você tem notado que seus movimentos estão mais lentos, como se precisasse de muito esforço para começar a caminhar?", opts: ["Não, está tudo normal", "Às vezes sinto uma leve lentidão", "Sim, está bem mais difícil e lento"] },
+        { q: "Alguém comentou ou você percebeu algum tremor nas mãos ou pernas quando está parado assistindo TV ou descansando?", opts: ["Não notei nada", "Raramente, quando estou nervoso(a)", "Sim, tem sido frequente e me incomoda"] },
+        { q: "Como está a sua flexibilidade? Sente os braços ou as pernas rígidos, dificultando tarefas como vestir uma blusa?", opts: ["Normais e flexíveis", "Sinto uma leve rigidez pela manhã", "Sim, sinto muita rigidez e peso nos membros"] }
       ],
       alzheimer: [
-        { q: "Como você avalia sua memória para fatos recentes?", opts: ["Ótima", "Esqueço detalhes menores", "Esquecimentos frequentes"] },
-        { q: "Dificuldade em gerenciar finanças ou contas da casa?", opts: ["Nenhuma", "Preciso de supervisão", "Totalmente dependente"] },
-        { q: "Desorientação em ruas conhecidas?", opts: ["Nunca", "Raramente", "Sim, aconteceu"] }
+        { q: "Você tem esquecido fatos que aconteceram ontem, ou feito a mesma pergunta várias vezes na mesma conversa?", opts: ["Minha memória está ótima", "Esqueço coisas bobas às vezes", "Sim, isso tem acontecido com muita frequência"] },
+        { q: "Como está a organização das contas da casa, senhas de banco ou o uso do seu celular?", opts: ["Faço tudo sozinho(a) sem problemas", "Preciso de ajuda de vez em quando", "Não consigo mais fazer essas tarefas"] },
+        { q: "Você já se sentiu confuso(a) ou desorientado(a) em lugares que antes eram muito familiares (como o próprio bairro)?", opts: ["Nunca aconteceu", "Raramente, em dias de muito estresse", "Sim, já me perdi ou fiquei muito confuso(a)"] }
       ],
       "dor-cronica": [
-        { q: "Sente dores constantes nas articulações ou coluna?", opts: ["Não", "Sim, moderada", "Sim, intensa e diária"] },
-        { q: "A dor interfere nas suas atividades de lazer?", opts: ["Não", "Parcialmente", "Impedimento total"] },
-        { q: "Uso frequente de analgésicos?", opts: ["Raramente", "Alguns dias na semana", "Diariamente"] }
+        { q: "A dor que você sente no corpo tem sido um obstáculo diário, presente logo que você acorda?", opts: ["Não sinto dores constantes", "Sinto dores suportáveis em alguns dias", "Sim, acordo e durmo com dor intensa"] },
+        { q: "Por causa da dor, você deixou de fazer coisas que amava, como passear, visitar a família ou cuidar do jardim?", opts: ["Não, mantenho minha rotina", "Tive que reduzir algumas atividades", "Sim, a dor me impede de sair de casa"] },
+        { q: "Quantas vezes por semana você precisa recorrer a remédios para dor (analgésicos ou anti-inflamatórios)?", opts: ["Quase nunca uso", "Umas duas ou três vezes na semana", "Todos os dias, e às vezes não faz efeito"] }
       ],
       fragilidade: [
-        { q: "Sente cansaço extremo sem motivo aparente?", opts: ["Nunca", "Às vezes", "Constantemente"] },
-        { q: "Perda de peso não intencional recente?", opts: ["Não", "Pouco", "Sim, perceptível"] },
-        { q: "Dificuldade para caminhar um quarteirão?", opts: ["Facilidade", "Com esforço", "Não consigo"] }
+        { q: "Você sente um cansaço extremo que parece não passar, mesmo após descansar ou fazer tarefas muito simples?", opts: ["Tenho muita energia", "Fico cansado(a) apenas com esforço", "Sim, me sinto exausto(a) o tempo todo"] },
+        { q: "Nos últimos meses, você notou que suas roupas estão mais largas, indicando uma perda de peso sem fazer dieta?", opts: ["Meu peso está estável", "Emagreci um pouco, mas recuperei", "Sim, perdi peso e minhas roupas estão largas"] },
+        { q: "Como está a sua força nas mãos? Consegue abrir um pote de vidro novo sem pedir ajuda?", opts: ["Abro com facilidade", "Preciso fazer bastante força", "Não consigo abrir, perdi muita força"] }
       ],
       quedas: [
-        { q: "Sofreu alguma queda nos últimos 6 meses?", opts: ["Não", "1 queda", "2 ou mais quedas"] },
-        { q: "Usa tapetes soltos ou falta iluminação em casa?", opts: ["Não", "Parcialmente", "Sim"] },
-        { q: "Tontura ao levantar-se?", opts: ["Nunca", "Às vezes", "Frequente"] }
+        { q: "Nos últimos 6 meses, você sofreu algum tombo, escorregão ou queda que te deixou assustado(a)?", opts: ["Não caí nenhuma vez", "Tive apenas 1 queda leve", "Sim, caí 2 vezes ou mais recentemente"] },
+        { q: "Você costuma andar se apoiando nos móveis ou nas paredes por medo de se desequilibrar dentro de casa?", opts: ["Ando normalmente sem apoio", "Às vezes, quando sinto tontura", "Sim, tenho muito medo de cair e me apoio sempre"] },
+        { q: "Ao levantar da cama de manhã ou da cadeira de forma rápida, você sente tontura ou a vista escurecer?", opts: ["Nunca sinto isso", "Acontece raramente", "Acontece quase toda vez que levanto"] }
       ],
       insonia: [
-        { q: "Dificuldade para pegar no sono à noite?", opts: ["Raramente", "Algumas noites", "Todas as noites"] },
-        { q: "Acorda cansado(a) pela manhã?", opts: ["Não", "Às vezes", "Sempre"] },
-        { q: "Usa medicamentos para dormir?", opts: ["Não", "Ocasionalmente", "Uso contínuo"] }
+        { q: "Quando você deita, a sua mente não desliga e você rola na cama por mais de 30 minutos até conseguir dormir?", opts: ["Durmo rápido e bem", "Acontece em dias de preocupação", "Sim, demoro muito para pegar no sono"] },
+        { q: "Você costuma acordar de madrugada e não consegue mais voltar a dormir de jeito nenhum?", opts: ["Durmo a noite toda", "Acordo, mas volto a dormir", "Desperto de madrugada e fico acordado(a)"] },
+        { q: "Durante o dia, você se sente tão cansado(a) que precisa cochilar várias vezes para aguentar a rotina?", opts: ["Não, fico bem durante o dia", "Tiro apenas um cochilo curto à tarde", "Sinto muito sono e cansaço o dia inteiro"] }
       ],
       humor: [
-        { q: "Sentimento de desânimo ou tristeza persistente?", opts: ["Não", "De vez em quando", "Quase sempre"] },
-        { q: "Perda de interesse em hobbies antigos?", opts: ["Não", "Parcial", "Total"] },
-        { q: "Isolamento social voluntário?", opts: ["Não", "Um pouco", "Prefiro ficar totalmente isolado"] }
+        { q: "Você tem se sentido muito triste, sem esperança ou com vontade de chorar sem um motivo claro?", opts: ["Me sinto bem e feliz", "Tenho dias ruins, como todo mundo", "Me sinto triste e sem energia quase todos os dias"] },
+        { q: "Atividades que antes te davam muita alegria (ver os netos, cozinhar, ler) perderam a graça?", opts: ["Continuo adorando meus hobbies", "Diminuí um pouco o ritmo", "Não tenho mais vontade de fazer nada disso"] },
+        { q: "Você tem preferido ficar sozinho(a) no seu quarto em vez de receber visitas ou conversar com a família?", opts: ["Adoro companhia", "Às vezes prefiro meu canto", "Sim, tenho evitado o contato com as pessoas"] }
       ],
       nutricao: [
-        { q: "Como está o seu apetite ultimamente?", opts: ["Normal", "Diminuiu um pouco", "Sem apetite nenhum"] },
-        { q: "Dificuldade para mastigar ou engolir alimentos?", opts: ["Nenhuma", "Leve", "Significativa"] },
-        { q: "Ingestão adequada de água diária?", opts: ["Boa", "Regular", "Baixa"] }
+        { q: "Na hora das refeições, você sente que a comida perdeu o sabor ou não tem vontade nenhuma de comer?", opts: ["Meu apetite está ótimo", "Diminuiu um pouco, mas como", "Não sinto fome e a comida parece não ter gosto"] },
+        { q: "Você tem engasgado com frequência, tossido ao beber água ou sentido dificuldade para engolir carnes?", opts: ["Mastigo e engulo perfeitamente", "Às vezes com alimentos mais secos", "Sim, tenho muito medo de engasgar"] },
+        { q: "Como está o uso da sua prótese dentária (dentadura)? Ela machuca ou fica solta ao mastigar?", opts: ["Não uso / Minha prótese é perfeita", "Incomoda um pouco às vezes", "Machuca muito, acabo comendo só coisas pastosas"] }
       ],
       mobilidade: [
-        { q: "Usa algum apoio para caminhar (bengala, andador)?", opts: ["Não", "Às vezes", "Uso constante"] },
-        { q: "Dificuldade para levantar de uma cadeira sem ajuda?", opts: ["Nenhuma", "Com esforço", "Preciso de ajuda"] },
-        { q: "Fôlego curto ao caminhar curtas distâncias?", opts: ["Não", "Moderado", "Intenso"] }
+        { q: "Se você estiver sentado(a) em uma poltrona macia, consegue levantar sem usar os braços para se empurrar?", opts: ["Levanto com facilidade", "Preciso usar um pouco os braços", "Não consigo levantar sem apoio ou ajuda"] },
+        { q: "Para caminhar na rua ou ir à padaria, você sente que suas pernas estão fracas ou não obedecem direito?", opts: ["Caminho super bem", "Sinto um pouco de cansaço", "Minhas pernas pesam e evito sair a pé"] },
+        { q: "Como é subir ou descer um lance de escadas para você hoje?", opts: ["Subo sem problemas", "Subo devagar e segurando no corrimão", "É muito doloroso ou impossível para mim"] }
       ],
       geral: [
-        { q: "Como avalia sua saúde e autonomia geral hoje?", opts: ["Excelente", "Boa com pequenas limitações", "Preciso de apoio frequente"] },
-        { q: "Realiza exames de rotina regularmente?", opts: ["Sim, anualmente", "Esporadicamente", "Faz muito tempo"] },
-        { q: "Sente-se seguro(a) com sua rede de apoio familiar?", opts: ["Totalmente", "Parcialmente", "Não tenho apoio"] }
+        { q: "Olhando para sua saúde hoje, você sente que está no controle ou que precisa de muita ajuda para o dia a dia?", opts: ["Sou totalmente independente", "Preciso de ajuda em tarefas pesadas", "Dependo de outras pessoas para quase tudo"] },
+        { q: "Quantos médicos de especialidades diferentes você visita e quantos remédios toma por dia atualmente?", opts: ["Apenas rotina e poucos remédios", "Alguns médicos e cerca de 3 a 4 remédios", "Muitos médicos diferentes e mais de 5 remédios"] },
+        { q: "Você sente que a sua família entende o que você está passando ou falta orientação profissional para eles também?", opts: ["Minha família me apoia muito bem", "Fazemos o possível, mas temos dúvidas", "Estamos todos perdidos e sobrecarregados"] }
       ]
     };
+    
 
     let currentDisease = '';
     let currentQuestionIndex = 0;
@@ -585,6 +674,7 @@
       selector.classList.add('active');
     }
   </script>
+
 
 </body>
 </html>
