@@ -1655,6 +1655,21 @@ a[href*="whatsapp.com"]:hover {
     color: #ffffff !important;
     transform: translateY(-2px);
 }
+/*ALTERAÇÃO DO CABEÇALHO FIXO*/
+header {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 9999 !important; /* Garante que o menu fique sempre na frente de todas as imagens e textos */
+    background-color: #ffffff !important; /* Fundo branco sólido para não vazar o texto por trás */
+    width: 100% !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08) !important; /* Sombra elegante que cria hierarquia visual */
+    transition: all 0.3s ease !important;
+}
+
+/* Garante que a rolagem do site não esconda os títulos atrás do menu fixo */
+html {
+    scroll-padding-top: 180px; 
+}
 /* =========================================
    CORREÇÃO DEFINITIVA DO CABEÇALHO MOBILE
    ========================================= */
@@ -1695,4 +1710,118 @@ a[href*="whatsapp.com"]:hover {
         gap: 10px !important;
         padding: 0 !important;
     }
+}
+/* =========================================
+   UX: ANIMAÇÃO DO WHATSAPP FLUTUANTE
+   ========================================= */
+
+/* 1. Criação da regra de animação (dura 10 segundos no total) */
+@keyframes pulso-suave {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); /* Sombra inicial verde */
+    }
+    5% {
+        transform: scale(1.1); /* Cresce 10% */
+        box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); /* A sombra expande e desaparece */
+    }
+    10% {
+        transform: scale(1); /* Volta ao normal */
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+    }
+    100% {
+        transform: scale(1); /* Fica parado nos 9 segundos restantes */
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+    }
+}
+
+/* 2. Aplicação da animação no botão */
+/* ATENÇÃO: Verifique se a classe do seu botão no HTML é '.whatsapp-flutuante'. 
+   Se for outra (ex: '.btn-whats', '.wpp-flutuante'), altere o nome abaixo! */
+.whatsapp-flutuante {
+    animation: pulso-suave 10s infinite; /* Executa a animação infinitamente a cada 10s */
+    border-radius: 50%; /* Garante que a sombra do pulso seja perfeitamente redonda */
+    z-index: 9998 !important; /* Mantém ele acima de tudo, mas abaixo do menu fixo (9999) */
+}
+/* =========================================
+   UX: ESTILIZAÇÃO DO FAQ DINÂMICO
+   ========================================= */
+.secao-faq {
+    background-color: #fcfbfa; /* Fundo claro para contrastar suavemente */
+    padding: 80px 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.container-faq {
+    max-width: 800px;
+    width: 100%;
+}
+
+.titulo-faq {
+    text-align: center;
+    color: #2c3e50;
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.subtitulo-faq {
+    text-align: center;
+    color: #666;
+    font-size: 16px;
+    margin-bottom: 40px;
+}
+
+.accordion-item {
+    border-bottom: 1px solid #e1e1e1;
+}
+
+/* O botão da pergunta */
+.accordion-header {
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    padding: 20px 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #2c3e50;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: color 0.3s ease;
+}
+
+/* Efeito ao passar o mouse ou quando estiver aberto */
+.accordion-header:hover, 
+.accordion-header.active {
+    color: #c5a059; /* Dourado */
+}
+
+/* O ícone de "+" que vira "x" */
+.accordion-header .icon {
+    font-size: 24px;
+    font-weight: 400;
+    transition: transform 0.3s ease;
+}
+
+.accordion-header.active .icon {
+    transform: rotate(45deg); /* Gira o + para formar um x */
+}
+
+/* A caixa de resposta (escondida por padrão) */
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease; /* Animação suave de descida */
+}
+
+.accordion-content p {
+    padding-bottom: 20px;
+    color: #34495e;
+    line-height: 1.6;
+    margin: 0;
+    font-size: 16px;
 }

@@ -339,6 +339,31 @@
         .nav-links { flex-direction: row !important; flex-wrap: wrap !important; justify-content: center !important; align-items: center !important; gap: 12px !important; padding: 0 !important; }
         .btn-menu-quiz, .btn-whatsapp { display: inline-block !important; text-align: center !important; margin-top: 5px !important; }
     }
+    /* =========================================
+   UX: LIMPEZA E AJUSTE DO QUIZ NO MOBILE
+   ========================================= */
+@media (max-width: 768px) {
+    /* 1. Esconde os links de texto (Início, Contato) para focar a atenção do usuário no Quiz */
+    .nav-links li a:not(.btn-whatsapp, .btn-menu-quiz) {
+        display: none !important;
+    }
+
+    /* 2. Remove o botão "Fazer Teste" do cabeçalho APENAS na página do Quiz (já que ele já está no teste) */
+    .btn-menu-quiz {
+        display: none !important;
+    }
+
+    /* 3. Centraliza a Logo e o botão do WhatsApp */
+    .nav-links {
+        gap: 0 !important;
+        margin-top: 10px;
+    }
+
+    /* 4. Empurra o conteúdo do quiz para baixo para não ficar "esmagado" pelo cabeçalho */
+    main {
+        padding-top: 40px !important; /* Adiciona respiro */
+    }
+}
     
   </style>
 </head>

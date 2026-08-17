@@ -188,3 +188,30 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 });
+// =========================================
+// UX: LÓGICA DO FAQ DINÂMICO (ACCORDION)
+// =========================================
+document.addEventListener('DOMContentLoaded', () => {
+    const accordions = document.querySelectorAll('.accordion-header');
+
+    accordions.forEach(accordion => {
+        accordion.addEventListener('click', function() {
+            // Verifica se o item clicado já está aberto
+            const isActive = this.classList.contains('active');
+
+            // 1. Fecha todos os outros itens primeiro (UX mais limpa)
+            accordions.forEach(acc => {
+                acc.classList.remove('active');
+                acc.nextElementSibling.style.maxHeight = null;
+            });
+
+            // 2. Se não estava aberto, nós abrimos ele agora
+            if (!isActive) {
+                this.classList.add('active');
+                const content = this.nextElementSibling;
+                // Pega a altura real do texto escondido e aplica para descer suavemente
+                content.style.maxHeight = content.scrollHeight + "px";
+            }
+        });
+    });
+});
