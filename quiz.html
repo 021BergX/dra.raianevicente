@@ -368,7 +368,7 @@
    UX: ESTILO DA TELA DE RESULTADO DO QUIZ
    ========================================= */
 .caixa-resultado {
-    display: none; /* 👈 Perfeito, é isso aqui! */
+    display: none !important; /* 👈 Perfeito, é isso aqui! */
     background-color: #fcfbfa;
     border: 2px solid #c5a059; /* Borda dourada passando autoridade */
     border-radius: 12px;
@@ -632,7 +632,7 @@
       }, 300);
     }
 
-    function renderQuestion() {
+function renderQuestion() {
       const questionsList = questionnaires[currentDisease];
       const container = document.getElementById('dynamic-question-container');
       
@@ -650,9 +650,13 @@
           <div style="margin-top: 25px; font-size: 13px; color: #7f8c8d; text-align: center;">Questão ${currentQuestionIndex + 1} de ${questionsList.length}</div>
         `;
       } else {
+        // QUIZ ACABOU!
         const flowArea = document.getElementById('quiz-flow-area');
         flowArea.classList.remove('active');
         document.getElementById('step-result').classList.add('active');
+        
+        // 👉 A MÁGICA ACONTECE AQUI: A caixa dourada só aparece agora!
+        document.getElementById('tela-resultado').style.display = 'block';
       }
     }
 
@@ -673,11 +677,13 @@
       document.getElementById('step-result').classList.remove('active');
       const selector = document.getElementById('step-selector');
       selector.classList.add('active');
+      
+      // 👉 SE ELE REINICIAR O QUIZ: Escondemos a caixa de novo!
+      document.getElementById('tela-resultado').style.display = 'none';
     }
 
-    document.getElementById('tela-resultado').style.display = 'block';
+    // ❌ (APAGUEI AQUELA LINHA QUE ESTAVA SOLTA AQUI NO FINAL)
   </script>
-
 
 </body>
 </html>
