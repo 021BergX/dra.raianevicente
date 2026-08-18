@@ -4269,3 +4269,29 @@ html {
     .hero-content p {
         color: rgba(255, 255, 255, 0.9) !important;
     }
+    /* Container que segura e alinha os botões nas páginas de especialidades */
+.conteudo-especialidade .especialidade-actions,
+.especialidade-actions {
+    display: flex !important;
+    justify-content: center !important; /* Centraliza os botões na horizontal */
+    align-items: center !important;
+    gap: 20px !important; /* Espaço elegante entre os dois botões */
+    margin-top: 40px !important;
+    flex-wrap: wrap !important; /* Garante que se adaptem bem no celular */
+    width: 100% !important;
+}
+
+/* Padroniza o tamanho e o formato dos dois botões para ficarem idênticos */
+.conteudo-especialidade .especialidade-actions a,
+.especialidade-actions .btn-hero-outline,
+.especialidade-actions .btn-hero-solid {
+    display: inline-flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    padding: 14px 28px !important;
+    border-radius: 8px !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    text-decoration: none !important;
+    box-sizing: border-box !important;
+}
