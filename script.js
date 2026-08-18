@@ -215,3 +215,31 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+/* =========================================
+   LÓGICA DO MENU SANDUÍCHE (MOBILE)
+   ========================================= */
+const menuToggle = document.querySelector('.menu-toggle');
+const navMenu = document.querySelector('.nav-menu');
+
+if (menuToggle && navMenu) {
+    menuToggle.addEventListener('click', () => {
+        // Liga/Desliga o menu
+        navMenu.classList.toggle('ativo');
+        
+        // Troca o ícone de ☰ para X quando está aberto
+        if (navMenu.classList.contains('ativo')) {
+            menuToggle.innerHTML = '✕';
+        } else {
+            menuToggle.innerHTML = '☰';
+        }
+    });
+
+    // Fecha o menu automaticamente quando a pessoa clica em um link
+    const links = document.querySelectorAll('.nav-links li a');
+    links.forEach(link => {
+        link.addEventListener('click', () => {
+            navMenu.classList.remove('ativo');
+            menuToggle.innerHTML = '☰';
+        });
+    });
+}
