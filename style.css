@@ -1994,7 +1994,7 @@ html {
         display: flex;
         align-items: flex-end; /* Joga o conteúdo para a parte inferior da foto */
         padding: 30px 20px;
-        background-image: linear-gradient(to top, rgba(0,0,0,0.85) 20%, rgba(0,0,0,0.3) 70%), url('../IMG/sua-foto-da-dra.jpg'); /* Substitua pelo caminho correto da foto */
+        background-image: linear-gradient(to top, rgba(0,0,0,0.85) 20%, rgba(0,0,0,0.3) 70%), url('webp (redimensionado)/dra-raiane.webp'); /* Substitua pelo caminho correto da foto */
         background-size: cover;
         background-position: center top;
         color: #ffffff; /* Textos em branco para dar contraste na foto escura */
