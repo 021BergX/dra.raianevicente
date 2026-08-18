@@ -439,6 +439,21 @@
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
 }
+#dynamic-question-container {
+    transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
+    opacity: 1; /* Garante que comece visível */
+    transform: translateY(0);
+}
+
+/* Opcional: Para o clique no botão ficar mais tátil */
+.quiz-option {
+    transition: all 0.2s ease;
+}
+
+.quiz-option:active {
+    transform: scale(0.98); /* Dá uma leve "afundada" no botão quando o dedo clica */
+    background-color: #f0f0f0; /* Fica levemente mais escuro ao clicar */
+}
     
   </style>
 </head>
