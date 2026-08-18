@@ -1981,7 +1981,72 @@ html {
         width: 100%;
         padding: 0;
     }
-    
+    /* =========================================
+   ESTILO IMERSIVO EDITORIAL (MOBILE)
+   Inspirado na referência de alto impacto
+   ========================================= */
+
+@media (max-width: 768px) {
+    /* Transforma a seção principal em uma tela cheia imersiva */
+    .hero-section {
+        position: relative;
+        height: 85vh; /* Ocupa quase a tela inteira sem forçar rolagem desnecessária */
+        display: flex;
+        align-items: flex-end; /* Joga o conteúdo para a parte inferior da foto */
+        padding: 30px 20px;
+        background-image: linear-gradient(to top, rgba(0,0,0,0.85) 20%, rgba(0,0,0,0.3) 70%), url('../IMG/sua-foto-da-dra.jpg'); /* Substitua pelo caminho correto da foto */
+        background-size: cover;
+        background-position: center top;
+        color: #ffffff; /* Textos em branco para dar contraste na foto escura */
+        text-align: left; /* Alinhado à esquerda como na referência */
+    }
+
+    /* Esconde o layout antigo que estava empilhado */
+    .hero-container {
+        display: block !important;
+        width: 100%;
+        padding: 0 !important;
+    }
+
+    /* Oculta a foto antiga que ficava solta embaixo */
+    .hero-image {
+        display: none !important;
+    }
+
+    /* Estiliza o texto de impacto direto sobre a foto */
+    .hero-content h2 {
+        font-family: 'Playfair Display', serif;
+        font-size: 32px !important; /* Tamanho forte e imponente */
+        line-height: 1.15;
+        color: #ffffff !important;
+        margin-bottom: 15px;
+        font-weight: 400;
+    }
+
+    /* O texto descritivo menor */
+    .hero-content p {
+        font-size: 14px !important;
+        color: rgba(255, 255, 255, 0.85) !important;
+        line-height: 1.5;
+        margin-bottom: 25px;
+    }
+
+    /* O botão de ação com alto destaque para toque */
+    .hero-content .btn-hero-outline, 
+    .hero-content .btn-agendar {
+        display: block !important;
+        width: 100% !important;
+        background-color: #c5a059 !important; /* Dourado premium da marca */
+        color: #ffffff !important;
+        border: none !important;
+        text-align: center;
+        padding: 14px 20px;
+        border-radius: 50px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+}
     /* Resolve os botões esmagados e cortados */
     .btn-menu-quiz, .btn-agendar {
         display: flex !important;
