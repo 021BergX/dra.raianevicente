@@ -530,26 +530,35 @@
       <!-- =========================================
      UX: CAIXA DE RESULTADO DO QUIZ (ALTA CONVERSÃO)
      ========================================= -->
-<div class="caixa-resultado" id="tela-resultado">
-    <div class="icone-alerta">💡</div>
-    <h3 class="titulo-resultado">Seus sinais merecem atenção especializada.</h3>
+<div id="step-result" class="step-content">
     
-    <p class="texto-resultado">
-        Com base nas suas respostas, identificamos pontos importantes na sua rotina que estão limitando a sua qualidade de vida. 
-        Muitas pessoas acreditam que dores, cansaço extremo ou esquecimentos são "normais da idade", <strong>mas isso não é verdade.</strong>
-    </p>
-    
-    <p class="texto-resultado">
-        O envelhecimento deve ser vivido com autonomia e vitalidade. A <strong>Dra. Raiane Vicente</strong> realiza a Avaliação Geriátrica Ampla (AGA) para investigar a raiz desses sintomas e criar um plano de cuidado personalizado para você.
-    </p>
+    <!-- NOSSA CAIXA DE ALTA CONVERSÃO FICA AQUI DENTRO -->
+    <div class="caixa-resultado" id="tela-resultado">
+        <div class="icone-alerta">💡</div>
+        <h3 class="titulo-resultado">Seus sinais merecem atenção especializada.</h3>
+        
+        <p class="texto-resultado">
+            Com base nas suas respostas, identificamos pontos importantes na sua rotina que estão limitando a sua qualidade de vida. 
+            Muitas pessoas acreditam que dores, cansaço extremo ou esquecimentos são "normais da idade", <strong>mas isso não é verdade.</strong>
+        </p>
+        
+        <p class="texto-resultado">
+            O envelhecimento deve ser vivido com autonomia e vitalidade. A <strong>Dra. Raiane Vicente</strong> realiza a Avaliação Geriátrica Ampla (AGA) para investigar a raiz desses sintomas e criar um plano de cuidado personalizado para você.
+        </p>
 
-    <div class="chamada-acao">
-        <p>Não adie o seu bem-estar. Nossa equipe está pronta para tirar suas dúvidas.</p>
-        <!-- Este botão leva direto para o WhatsApp com uma mensagem pré-pronta -->
-        <a href="https://wa.me/5511950460616?text=Olá!%20Acabei%20de%20fazer%20o%20teste%20no%20site%20da%20Dra.%20Raiane%20e%20gostaria%20de%20informações%20sobre%20agendamento." target="_blank" class="btn-whatsapp-resultado">
-            <i class="fab fa-whatsapp"></i> Falar com a Equipe no WhatsApp
-        </a>
+        <div class="chamada-acao">
+            <p>Não adie o seu bem-estar. Nossa equipe está pronta para tirar suas dúvidas.</p>
+            <a href="https://wa.me/5511950460616?text=Olá!%20Acabei%20de%20fazer%20o%20teste%20no%20site%20da%20Dra.%20Raiane%20e%20gostaria%20de%20informações%20sobre%20agendamento." target="_blank" class="btn-whatsapp-resultado">
+                <i class="fab fa-whatsapp"></i> Falar com a Equipe no WhatsApp
+            </a>
+        </div>
     </div>
+
+    <!-- Botão sutil para quem quiser refazer o teste de outra doença -->
+    <div style="text-align: center; margin-top: 20px;">
+         <button onclick="resetQuiz()" style="background: none; border: none; color: #7f8c8d; text-decoration: underline; cursor: pointer; font-size: 14px;">Quero avaliar outra área (Refazer Teste)</button>
+    </div>
+
 </div>
       </div>
 
