@@ -364,16 +364,119 @@ header {
 }
 
 /* =========================================
-   CARDS DE ESPECIALIDADES (ESTILO EDITORIAL BOUTIQUE)
+   SEÇÃO ESPECIALIDADES (ESTRUTURA E TÍTULO)
    ========================================= */
+.especialidades {
+    padding: 100px 0;
+    background-color: var(--bg-color);
+}
 
+.section-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-header span {
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+    font-weight: 500;
+    display: block; /* Garante que não quebre na linha do h2 */
+}
+
+.section-header h2 {
+    font-size: 40px;
+    margin-top: 10px;
+}
+
+/* =========================================
+   O CARROSSEL HORIZONTAL (A PEÇA QUE FALTAVA)
+   ========================================= */
+.carousel-wrapper {
+    position: relative; 
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 0 70px;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+}
+
+.carousel-track {
+    display: flex; /* Isso obriga os cards a ficarem lado a lado */
+    gap: 30px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding: 20px 10px;
+    width: 100%;
+    
+    /* Esconde a barra de rolagem */
+    -ms-overflow-style: none;  
+    scrollbar-width: none;  
+}
+
+.carousel-track::-webkit-scrollbar {
+    display: none;
+}
+
+.carousel-track.dragging {
+    scroll-behavior: auto; 
+    cursor: grabbing; 
+}
+
+/* BOTÕES LATERAIS DE NAVEGAÇÃO */
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: var(--white);
+    color: var(--primary-dark);
+    border: 1px solid rgba(0,0,0,0.1);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 10;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.carousel-btn:hover {
+    background-color: var(--primary-dark);
+    color: var(--white);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.prev-btn { left: 10px; }
+.next-btn { right: 10px; }
+
+/* Oculta setas no celular */
+@media (max-width: 768px) {
+    .carousel-btn {
+        display: none;
+    }
+    .carousel-wrapper {
+        padding: 0 10px; /* Reduz o padding para a tela pequena */
+        -webkit-mask-image: none; /* Tira o desfoque lateral no mobile */
+        mask-image: none;
+    }
+}
+
+/* =========================================
+   CARDS BOUTIQUE E BOTÃO MINIMALISTA
+   ========================================= */
 .especialidade-card {
     background: var(--white);
-    padding: 0; /* Removido o padding para a foto vazar até as bordas */
+    padding: 0; 
     border-radius: 20px;
     text-align: center;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05); /* Sombra mais elegante e difusa */
-    overflow: hidden; /* Máscara que garante que a foto siga a borda arredondada */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05); 
+    overflow: hidden; 
     
     min-width: 280px;
     max-width: 310px;
@@ -383,41 +486,36 @@ header {
 }
 
 .especialidade-card:hover {
-    transform: translateY(-8px); /* Card "flutua" ao passar o mouse */
+    transform: translateY(-8px); 
     box-shadow: 0 15px 35px rgba(0,0,0,0.08);
 }
 
-/* Tratamento da Imagem para o Estilo Revista */
 .especialidade-card img {
     width: 100%;
     height: 220px;
     object-fit: cover;
-    border-radius: 20px 20px 0 0; /* Arredonda apenas os cantos superiores */
+    border-radius: 20px 20px 0 0; 
     margin-bottom: 20px;
     transition: transform 0.5s ease;
 }
 
 .especialidade-card:hover img {
-    transform: scale(1.03); /* Leve zoom na foto ao passar o mouse no card */
+    transform: scale(1.03); 
 }
 
-/* Título da Especialidade */
 .especialidade-card h4 {
     font-size: 22px;
-    margin: 0 20px 15px 20px; /* Margem lateral necessária agora que o card não tem padding */
+    margin: 0 20px 15px 20px; 
     color: var(--primary-dark);
 }
 
-/* =========================================
-   BOTÃO "SAIBA MAIS" MINIMALISTA (LINK COM SETA)
-   ========================================= */
 .btn-saiba-mais {
     display: inline-block;
     background: transparent;
-    border: none; /* Removemos a pílula oval */
+    border: none; 
     color: var(--primary-color);
     padding: 0;
-    margin-bottom: 25px; /* Respiro no final do card */
+    margin-bottom: 25px; 
     
     font-family: var(--font-body);
     font-weight: 600;
@@ -429,19 +527,16 @@ header {
     transition: color 0.3s ease;
 }
 
-/* Código da seta injetado via CSS */
 .btn-saiba-mais::after {
-    content: ' \2192'; /* Seta elegante (➔) */
+    content: ' \2192'; 
     font-size: 16px;
     transition: margin-left 0.3s ease;
 }
 
 .btn-saiba-mais:hover {
     color: var(--primary-dark);
-    background: transparent; /* Garante que não apareça fundo */
 }
 
-/* Efeito da seta deslizando ao passar o mouse */
 .btn-saiba-mais:hover::after {
     margin-left: 8px; 
 }
