@@ -1,74 +1,100 @@
 // =========================================
-// ROLAGEM SUAVE (SMOOTH SCROLL)
+// INICIALIZAÇÃO GLOBAL DO SISTEMA
 // =========================================
 document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
-        });
-    });
+    initSmoothScroll();
+    initCarousel();
+    initPageTransitions();
+    initCookieBanner();
+    initFAQ();
+    initMobileMenu();
 });
 
 // =========================================
-// CONTROLE DO CARROSSEL DE ESPECIALIDADES
+// 1. ROLAGEM SUAVE (SMOOTH SCROLL)
 // =========================================
-const track = document.querySelector('.carousel-track');
-const btnPrev = document.querySelector('.prev-btn');
-const btnNext = document.querySelector('.next-btn');
-
-if (track) {
-    let isAnimating = false; 
-
-    // AVANÇAR (Seta Direita)
-    btnNext.addEventListener('click', () => {
-        if (isAnimating) return; 
-        isAnimating = true;
-
-        const firstCard = track.firstElementChild;
-        const moveDistance = firstCard.offsetWidth + 30; // Largura do card + gap
-
-        track.scrollBy({ left: moveDistance, behavior: 'smooth' });
-
-        setTimeout(() => {
-            track.style.scrollBehavior = 'auto';
-            track.appendChild(firstCard);
-            track.scrollLeft -= moveDistance;
+function initSmoothScroll() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
             
-            requestAnimationFrame(() => {
-                track.style.scrollBehavior = 'smooth';
-                isAnimating = false;
-            });
-        }, 400); 
-    });
-
-    // VOLTAR (Seta Esquerda)
-    btnPrev.addEventListener('click', () => {
-        if (isAnimating) return;
-        isAnimating = true;
-
-        const lastCard = track.lastElementChild;
-        const moveDistance = lastCard.offsetWidth + 30;
-
-        track.style.scrollBehavior = 'auto';
-        track.prepend(lastCard);
-        track.scrollLeft += moveDistance;
-
-        requestAnimationFrame(() => {
-            track.style.scrollBehavior = 'smooth';
-            track.scrollBy({ left: -moveDistance, behavior: 'smooth' });
-            
-            setTimeout(() => {
-                isAnimating = false;
-            }, 400);
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                e.preventDefault();
+                targetElement.scrollIntoView({ behavior: 'smooth' });
+            }
         });
     });
+}
 
-    // =========================================
-    // CONTROLE POR ARRASTO DO MOUSE
-    // =========================================
+// =========================================
+// 2. CONTROLE DO CARROSSEL DE ESPECIALIDADES
+// =========================================
+function initCarousel() {
+    const track = document.querySelector('.carousel-track');
+    const btnPrev = document.querySelector('.prev-btn');
+    const btnNext = document.querySelector('.next-btn');
+
+    if (!track) return;
+
+    let isAnimating = false;
+
+    // Função auxiliar para calcular a distância do card + gap
+    const getMoveDistance = () => {
+        const firstCard = track.firstElementChild;
+        return firstCard ? firstCard.offsetWidth + 30 : 300;
+    };
+
+    // AVANÇAR (Seta Direita)
+    if (btnNext) {
+        btnNext.addEventListener('click', () => {
+            if (isAnimating) return;
+            isAnimating = true;
+
+            const firstCard = track.firstElementChild;
+            const moveDistance = getMoveDistance();
+
+            track.scrollBy({ left: moveDistance, behavior: 'smooth' });
+
+            setTimeout(() => {
+                track.style.scrollBehavior = 'auto';
+                track.appendChild(firstCard);
+                track.scrollLeft -= moveDistance;
+                
+                requestAnimationFrame(() => {
+                    track.style.scrollBehavior = 'smooth';
+                    isAnimating = false;
+                });
+            }, 400); 
+        });
+    }
+
+    // VOLTAR (Seta Esquerda)
+    if (btnPrev) {
+        btnPrev.addEventListener('click', () => {
+            if (isAnimating) return;
+            isAnimating = true;
+
+            const lastCard = track.lastElementChild;
+            const moveDistance = getMoveDistance();
+
+            track.style.scrollBehavior = 'auto';
+            track.prepend(lastCard);
+            track.scrollLeft += moveDistance;
+
+            requestAnimationFrame(() => {
+                track.style.scrollBehavior = 'smooth';
+                track.scrollBy({ left: -moveDistance, behavior: 'smooth' });
+                
+                setTimeout(() => {
+                    isAnimating = false;
+                }, 400);
+            });
+        });
+    }
+
+    // CONTROLE POR ARRASTO DO MOUSE (DRAG AND DROP)
     let isDown = false;
     let startX;
     let scrollLeft;
@@ -101,7 +127,7 @@ if (track) {
         track.scrollLeft = scrollLeft - walk;
     });
 
-    // Cancela o clique em links dentro do carrossel se estiver arrastando
+    // Cancela o clique em links dentro do carrossel se o usuário estiver arrastando
     track.addEventListener('click', (e) => {
         if (isDragging) {
             e.preventDefault();
@@ -110,19 +136,17 @@ if (track) {
 }
 
 // =========================================
-// ACESSIBILIDADE (ZOOM E ALTO CONTRASTE)
+// 3. ACESSIBILIDADE (ZOOM E ALTO CONTRASTE)
 // =========================================
 let nivelZoom = 1;
 
 function aumentarZoom() {
-    nivelZoom += 0.1;
-    if(nivelZoom > 1.4) nivelZoom = 1.4; 
+    nivelZoom = Math.min(nivelZoom + 0.1, 1.4);
     document.body.style.zoom = nivelZoom;
 }
 
 function diminuirZoom() {
-    nivelZoom -= 0.1;
-    if(nivelZoom < 0.9) nivelZoom = 0.9; 
+    nivelZoom = Math.max(nivelZoom - 0.1, 0.9);
     document.body.style.zoom = nivelZoom;
 }
 
@@ -135,98 +159,96 @@ function toggleDestacarLinks() {
 }
 
 // =========================================
-// TRANSIÇÃO SUAVE ENTRE PÁGINAS (FADE OUT)
+// 4. TRANSIÇÃO SUAVE ENTRE PÁGINAS (FADE OUT/IN)
 // =========================================
-document.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', function(e) {
-        const destino = this.getAttribute('href');
-        
-        if (!destino || this.target === '_blank' || destino.startsWith('#') || destino.startsWith('http')) {
-            return;
-        }
+function initPageTransitions() {
+    document.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', function(e) {
+            const destino = this.getAttribute('href');
+            
+            if (!destino || this.target === '_blank' || destino.startsWith('#') || destino.startsWith('http')) {
+                return;
+            }
 
-        e.preventDefault(); 
-        const url = this.href;
+            e.preventDefault(); 
+            const url = this.href;
 
-        document.body.classList.add('fade-out');
+            document.body.classList.add('fade-out');
 
-        setTimeout(() => {
-            window.location.href = url;
-        }, 200); 
+            setTimeout(() => {
+                window.location.href = url;
+            }, 200); 
+        });
     });
-});
+}
 
-// =========================================
-// CORREÇÃO DO BOTÃO VOLTAR DO NAVEGADOR
-// =========================================
-window.addEventListener('pageshow', function (event) {
+// Correção para o botão "Voltar" do navegador
+window.addEventListener('pageshow', (event) => {
     if (event.persisted || document.body.classList.contains('fade-out')) {
         document.body.classList.remove('fade-out');
     }
 });
 
 // =========================================
-// CONTROLE DO AVISO DE COOKIES (LGPD)
+// 5. CONTROLE DO AVISO DE COOKIES (LGPD)
 // =========================================
-document.addEventListener("DOMContentLoaded", function() {
-    // Usamos os IDs exatos que você tinha (com hífen)
+function initCookieBanner() {
     const cookieBanner = document.getElementById("cookie-banner");
     const btnAceitar = document.getElementById("aceitar-cookies");
 
-    if (cookieBanner) {
-        if (!localStorage.getItem("cookiesAceitos")) {
-            setTimeout(() => {
-                cookieBanner.classList.add("show");
-            }, 1000);
-        }
+    if (cookieBanner && !localStorage.getItem("cookiesAceitos")) {
+        setTimeout(() => {
+            cookieBanner.classList.add("show");
+        }, 1000);
     }
 
     if (btnAceitar && cookieBanner) {
-        btnAceitar.addEventListener("click", function() {
+        btnAceitar.addEventListener("click", () => {
             cookieBanner.classList.remove("show");
             localStorage.setItem("cookiesAceitos", "true");
         });
     }
-});
+}
+
 // =========================================
-// UX: LÓGICA DO FAQ DINÂMICO (ACCORDION)
+// 6. UX: LÓGICA DO FAQ DINÂMICO (ACCORDION)
 // =========================================
-document.addEventListener('DOMContentLoaded', () => {
+function initFAQ() {
     const accordions = document.querySelectorAll('.accordion-header');
 
     accordions.forEach(accordion => {
         accordion.addEventListener('click', function() {
-            // Verifica se o item clicado já está aberto
             const isActive = this.classList.contains('active');
 
-            // 1. Fecha todos os outros itens primeiro (UX mais limpa)
+            // Fecha todos os outros itens
             accordions.forEach(acc => {
                 acc.classList.remove('active');
                 acc.nextElementSibling.style.maxHeight = null;
             });
 
-            // 2. Se não estava aberto, nós abrimos ele agora
+            // Abre o clicado se não estivesse ativo
             if (!isActive) {
                 this.classList.add('active');
                 const content = this.nextElementSibling;
-                // Pega a altura real do texto escondido e aplica para descer suavemente
                 content.style.maxHeight = content.scrollHeight + "px";
             }
         });
     });
-});
-/* =========================================
-   LÓGICA DO MENU SANDUÍCHE (MOBILE)
-   ========================================= */
-const menuToggle = document.querySelector('.menu-toggle');
-const navMenu = document.querySelector('.nav-menu');
+}
 
-if (menuToggle && navMenu) {
+// =========================================
+// 7. LÓGICA DO MENU SANDUÍCHE (MOBILE)
+// =========================================
+function initMobileMenu() {
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+
+    if (!menuToggle || !navMenu) return;
+
     menuToggle.addEventListener('click', () => {
-        // Liga/Desliga o menu
         navMenu.classList.toggle('ativo');
         
-        // Troca o ícone de ☰ para X quando está aberto
+        // Alterna entre ☰ e ✕
         if (navMenu.classList.contains('ativo')) {
             menuToggle.innerHTML = '✕';
         } else {
@@ -234,7 +256,7 @@ if (menuToggle && navMenu) {
         }
     });
 
-    // Fecha o menu automaticamente quando a pessoa clica em um link
+    // Fecha o menu automaticamente ao clicar em um link interno
     const links = document.querySelectorAll('.nav-links li a');
     links.forEach(link => {
         link.addEventListener('click', () => {
