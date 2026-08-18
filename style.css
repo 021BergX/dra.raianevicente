@@ -1953,34 +1953,6 @@ html {
         text-align: center;
     }
 }
-    
-    /* ESCONDE OS LINKS (Força bruta contra o CSS do computador) */
-    .nav-menu {
-        display: none !important; 
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background-color: #ffffff;
-        box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-        padding: 20px 0;
-        z-index: 999;
-    }
-    
-    /* MOSTRA OS LINKS QUANDO CLICAR NO ☰ */
-    .nav-menu.ativo {
-        display: block !important; 
-    }
-    
-    /* Empilha os links em formato de lista quando o menu abrir */
-    .nav-links {
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        gap: 20px !important;
-        width: 100%;
-        padding: 0;
-    }
     /* =========================================
    ESTILO IMERSIVO EDITORIAL (MOBILE)
    Inspirado na referência de alto impacto
