@@ -1837,18 +1837,38 @@ html {
 }
 
 @media (max-width: 768px) {
-    /* 1. CABEÇALHO E MENU SANDUÍCHE */
+    /* 1. CABEÇALHO E MENU SANDUÍCHE (VERSÃO BLINDADA) */
+    
+    /* Coloca a Logo na esquerda e o Botão na direita */
+    .header-container {
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        padding: 10px 20px !important;
+        position: relative;
+        width: 100%;
+    }
+
+    /* Reduz um pouquinho a logo para caber melhor na barra */
+    .logo-img {
+        max-height: 60px !important;
+    }
+
+    /* O Botão ☰ fica no canto direito */
     .menu-toggle {
-        display: block; 
-        font-size: 30px;
+        display: block !important; 
+        font-size: 32px;
         background: none;
         border: none;
         color: #c5a059; /* Dourado premium */
         cursor: pointer;
+        padding: 0;
+        margin-right: 10px;
     }
     
+    /* ESCONDE OS LINKS (Força bruta contra o CSS do computador) */
     .nav-menu {
-        display: none; /* Esconde a bagunça inicial */
+        display: none !important; 
         position: absolute;
         top: 100%;
         left: 0;
@@ -1859,53 +1879,29 @@ html {
         z-index: 999;
     }
     
+    /* MOSTRA OS LINKS QUANDO CLICAR NO ☰ */
     .nav-menu.ativo {
-        display: block; /* Mostra a lista quando clica no botão */
+        display: block !important; 
     }
     
+    /* Empilha os links em formato de lista quando o menu abrir */
     .nav-links {
-        flex-direction: column;
-        align-items: center;
-        gap: 20px;
-    }
-    
-    .btn-menu-quiz, .btn-agendar {
-        display: inline-block;
-        width: 80%; /* Botões largos = fáceis para o dedo gordo */
-        text-align: center;
-        margin-top: 10px;
-    }
-
-    /* 2. TEXTOS (Ajuste de proporção) */
-    .hero-badge {
-        font-size: 11px; /* Mais delicado */
-        letter-spacing: 1px;
-    }
-    
-    .hero-content h2 {
-        font-size: 26px; /* Reduzido de gigantesco para legível */
-        line-height: 1.3;
-        margin-top: 15px;
-        margin-bottom: 25px;
-    }
-    
-    /* 3. BOTÃO INICIAL (Tamanho de Toque) */
-    .btn-hero-outline {
-        display: block;
-        width: 100%; 
-        text-align: center;
-        padding: 15px 0;
-    }
-
-    /* 4. LAYOUT DA FOTO E TEXTO (Espaçamento) */
-    .hero-container {
-        flex-direction: column;
-        padding-top: 40px;
-        padding-bottom: 60px; /* Evita que o ícone do whats fique em cima do texto */
-    }
-    
-    .hero-image {
-        margin-top: 40px; /* Descola a foto do texto */
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 20px !important;
         width: 100%;
+        padding: 0;
     }
+    
+    /* Resolve os botões esmagados e cortados */
+    .btn-menu-quiz, .btn-agendar {
+        display: flex !important;
+        justify-content: center !important;
+        width: 85% !important; 
+        margin: 5px auto !important;
+        text-align: center;
+    }
+
+    /* ... Mantenha o resto das regras de TEXTOS e FOTOS abaixo daqui ... */
 }
