@@ -1888,22 +1888,44 @@ html {
     /* Coloca a Logo na esquerda e o Botão na direita */
     @media (max-width: 768px) {
     /* 1. CABEÇALHO COMPACTO DE LINHA ÚNICA */
+    @media (max-width: 768px) {
     .header-container {
-        display: flex !important;
-        flex-direction: row !important; /* Força lado a lado */
-        justify-content: space-between !important; /* Logo na ponta esquerda, botão na direita */
+        display: grid !important;
+        grid-template-columns: 40px 1fr 40px !important; /* Cria 3 colunas simétricas: Esquerda, Centro exato, Direita */
         align-items: center !important;
         padding: 12px 20px !important;
-        height: 70px !important; /* Altura fixa e elegante */
+        height: 70px !important;
         position: relative;
         width: 100%;
     }
 
-    /* Reduz o tamanho da logo proporcionalmente para a barra fina */
+    /* O Botão Sanduíche fica na primeira coluna (Esquerda) */
+    .menu-toggle {
+        grid-column: 1 !important;
+        display: block !important; 
+        font-size: 26px !important;
+        background: none !important;
+        border: none !important;
+        color: #c5a059 !important;
+        cursor: pointer;
+        padding: 0;
+        margin: 0 !important;
+        text-align: left;
+    }
+
+    /* A Logo fica na segunda coluna, perfeitamente centralizada */
+    .logo {
+        grid-column: 2 !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+    }
+
     .logo-img {
-        max-height: 40px !important; /* Bem compacta e sofisticada */
+        max-height: 40px !important;
         width: auto !important;
     }
+}
 
     /* Botão Sanduíche alinhado à direita */
     .menu-toggle {
