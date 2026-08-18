@@ -49,24 +49,29 @@
 <body>
     <!-- CABEÇALHO COMPLETO (Com âncoras de retorno) -->
     <header>
-    <div class="container header-container">
+    <div class="header-container">
         <div class="logo">
             <a href="index.html">
-                <img src="IMG/logo.png" alt="Logo Dra. Raiane dos Santos Vicente" class="logo-img">
+                <!-- Certifique-se de que o caminho da sua logo está correto -->
+                <img src="IMG/logo.png" alt="Logo Dra. Raiane" class="logo-img">
             </a>
         </div>
-        <nav>
+        
+        <!-- NOVO: Botão do Menu Sanduíche (Só aparece no celular) -->
+        <button class="menu-toggle" aria-label="Abrir menu">☰</button>
+        
+        <nav class="nav-menu">
             <ul class="nav-links">
-                <li><a href="index.html#inicio">Início</a></li>
-                <li><a href="index.html#sobre">Dra. Raiane</a></li>
-                <li><a href="index.html#especialidades">Especialidades</a></li>
-                <li><a href="index.html#contato">Contato</a></li>
+                <li><a href="#inicio">Início</a></li>
+                <li><a href="#sobre">Dra. Raiane</a></li>
+                <li><a href="#especialidades">Especialidades</a></li>
+                <li><a href="#contato">Contato</a></li>
                 <li><a href="quiz.html" class="btn-menu-quiz">Fazer Teste</a></li>
-                <li><a href="https://api.whatsapp.com/send/?phone=5511950460616&text=Olá!%20Gostaria%20de%20mais%20informações%20sobre%20as%20consultas%20com%20a%20Dra.%20Raiane.&type=phone_number&app_absent=0" class="btn-agendar" target="_blank">Agendar consulta</a></li>
+                <li><a href="https://api.whatsapp.com/send/?phone=5511950460616&text=Olá!%20Vim%20pelo%20site%20e%20gostaria%20de%20mais%20informações%20sobre%20as%20consultas%20com%20a%20Dra.%20Raiane." class="btn-agendar" target="_blank">Agendar consulta</a></li>
             </ul>
         </nav>
     </div>
-    </header>
+</header>
     <section class="sobre" style="padding-top: 150px; min-height: 70vh;"> 
         <div class="container sobre-container">
             <div class="sobre-image">
