@@ -1727,7 +1727,7 @@ body.destacar-links button {
         padding: 0 10px;
 
     }
-
+}
 .especialidade-card a.btn-saiba-mais {
 
     position: relative;
@@ -1895,13 +1895,13 @@ body.destacar-links button {
 
     font-weight: 600;
 
-}
+}/* Estilo base do botão */
 
 .btn-hero {
 
     background-color: #FFFFFF;
 
-    color: #A07B65;
+    color: #A07B65; /* A cor do fundo da sua tela para dar contraste */
 
     padding: 15px 35px;
 
@@ -1925,9 +1925,11 @@ body.destacar-links button {
 
 .btn-hero:hover {
 
-    background-color: transparent;
+    background-color: transparent; /* O fundo fica transparente */
 
-    color: #FFFFFF;
+    color: #FFFFFF; /* O texto fica branco */
+
+    /* A borda branca se mantém, criando um efeito sofisticado de "esvaziamento" */
 
 }
 
@@ -1941,13 +1943,13 @@ body.destacar-links button {
 
     position: fixed;
 
-    bottom: -100px;
+    bottom: -100px; /* Começa escondida para fora da tela */
 
     left: 0;
 
     width: 100%;
 
-    background-color: #1C1C1C;
+    background-color: #1C1C1C; /* Fundo chumbo sofisticado */
 
     color: #E0E0E0;
 
@@ -1957,7 +1959,7 @@ body.destacar-links button {
 
     box-shadow: 0 -5px 15px rgba(0,0,0,0.1);
 
-    transition: bottom 0.5s ease-in-out;
+    transition: bottom 0.5s ease-in-out; /* Animação de subida */
 
     display: flex;
 
@@ -1969,9 +1971,11 @@ body.destacar-links button {
 
 .cookie-banner.show {
 
-    bottom: 0; 
+    bottom: 0; /* O JavaScript adiciona essa classe para a barra subir */
 
 }
+
+
 
 .cookie-content {
 
@@ -2025,7 +2029,7 @@ body.destacar-links button {
 
     transition: all 0.3s ease;
 
-    white-space: nowrap;
+    white-space: nowrap; /* Evita que o texto quebre em duas linhas */
 
 }
 
@@ -2038,6 +2042,10 @@ body.destacar-links button {
     color: #1C1C1C;
 
 }
+
+
+
+/* Ajuste automático para telas de celular */
 
 @media (max-width: 768px) {
 
@@ -2065,9 +2073,13 @@ body.destacar-links button {
 
    ========================================= */
 
+
+
+/* 1. Dá um respiro e empurra o título para cima do botão, evitando a sobreposição */
+
 .especialidade-card h4 {
 
-    margin-bottom: 12px;
+    margin-bottom: 12px; /* Cria uma distância segura entre o texto e o botão */
 
     position: relative;
 
@@ -2075,13 +2087,21 @@ body.destacar-links button {
 
 }
 
+
+
+/* 2. Mantém o botão clicable mas remove qualquer linha debaixo (sublinhado) */
+
 .especialidade-card a.btn-saiba-mais {
 
-    text-decoration: none !important;
+    text-decoration: none !important; /* Força a remoção de qualquer risco embaixo */
 
     display: inline-block;
 
 }
+
+
+
+/* Garante que o texto de dentro do botão também não fique sublinhado ao passar o mouse */
 
 .especialidade-card a.btn-saiba-mais:hover {
 
@@ -2099,11 +2119,11 @@ body.destacar-links button {
 
 .conteudo-especialidade {
 
-    max-width: 800px; 
+    max-width: 800px; /* Trava a largura máxima para o texto não ficar longo demais na tela do PC */
 
-    margin: 40px auto; 
+    margin: 40px auto; /* Centraliza o bloco na página com respiro em cima e embaixo */
 
-    padding: 0 20px;   
+    padding: 0 20px;   /* Margem de segurança para não colar nas bordas no celular */
 
 }
 
@@ -2139,19 +2159,27 @@ body.destacar-links button {
 
 }
 
+
+
+/* Configuração de parágrafos uniforme e limpa */
+
 .conteudo-especialidade p {
 
-    font-size: 1.05rem;       
+    font-size: 1.05rem;       /* Tamanho perfeito para leitura confortável (cerca de 17px) */
 
-    line-height: 1.8;         
+    line-height: 1.8;         /* Espaçamento elegante entre as linhas (equivalente ao 1,5 da ABNT) */
 
-    color: #4A4A4A;           
+    color: #4A4A4A;           /* Cinza escuro sofisticado (evita o preto chapado que cansa a vista) */
 
-    margin-bottom: 20px;      
+    margin-bottom: 20px;      /* Distância limpa entre um parágrafo e outro */
 
-    text-align: justify;      
+    text-align: justify;      /* Justifica as margens para manter o bloco uniforme */
 
 }
+
+
+
+/* Ajuste proporcional para celulares */
 
 @media (max-width: 768px) {
 
@@ -2165,7 +2193,7 @@ body.destacar-links button {
 
         font-size: 1rem;
 
-        text-align: left;
+        text-align: left; /* No celular, o texto justificado pode gerar falhas de espaçamento, melhor alinhar à esquerda */
 
     }
 
@@ -2173,7 +2201,7 @@ body.destacar-links button {
 
 .especialidade-card {
 
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Garante que o movimento seja fluido */
 
 }
 
@@ -2181,9 +2209,9 @@ body.destacar-links button {
 
 .especialidade-card:hover {
 
-    transform: translateY(-10px);
+    transform: translateY(-10px); /* Faz o card dar a leve saltada para cima */
 
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1); /* Adiciona uma sombra elegante de profundidade */
 
     z-index: 2;
 
@@ -2477,7 +2505,7 @@ body.destacar-links button {
 
     .mapa-container iframe {
 
-        height: 300px;
+        height: 300px; /* Reduz um pouco a altura no celular para melhor encaixe */
 
     }
 
@@ -2491,7 +2519,7 @@ body.destacar-links button {
 
 .hero-content h2 {
 
-    font-family: 'Playfair Display', serif;
+    font-family: 'Playfair Display', serif; /* Título com serifa para um toque sofisticado */
 
     font-weight: 400;
 
@@ -2499,7 +2527,7 @@ body.destacar-links button {
 
     line-height: 1.3;
 
-    color: #FFFFFF;
+    color: #FFFFFF; /* Texto branco puro traz mais elegância sobre o fundo bege */
 
 }
 
@@ -2511,17 +2539,17 @@ body.destacar-links button {
 
     font-weight: 700;
 
-    font-style: italic;
+    font-style: italic; /* O itálico dá um charme editorial refinado */
 
 }
 
 .portrait-photo {
 
-    border-radius: 4px;
+    border-radius: 4px; /* Cantos levemente arredondados, menos infantilizados */
 
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15); /* Sombra mais difusa e imponente */
 
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Moldura sutil translúcida */
 
 }
 
@@ -2545,7 +2573,7 @@ body.destacar-links button {
 
     cursor: pointer;
 
-    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1); /* Transição suave e sofisticada */
 
     position: relative;
 
@@ -2554,6 +2582,8 @@ body.destacar-links button {
     z-index: 1;
 
 }
+
+
 
 /* O efeito de fundo que cresce */
 
@@ -2575,7 +2605,7 @@ body.destacar-links button {
 
     text-transform: uppercase;
 
-    text-decoration: none !important;
+    text-decoration: none !important; /* Remove qualquer sublinhado */
 
     cursor: pointer;
 
@@ -2590,6 +2620,10 @@ body.destacar-links button {
     z-index: 1;
 
 }
+
+
+
+/* Garante que o hover preencha com o tom dourado/marrom e mantenha o texto legível */
 
 .btn-hero-outline:hover,
 
@@ -2617,17 +2651,19 @@ body.destacar-links button {
 
     padding: 6px 16px;
 
-    border-radius: 4px;
+    border-radius: 4px; /* Cantos retos ou levemente arredondados dão aspecto mais sério e formal */
 
     font-size: 11px;
 
-    letter-spacing: 2px;
+    letter-spacing: 2px; /* Letras espaçadas transmitem luxo */
 
     text-transform: uppercase;
 
 }
 
 /* mais um teste */
+
+
 
 .portrait-photo {
 
