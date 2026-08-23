@@ -222,7 +222,7 @@ if (track) {
 
 // =========================================
 
-// ACESSIBILIDADE (ZOOM E ALTO CONTRASTE)
+// ACESSIBILIDADE (REMOVIDO - PORÉM SALVO CASO RESOLVA REUTILIZAR)
 
 // =========================================
 
@@ -340,7 +340,6 @@ window.addEventListener('pageshow', function (event) {
 
 document.addEventListener("DOMContentLoaded", function() {
 
-    // Usamos os IDs exatos que você tinha (com hífen)
 
     const cookieBanner = document.getElementById("cookie-banner");
 
@@ -400,7 +399,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-            // 1. Fecha todos os outros itens primeiro (UX mais limpa)
+            // 1. Fecha todos os outros itens primeiro
 
             accordions.forEach(acc => {
 
@@ -420,7 +419,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 const content = this.nextElementSibling;
 
-                // Pega a altura real do texto escondido e aplica para descer suavemente
 
                 content.style.maxHeight = content.scrollHeight + "px";
 

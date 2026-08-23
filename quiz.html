@@ -329,7 +329,7 @@
       transform: translateY(-2px);
       box-shadow: 0 6px 15px rgba(197, 160, 89, 0.3);
     }
-    /* 👇 COLE O CÓDIGO NOVO AQUI 👇 */
+
     @media (max-width: 768px) {
         header { padding: 10px !important; }
         .header-container { flex-direction: column !important; align-items: center !important; justify-content: center !important; }
@@ -343,23 +343,19 @@
    UX: LIMPEZA E AJUSTE DO QUIZ NO MOBILE
    ========================================= */
 @media (max-width: 768px) {
-    /* 1. Esconde os links de texto (Início, Contato) para focar a atenção do usuário no Quiz */
     .nav-links li a:not(.btn-whatsapp, .btn-menu-quiz) {
         display: none !important;
     }
 
-    /* 2. Remove o botão "Fazer Teste" do cabeçalho APENAS na página do Quiz (já que ele já está no teste) */
     .btn-menu-quiz {
         display: none !important;
     }
 
-    /* 3. Centraliza a Logo e o botão do WhatsApp */
     .nav-links {
         gap: 0 !important;
         margin-top: 10px;
     }
 
-    /* 4. Empurra o conteúdo do quiz para baixo para não ficar "esmagado" pelo cabeçalho */
     main {
         padding-top: 40px !important; /* Adiciona respiro */
     }
@@ -368,9 +364,9 @@
    UX: ESTILO DA TELA DE RESULTADO DO QUIZ
    ========================================= */
 .caixa-resultado {
-    display: none; /* 👈 Perfeito, é isso aqui! */
+    display: none;
     background-color: #fcfbfa;
-    border: 2px solid #c5a059; /* Borda dourada passando autoridade */
+    border: 2px solid #c5a059;
     border-radius: 12px;
     padding: 40px 30px;
     text-align: center;
@@ -398,13 +394,13 @@
     font-size: 16px;
     line-height: 1.6;
     margin-bottom: 15px;
-    text-align: left; /* Alinhado à esquerda facilita a leitura de textos longos */
+    text-align: left;
 }
 
 .chamada-acao {
     margin-top: 30px;
     padding-top: 25px;
-    border-top: 1px solid #e1e1e1; /* Linha sutil separando o botão */
+    border-top: 1px solid #e1e1e1; 
 }
 
 .chamada-acao p {
@@ -425,7 +421,7 @@
     font-weight: 700;
     box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
     transition: all 0.3s ease;
-    width: 100%; /* Ocupa a largura toda no celular */
+    width: 100%;
     box-sizing: border-box;
 }
 
@@ -441,18 +437,18 @@
 }
 #dynamic-question-container {
     transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
-    opacity: 1; /* Garante que comece visível */
+    opacity: 1;
     transform: translateY(0);
 }
 
-/* Opcional: Para o clique no botão ficar mais tátil */
+
 .quiz-option {
     transition: all 0.2s ease;
 }
 
 .quiz-option:active {
-    transform: scale(0.98); /* Dá uma leve "afundada" no botão quando o dedo clica */
-    background-color: #f0f0f0; /* Fica levemente mais escuro ao clicar */
+    transform: scale(0.98);
+    background-color: #f0f0f0;
 }
     
   </style>
@@ -538,20 +534,15 @@
       <!-- FLUXO DINÂMICO DE PERGUNTAS -->
       <div class="quiz-step" id="quiz-flow-area">
         <div id="dynamic-question-container">
-          <!-- O conteúdo das perguntas injetadas via JS aparece aqui -->
         </div>
       </div>
 
-      <!-- =========================================
-     UX: CAIXA DE RESULTADO DO QUIZ (ALTA CONVERSÃO)
-     ========================================= -->
 <div id="step-result" class="step-content">
     
-    <!-- NOSSA CAIXA DE ALTA CONVERSÃO FICA AQUI DENTRO -->
+
     <div class="caixa-resultado" id="tela-resultado">
         <div class="icone-alerta">💡</div>
-        
-        <!-- Os textos agora estão vazios aqui, o JS vai preencher! -->
+
         <h3 class="titulo-resultado" id="resultado-titulo"></h3>
         <p class="texto-resultado" id="resultado-texto1"></p>
         <p class="texto-resultado" id="resultado-texto2"></p>
@@ -564,7 +555,6 @@
         </div>
     </div>
 
-    <!-- Botão sutil para quem quiser refazer o teste de outra doença -->
     <div style="text-align: center; margin-top: 20px;">
          <button onclick="resetQuiz()" style="background: none; border: none; color: #7f8c8d; text-decoration: underline; cursor: pointer; font-size: 14px;">Quero avaliar outra área (Refazer Teste)</button>
     </div>
@@ -653,12 +643,12 @@
 
     let currentDisease = '';
     let currentQuestionIndex = 0;
-    let quizScore = 0; // 👈 NOVA VARIÁVEL: O cérebro que vai contar os pontos!
+    let quizScore = 0;
 
     function startDiseaseQuiz(diseaseKey) {
       currentDisease = diseaseKey;
       currentQuestionIndex = 0;
-      quizScore = 0; // Zera a pontuação sempre que começa um novo teste
+      quizScore = 0;
       
       const selector = document.getElementById('step-selector');
       selector.style.opacity = '0';
@@ -681,7 +671,7 @@
         const currentQ = questionsList[currentQuestionIndex];
         
         let optionsHTML = '';
-        // 👇 Agora cada botão sabe o seu valor (0, 1 ou 2)
+  
         currentQ.opts.forEach((opt, index) => {
           optionsHTML += `<button class="quiz-option" onclick="nextQuestion(${index})">${opt}</button>`;
         });
@@ -692,11 +682,11 @@
           <div style="margin-top: 25px; font-size: 13px; color: #7f8c8d; text-align: center;">Questão ${currentQuestionIndex + 1} de ${questionsList.length}</div>
         `;
       } else {
-        // QUIZ ACABOU! HORA DE CALCULAR O RESULTADO
+
         const flowArea = document.getElementById('quiz-flow-area');
         flowArea.classList.remove('active');
         
-        // Chama a função que escolhe o texto certo
+
         gerarResultadoDinamico();
         
         document.getElementById('step-result').classList.add('active');
@@ -704,7 +694,7 @@
       }
     }
 
-    // 👇 Agora a função recebe a pontuação do botão clicado
+
     function nextQuestion(pontosDaResposta) {
       quizScore += pontosDaResposta; // Soma os pontos
       
@@ -720,7 +710,7 @@
       }, 250);
     }
 
-    // 👇 A MÁGICA DA INTELIGÊNCIA ARTIFICIAL DO SEU QUIZ
+
     function gerarResultadoDinamico() {
         const tituloEl = document.getElementById('resultado-titulo');
         const texto1El = document.getElementById('resultado-texto1');
