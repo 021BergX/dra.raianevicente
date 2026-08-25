@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendamento de Consulta | Dra. Raiane Vicente</title>
+    <style>
+        :root {
+            --primary-gold: #c5a059;
+            --primary-gold-dark: #b08d4c;
+            --text-dark: #2c3e50;
+            --bg-light: #ffffff;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f9f9f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .checkout-box {
+            background-color: var(--bg-light);
+            padding: 40px 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+            border-top: 5px solid var(--primary-gold);
+        }
+
+        .checkout-title {
+            color: var(--text-dark);
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .checkout-price {
+            color: var(--primary-gold);
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 25px;
+        }
+
+        /* Estilo Profissional do Botão de Vendas */
+        .btn-buy {
+            display: inline-block;
+            background-color: var(--primary-gold);
+            color: white;
+            padding: 15px 30px;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 15px rgba(197, 160, 89, 0.3);
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .btn-buy:hover {
+            background-color: var(--primary-gold-dark);
+            transform: translateY(-2px);
+        }
+
+        .secure-text {
+            color: #666;
+            font-size: 12px;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="checkout-box">
+        <div class="checkout-title">Consulta Particular com<br>Dra. Raiane Vicente</div>
+        <div class="checkout-price">R$ 250,00</div>
+
+        <!-- Substitua o link '#' abaixo pelo link de pagamento gerado no Mercado Pago ou Stripe -->
+        <a href="https://seu-link-de-pagamento-aqui.com" target="_blank" class="btn-buy">
+            Realizar Pagamento Seguro
+        </a>
+
+        <div class="secure-text">🔒 Pagamento 100% criptografado e seguro</div>
+    </div>
+
+</body>
+</html>
