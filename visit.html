@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Cartão de Visita - Dra. Raiane Vicente</title>
+    <style>
+        :root {
+            --primary-gold: #c5a059;
+            --text-dark: #1b2a47; /* Azul Marinho Profundo */
+            --bg-card: #ffffff;
+        }
+
+        body {
+            background-color: #e5e5e5;
+            font-family: 'Montserrat', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            gap: 30px;
+        }
+
+        .container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        /* Proporção Padrão Americano (85mm x 55mm escalado) */
+        .card {
+            width: 85mm;
+            height: 55mm;
+            background-color: var(--bg-card);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            border-radius: 4px;
+            padding: 5mm;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+            border-top: 4px solid var(--primary-gold);
+        }
+
+        .logo-rv {
+            width: 45px;
+            height: auto;
+            margin: 0 auto;
+            display: block;
+        }
+
+        /* Tipografia */
+        .title-name {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-gold);
+            font-size: 13pt;
+            font-weight: 700;
+            text-align: center;
+            margin: 2px 0;
+        }
+
+        .subtitle-job {
+            color: var(--text-dark);
+            font-size: 8.5pt;
+            font-weight: 700;
+            text-align: center;
+            margin: 0;
+        }
+
+        .specialty {
+            color: var(--text-dark);
+            font-size: 7.5pt;
+            text-align: center;
+            margin-bottom: 5px;
+        }
+
+        .contact-info {
+            color: var(--text-dark);
+            font-size: 7pt;
+            text-align: center;
+            line-height: 1.4;
+            border-top: 1px solid #f0f0f0;
+            padding-top: 4px;
+        }
+
+        /* Estilos do Verso */
+        .verso-title {
+            font-family: 'Playfair Display', serif;
+            color: var(--text-dark);
+            font-size: 10pt;
+            font-weight: 700;
+            text-align: center;
+            margin: 0;
+        }
+
+        .verso-subtitle {
+            color: var(--primary-gold);
+            font-size: 8pt;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 4px;
+        }
+
+        .qr-box {
+            width: 22mm;
+            height: 22mm;
+            margin: 0 auto;
+            border: 1.5px solid var(--primary-gold);
+            padding: 2px;
+            background: #fff;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .qr-box img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .verso-footer {
+            color: var(--text-dark);
+            font-size: 7.5pt;
+            font-weight: 600;
+            text-align: center;
+            margin: 0;
+        }
+
+        .verso-subfooter {
+            color: #555;
+            font-size: 6.5pt;
+            text-align: center;
+        }
+
+        .label-face {
+            font-size: 12px;
+            color: #555;
+            font-weight: bold;
+            margin-bottom: -20px;
+            text-transform: uppercase;
+        }
+    </style>
+    <!-- Importação das Fontes Oficiais -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="container">
+        <!-- FRENTE DO CARTÃO -->
+        <div style="display: flex; flex-direction: column; align-items: center;">
+            <span class="label-face">Frente do Cartão</span>
+            <div class="card">
+                <div>
+                    <img src="IMG/logo.png" alt="Logo RV" class="logo-rv" onerror="this.src='https://via.placeholder.com/45x40?text=RV'">
+                    <div class="title-name">Dra. Raiane Vicente</div>
+                    <div class="subtitle-job">Médica Geriatra</div>
+                    <div class="specialty">Geriatria e Gerontologia</div>
+                </div>
+                <div class="contact-info">
+                    ✉️ contato@draraianevicente.com.br<br>
+                    📞 (11) 9XXXX-XXXX (WhatsApp)<br>
+                    📍 Rua Joaquim Floriano, 000 - Itaim Bibi, SP
+                </div>
+            </div>
+        </div>
+
+        <!-- VERSO DO CARTÃO -->
+        <div style="display: flex; flex-direction: column; align-items: center;">
+            <span class="label-face">Verso do Cartão</span>
+            <div class="card">
+                <div>
+                    <div class="verso-title">Avaliação Geriátrica Ampla (AGA)</div>
+                    <div class="verso-subtitle">Quiz Interativo de Saúde</div>
+                </div>
+                
+                <div class="qr-box">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://www.draraianevicente.com.br/quiz.html" alt="QR Code Quiz">
+                </div>
+
+                <div>
+                    <div class="verso-footer">Aponte a câmera e faça o teste preliminar</div>
+                    <div class="verso-subfooter">Atendimento exclusivo no Itaim Bibi e região</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
