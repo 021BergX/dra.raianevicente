@@ -4268,3 +4268,90 @@ html {
     transform: translateY(-3px);
     background-color: #1EBE5D;
 }
+
+/* 1. Correção total da seção Hero para o fundo claro e limpo */
+.hero {
+    background-color: #fcf9f5; /* Tom de bege claro / neve */
+    padding: 80px 0;
+    min-height: 85vh;
+    display: flex;
+    align-items: center;
+}
+
+.hero-container {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 50px;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* 2. Cores e contraste corretos para os textos da esquerda */
+.hero-content h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.2rem;
+    color: #1b2a47; /* Azul marinho profundo para máxima legibilidade */
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.hero-description {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.05rem;
+    color: #4a5568; /* Cinza escuro elegante */
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+/* 3. Correção do botão secundário para não sumir no fundo */
+.btn-secondary-link {
+    color: #1b2a47;
+    text-decoration: none;
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+    transition: color 0.3s ease;
+}
+
+.btn-secondary-link:hover {
+    color: #c5a059;
+}
+
+/* 4. Ajuste das métricas inferiores para ficarem visíveis */
+.hero-metrics {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-top: 40px;
+    border-top: 1px solid rgba(27, 42, 71, 0.15);
+    padding-top: 25px;
+}
+
+.metric-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #1b2a47;
+}
+
+.metric-label {
+    font-size: 0.85rem;
+    color: #555;
+    font-weight: 500;
+}
+
+/* 5. Ajustes finos na imagem e moldura da direita */
+.hero-image-wrapper {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+.hero-image-wrapper img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 16px;
+}
