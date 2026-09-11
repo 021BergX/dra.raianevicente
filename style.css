@@ -2685,6 +2685,27 @@ body.destacar-links button {
 
 }
 
+.hero {
+        position: relative;
+        min-height: 85vh;
+        display: flex;
+        align-items: flex-end;
+        padding: 40px 20px;
+        background-image: linear-gradient(to top, rgba(0,0,0,0.85) 20%, rgba(0,0,0,0.4) 70%), url('webp (redimensionado)/dra-raiane.webp') !important;
+        background-size: cover !important;
+        background-position: center top !important;
+        background-repeat: no-repeat !important;
+    }
+
+    .hero-content h2 {
+        color: #FFFFFF !important;
+        font-size: 32px !important;
+    }
+    
+    .hero-content p {
+        color: rgba(255, 255, 255, 0.9) !important;
+    }
+
 
 
 /* Ajuste para o container da imagem não 'quebrar' o layout */
@@ -3377,6 +3398,8 @@ html {
     }
 
 }
+
+
 
 /* =========================================
 
@@ -4094,6 +4117,29 @@ html {
     font-weight: 600 !important;
     text-decoration: none !important;
     box-sizing: border-box !important;
+}
+
+@media (max-width: 768px) {
+    .hero {
+        position: relative;
+        min-height: 85vh;
+        display: flex;
+        align-items: flex-end;
+        padding: 40px 20px;
+        background-image: linear-gradient(to top, rgba(0,0,0,0.85) 20%, rgba(0,0,0,0.4) 70%), url('webp (redimensionado)/dra-raiane.webp') !important;
+        background-size: cover !important;
+        background-position: center top !important;
+        background-repeat: no-repeat !important;
+    }
+
+    .hero-content h2 {
+        color: #FFFFFF !important;
+        font-size: 32px !important;
+    }
+    
+    .hero-content p {
+        color: rgba(255, 255, 255, 0.9) !important;
+    }
 }
 
 /* Efeito de surgimento gradual (Fade In Up) */
