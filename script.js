@@ -548,3 +548,19 @@ elementosParaAnimar.forEach((el, index) => {
 
     observer.observe(el);
 });
+
+// -----------------------------------------------------
+// BARRA DE LEITURA (SCROLL PROGRESS)
+// -----------------------------------------------------
+window.addEventListener('scroll', () => {
+    const scrollBar = document.getElementById('scrollBar');
+    if (scrollBar) {
+        // Calcula quanto o usuário já desceu e quanto falta
+        const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        
+        // Transforma em porcentagem (0 a 100)
+        const scrollPercentage = (scrollTop / scrollHeight) * 100;
+        scrollBar.style.width = scrollPercentage + '%';
+    }
+});

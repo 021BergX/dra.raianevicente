@@ -14,7 +14,7 @@
 
         gtag('config', 'G-45TZS2CEED');
     </script>
-
+  
   <style>
     :root {
       --primary-gold: #c5a059;
@@ -479,6 +479,16 @@
   <!-- Área do Quiz Dinâmico com os 10 Cards -->
   <main>
     <div class="quiz-card">
+    <div class="quiz-progress-wrapper">
+    <div class="quiz-progress-texts">
+        <span class="progress-label">Progresso</span>
+        <span class="progress-step" id="textoEtapa">Pergunta 1 de 5</span>
+    </div>
+    <div class="quiz-progress-track">
+        <!-- O width no style dita o preenchimento (ex: 20% para a 1ª de 5) -->
+        <div class="quiz-progress-fill" id="barraEtapa" style="width: 20%;"></div>
+    </div>
+    </div>
       
       <!-- ETAPA 0: Seleção das 10 Condições -->
       <div class="quiz-step active" id="step-selector">
@@ -740,6 +750,27 @@
       selector.classList.add('active');
       document.getElementById('tela-resultado').style.display = 'none';
     }
+
+    
+    // -----------------------------------------------------
+// BARRA DE LEITURA (SCROLL PROGRESS)
+// -----------------------------------------------------
+window.addEventListener('scroll', () => {
+    const scrollBar = document.getElementById('scrollBar');
+    if (scrollBar) {
+        // Calcula quanto o usuário já desceu e quanto falta
+        const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        
+        // Transforma em porcentagem (0 a 100)
+        const scrollPercentage = (scrollTop / scrollHeight) * 100;
+        scrollBar.style.width = scrollPercentage + '%';
+    }
+});
+
+// Exemplo: se o paciente for para a Pergunta 3 de 5
+document.getElementById('textoEtapa').innerText = "Pergunta 3 de 5";
+document.getElementById('barraEtapa').style.width = "60%"; // 3 dividido por 5 = 60%
   </script>
 
 </body>
