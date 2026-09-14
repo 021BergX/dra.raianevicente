@@ -329,6 +329,32 @@
       transform: translateY(-2px);
       box-shadow: 0 6px 15px rgba(197, 160, 89, 0.3);
     }
+    /* =========================================
+   BARRA DE PROGRESSO COM EFEITO GLOW (BRILHO)
+   ========================================= */
+.scroll-progress-container {
+    width: 100%;
+    height: 3px; /* Deixei mais fina para ficar mais elegante */
+    background-color: transparent; 
+    position: absolute;
+    bottom: -1px; /* Cola a barra EXATAMENTE no limite inferior do cabeçalho */
+    left: 0;
+    z-index: 1000;
+}
+
+.scroll-progress-bar {
+    height: 100%;
+    background-color: #c5a059; /* A cor base (Dourado) */
+    width: 0%; 
+    border-radius: 0 2px 2px 0;
+    
+    /* A MÁGICA DO BRILHO (GLOW) */
+    box-shadow: 
+        0px 0px 15px 3px rgba(197, 160, 89, 0.7), /* Brilho maior esfumaçado */
+        0px 0px 5px 1px rgba(197, 160, 89, 0.9);  /* Brilho interno intenso */
+        
+    transition: width 0.1s ease-out;
+}
 
     @media (max-width: 768px) {
         header { padding: 10px !important; }
@@ -483,6 +509,9 @@
     <div class="quiz-progress-texts">
         <span class="progress-label">Progresso</span>
         <span class="progress-step" id="textoEtapa">Pergunta 1 de 5</span>
+    </div>
+    <div class="quiz-progress-track">
+        <div class="quiz-progress-fill" id="barraEtapa" style="width: 20%;"></div>
     </div>
     <div class="quiz-progress-track">
         <!-- O width no style dita o preenchimento (ex: 20% para a 1ª de 5) -->
@@ -767,6 +796,7 @@ window.addEventListener('scroll', () => {
         scrollBar.style.width = scrollPercentage + '%';
     }
 });
+
 
 // Exemplo: se o paciente for para a Pergunta 3 de 5
 document.getElementById('textoEtapa').innerText = "Pergunta 3 de 5";

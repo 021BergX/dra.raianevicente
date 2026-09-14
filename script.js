@@ -563,3 +563,33 @@ faqItems.forEach(item => {
         });
     }
 });
+/* Garante que o título NÃO tenha animação */
+.quiz-pergunta-titulo {
+    animation: none !important;
+    transform: none !important;
+    color: #1b2a47;
+    margin-bottom: 20px;
+}
+
+/* A Barra visual do Quiz */
+.quiz-progress-track {
+    width: 100%;
+    height: 6px;
+    background-color: #e2e8f0; /* Fundo cinza claro */
+    border-radius: 10px;
+    margin-bottom: 30px;
+    overflow: hidden;
+}
+
+.quiz-progress-fill {
+    height: 100%;
+    background-color: #c5a059; /* Dourado */
+    border-radius: 10px;
+    transition: width 0.4s ease-in-out;
+}
+
+/* O Pulsar APENAS nos botões */
+.quiz-option-btn:hover {
+    transform: scale(1.02); /* Faz o botão crescer 2% */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
