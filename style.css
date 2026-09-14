@@ -4524,3 +4524,21 @@ html {
     height: 30px;
     background-color: rgba(27, 42, 71, 0.15);
 }
+/* =========================================
+   ANIMAÇÃO DE REVELAÇÃO (SCROLL REVEAL)
+   ========================================= */
+.reveal {
+    opacity: 0;
+    transform: translateY(50px); /* Joga o elemento 50px para baixo */
+    transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); /* Transição suave e elegante */
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0); /* Volta para a posição original */
+}
+
+/* Opcional: Atrasos (delays) para criar efeito de "cascata" em cartões */
+.reveal.delay-1 { transition-delay: 0.1s; }
+.reveal.delay-2 { transition-delay: 0.2s; }
+.reveal.delay-3 { transition-delay: 0.3s; }

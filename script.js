@@ -485,3 +485,66 @@ if (menuToggle && navMenu) {
     });
 
 }
+
+// -----------------------------------------------------
+// SCROLL REVEAL AUTOMÁTICO (PÁGINA INTEIRA)
+// -----------------------------------------------------
+const observerOptions = {
+    root: null,
+    rootMargin: '0px 0px -100px 0px', // Revela um pouco antes de aparecer no meio da tela
+    threshold: 0.1
+};
+
+const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            // Descomente a linha abaixo se quiser que anime apenas na primeira vez que descer
+            // observer.unobserve(entry.target);
+        }
+    });
+}, observerOptions);
+
+// -----------------------------------------------------
+// SCROLL REVEAL AUTOMÁTICO (PÁGINA INTEIRA)
+// -----------------------------------------------------
+const observerOptions = {
+    root: null,
+    rootMargin: '0px 0px -100px 0px', // Revela um pouco antes de aparecer no meio da tela
+    threshold: 0.1
+};
+
+const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            // Descomente a linha abaixo se quiser que anime apenas na primeira vez que descer
+            // observer.unobserve(entry.target);
+        }
+    });
+}, observerOptions);
+
+// MÁGICA AQUI: O JS seleciona tudo automaticamente, exceto a primeira seção (#inicio)
+const elementosParaAnimar = document.querySelectorAll(`
+    section:not(#inicio):not(.hero), 
+    .especialidade-card, 
+    .depoimento-card, 
+    .contato-card, 
+    .sobre-content, 
+    .sobre-image, 
+    .accordion-item,
+    .footer-info
+`);
+
+// Aplica a classe 'reveal' e cria o efeito cascata automaticamente
+elementosParaAnimar.forEach((el, index) => {
+    el.classList.add('reveal');
+    
+    // Adiciona um delay em cascata para os cartões (1, 2, 3) para ficarem charmosos
+    if(el.classList.contains('especialidade-card') || el.classList.contains('depoimento-card') || el.classList.contains('contato-card')) {
+        let delayClass = 'delay-' + ((index % 3) + 1);
+        el.classList.add(delayClass);
+    }
+
+    observer.observe(el);
+});
