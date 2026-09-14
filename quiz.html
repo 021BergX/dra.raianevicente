@@ -500,15 +500,31 @@
           </ul>
         </nav>
     </div>
+    <nav>
+         <ul class="nav-links">
+            <!-- Seus links do menu estão aqui... -->
+          </ul>
+        </nav>
+    </div>
+    
+    <!-- COLOQUE A BARRA EXATAMENTE AQUI -->
+    <div class="scroll-progress-container">
+        <div class="scroll-progress-bar" id="scrollBar"></div>
+    </div>
+</header>
   </header>
 
   <!-- Área do Quiz Dinâmico com os 10 Cards -->
   <main>
     <div class="quiz-card">
-    <div class="quiz-progress-wrapper">
-    <div class="quiz-progress-texts">
-        <span class="progress-label">Progresso</span>
-        <span class="progress-step" id="textoEtapa">Pergunta 1 de 5</span>
+    <div class="quiz-progress-wrapper" style="display: none;">
+        <div class="quiz-progress-texts">
+            <span class="progress-label">Progresso</span>
+            <span class="progress-step" id="textoEtapa">Pergunta 1 de 5</span>
+        </div>
+        <div class="quiz-progress-track">
+            <div class="quiz-progress-fill" id="barraEtapa" style="width: 0%;"></div>
+        </div>
     </div>
     <div class="quiz-progress-track">
         <div class="quiz-progress-fill" id="barraEtapa" style="width: 20%;"></div>
@@ -698,6 +714,10 @@
         
         const flowArea = document.getElementById('quiz-flow-area');
         flowArea.classList.add('active');
+        
+        // MOSTRA A BARRA DE PROGRESSO AO INICIAR
+        document.querySelector('.quiz-progress-wrapper').style.display = 'block';
+        
         renderQuestion();
       }, 300);
     }
@@ -709,22 +729,30 @@
       if (currentQuestionIndex < questionsList.length) {
         const currentQ = questionsList[currentQuestionIndex];
         
+        // MÁGICA DA BARRA: Calcula a % e atualiza o texto
+        const currentQNum = currentQuestionIndex + 1;
+        const progressPercent = (currentQNum / questionsList.length) * 100;
+        
+        document.getElementById('textoEtapa').innerText = `Pergunta ${currentQNum} de ${questionsList.length}`;
+        document.getElementById('barraEtapa').style.width = `${progressPercent}%`;
+
         let optionsHTML = '';
   
         currentQ.opts.forEach((opt, index) => {
           optionsHTML += `<button class="quiz-option" onclick="nextQuestion(${index})">${opt}</button>`;
         });
 
+        // Removi a tag <div style="margin-top: 25px..."> porque a nossa barra nova já faz esse papel!
         container.innerHTML = `
           <div class="quiz-question">${currentQ.q}</div>
           <div class="quiz-options">${optionsHTML}</div>
-          <div style="margin-top: 25px; font-size: 13px; color: #7f8c8d; text-align: center;">Questão ${currentQuestionIndex + 1} de ${questionsList.length}</div>
         `;
       } else {
-
         const flowArea = document.getElementById('quiz-flow-area');
         flowArea.classList.remove('active');
         
+        // ESCONDE A BARRA DE PROGRESSO NA TELA DE RESULTADO
+        document.querySelector('.quiz-progress-wrapper').style.display = 'none';
 
         gerarResultadoDinamico();
         
@@ -778,6 +806,9 @@
       const selector = document.getElementById('step-selector');
       selector.classList.add('active');
       document.getElementById('tela-resultado').style.display = 'none';
+      
+      // ESCONDE A BARRA AO VOLTAR PARA O MENU
+      document.querySelector('.quiz-progress-wrapper').style.display = 'none';
     }
 
     
@@ -796,11 +827,6 @@ window.addEventListener('scroll', () => {
         scrollBar.style.width = scrollPercentage + '%';
     }
 });
-
-
-// Exemplo: se o paciente for para a Pergunta 3 de 5
-document.getElementById('textoEtapa').innerText = "Pergunta 3 de 5";
-document.getElementById('barraEtapa').style.width = "60%"; // 3 dividido por 5 = 60%
   </script>
 
 </body>
