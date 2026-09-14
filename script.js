@@ -487,44 +487,23 @@ if (menuToggle && navMenu) {
 }
 
 // -----------------------------------------------------
-// SCROLL REVEAL AUTOMÁTICO (PÁGINA INTEIRA)
+// SCROLL REVEAL AUTOMÁTICO (PÁGINA INTEIRA) - CORRIGIDO
 // -----------------------------------------------------
 const observerOptions = {
     root: null,
-    rootMargin: '0px 0px -100px 0px', // Revela um pouco antes de aparecer no meio da tela
+    rootMargin: '0px 0px -50px 0px', // Ajustado para ativar a animação um pouco mais rápido
     threshold: 0.1
 };
 
 const observer = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            entry.target.classList.add('active');
-            // Descomente a linha abaixo se quiser que anime apenas na primeira vez que descer
-            // observer.unobserve(entry.target);
+            // MUDANÇA AQUI: Usando reveal-visible para não conflitar com o FAQ!
+            entry.target.classList.add('reveal-visible');
         }
     });
 }, observerOptions);
 
-// -----------------------------------------------------
-// SCROLL REVEAL AUTOMÁTICO (PÁGINA INTEIRA)
-// -----------------------------------------------------
-const observerOptions = {
-    root: null,
-    rootMargin: '0px 0px -100px 0px', // Revela um pouco antes de aparecer no meio da tela
-    threshold: 0.1
-};
-
-const observer = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('active');
-            // Descomente a linha abaixo se quiser que anime apenas na primeira vez que descer
-            // observer.unobserve(entry.target);
-        }
-    });
-}, observerOptions);
-
-// MÁGICA AQUI: O JS seleciona tudo automaticamente, exceto a primeira seção (#inicio)
 const elementosParaAnimar = document.querySelectorAll(`
     section:not(#inicio):not(.hero), 
     .especialidade-card, 
@@ -536,19 +515,19 @@ const elementosParaAnimar = document.querySelectorAll(`
     .footer-info
 `);
 
-// Aplica a classe 'reveal' e cria o efeito cascata automaticamente
-elementosParaAnimar.forEach((el, index) => {
-    el.classList.add('reveal');
-    
-    // Adiciona um delay em cascata para os cartões (1, 2, 3) para ficarem charmosos
-    if(el.classList.contains('especialidade-card') || el.classList.contains('depoimento-card') || el.classList.contains('contato-card')) {
-        let delayClass = 'delay-' + ((index % 3) + 1);
-        el.classList.add(delayClass);
-    }
+// Trava de segurança: só executa se achar elementos na página
+if (elementosParaAnimar.length > 0) {
+    elementosParaAnimar.forEach((el, index) => {
+        el.classList.add('reveal');
+        
+        if (el.classList.contains('especialidade-card') || el.classList.contains('depoimento-card') || el.classList.contains('contato-card')) {
+            let delayClass = 'delay-' + ((index % 3) + 1);
+            el.classList.add(delayClass);
+        }
 
-    observer.observe(el);
-});
-
+        observer.observe(el);
+    });
+}
 // -----------------------------------------------------
 // BARRA DE LEITURA (SCROLL PROGRESS)
 // -----------------------------------------------------
@@ -562,5 +541,25 @@ window.addEventListener('scroll', () => {
         // Transforma em porcentagem (0 a 100)
         const scrollPercentage = (scrollTop / scrollHeight) * 100;
         scrollBar.style.width = scrollPercentage + '%';
+    }
+});
+
+// -----------------------------------------------------
+// FAQ ACCORDION (Mantém o clique funcionando)
+// -----------------------------------------------------
+const faqItems = document.querySelectorAll('.accordion-item');
+faqItems.forEach(item => {
+    const header = item.querySelector('.accordion-header');
+    if (header) {
+        header.addEventListener('click', () => {
+            // Fecha as outras
+            faqItems.forEach(otherItem => {
+                if (otherItem !== item) {
+                    otherItem.classList.remove('active');
+                }
+            });
+            // Abre a que foi clicada
+            item.classList.toggle('active');
+        });
     }
 });
