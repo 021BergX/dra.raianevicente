@@ -519,27 +519,25 @@
   </header>
 
   <!-- Área do Quiz Dinâmico com os 10 Cards -->
-  <main>
+<main>
     <div class="quiz-card">
-    <div class="quiz-progress-wrapper" style="display: none;">
-        <div class="quiz-progress-texts">
-            <span class="progress-label">Progresso</span>
-            <span class="progress-step" id="textoEtapa">Pergunta 1 de 5</span>
-        </div>
-        <div class="quiz-progress-track">
-            <div class="quiz-progress-fill" id="barraEtapa" style="width: 0%;"></div>
-        </div>
-    </div>
-    <div class="quiz-progress-track">
-        <div class="quiz-progress-fill" id="barraEtapa" style="width: 20%;"></div>
-    </div>
-    <div class="quiz-progress-track">
-        <!-- O width no style dita o preenchimento (ex: 20% para a 1ª de 5) -->
-        <div class="quiz-progress-fill" id="barraEtapa" style="width: 20%;"></div>
-    </div>
-    </div>
       
-      <!-- ETAPA 0: Seleção das 10 Condições -->
+      <!-- ========================================== -->
+      <!-- 1. BARRA DE PROGRESSO -->
+      <!-- ========================================== -->
+      <div class="quiz-progress-wrapper" id="progressWrapper" style="display: none;">
+          <div class="quiz-progress-texts">
+              <span class="progress-label">Progresso</span>
+              <span class="progress-step" id="textoEtapa">Pergunta 1 de 5</span>
+          </div>
+          <div class="quiz-progress-track">
+              <div class="quiz-progress-fill" id="barraEtapa" style="width: 0%;"></div>
+          </div>
+      </div>
+
+      <!-- ========================================== -->
+      <!-- 2. TELA INICIAL: SELEÇÃO DE ÁREAS -->
+      <!-- ========================================== -->
       <div class="quiz-step active" id="step-selector">
         <div class="quiz-intro-header">
           <h1>Avaliações Especializadas</h1>
@@ -590,38 +588,37 @@
         </div>
       </div>
 
-      <!-- FLUXO DINÂMICO DE PERGUNTAS -->
+      <!-- ========================================== -->
+      <!-- 3. TELA DAS PERGUNTAS -->
+      <!-- ========================================== -->
       <div class="quiz-step" id="quiz-flow-area">
-        <div id="dynamic-question-container">
-        </div>
+        <div id="dynamic-question-container"></div>
       </div>
 
-<div id="step-result" class="step-content">
-    
+      <!-- ========================================== -->
+      <!-- 4. TELA DE RESULTADO -->
+      <!-- ========================================== -->
+      <div id="step-result" class="quiz-step">
+          <div class="caixa-resultado" id="tela-resultado">
+              <div class="icone-alerta">💡</div>
+              <h3 class="titulo-resultado" id="resultado-titulo"></h3>
+              <p class="texto-resultado" id="resultado-texto1"></p>
+              <p class="texto-resultado" id="resultado-texto2"></p>
+              
+              <div class="chamada-acao">
+                  <p>Não adie o seu bem-estar. Nossa equipe está pronta para tirar suas dúvidas.</p>
+                  <a href="https://wa.me/5511950460616?text=Olá!%20Acabei%20de%20fazer%20o%20teste%20no%20site%20da%20Dra.%20Raiane%20e%20gostaria%20de%20informações%20sobre%20agendamento." target="_blank" class="btn-whatsapp-resultado">
+                      <i class="fab fa-whatsapp"></i> Falar com a Equipe no WhatsApp
+                  </a>
+              </div>
+          </div>
 
-    <div class="caixa-resultado" id="tela-resultado">
-        <div class="icone-alerta">💡</div>
-
-        <h3 class="titulo-resultado" id="resultado-titulo"></h3>
-        <p class="texto-resultado" id="resultado-texto1"></p>
-        <p class="texto-resultado" id="resultado-texto2"></p>
-
-        <div class="chamada-acao">
-            <p>Não adie o seu bem-estar. Nossa equipe está pronta para tirar suas dúvidas.</p>
-            <a href="https://wa.me/5511950460616?text=Olá!%20Acabei%20de%20fazer%20o%20teste%20no%20site%20da%20Dra.%20Raiane%20e%20gostaria%20de%20informações%20sobre%20agendamento." target="_blank" class="btn-whatsapp-resultado">
-                <i class="fab fa-whatsapp"></i> Falar com a Equipe no WhatsApp
-            </a>
-        </div>
-    </div>
-
-    <div style="text-align: center; margin-top: 20px;">
-         <button onclick="resetQuiz()" style="background: none; border: none; color: #7f8c8d; text-decoration: underline; cursor: pointer; font-size: 14px;">Quero avaliar outra área (Refazer Teste)</button>
-    </div>
-
-</div>
+          <div style="text-align: center; margin-top: 20px;">
+               <button onclick="resetQuiz()" style="background: none; border: none; color: #7f8c8d; text-decoration: underline; cursor: pointer; font-size: 14px;">Quero avaliar outra área (Refazer Teste)</button>
+          </div>
       </div>
 
-    </div>
+    </div> <!-- ESTE É O FECHAMENTO DO CARD BRANCO -->
   </main>
 
   <!-- Script Dinâmico para os 10 Cards e Transições -->
@@ -719,8 +716,8 @@
         const flowArea = document.getElementById('quiz-flow-area');
         flowArea.classList.add('active');
         
-        // MOSTRA A BARRA DE PROGRESSO AO INICIAR
-        document.querySelector('.quiz-progress-wrapper').style.display = 'block';
+        // MÁGICA 1: Mostra a barra de progresso
+        document.getElementById('progressWrapper').style.display = 'block';
         
         renderQuestion();
       }, 300);
@@ -733,7 +730,7 @@
       if (currentQuestionIndex < questionsList.length) {
         const currentQ = questionsList[currentQuestionIndex];
         
-        // MÁGICA DA BARRA: Calcula a % e atualiza o texto
+        // MÁGICA 2: Faz o cálculo e enche a barra dourada
         const currentQNum = currentQuestionIndex + 1;
         const progressPercent = (currentQNum / questionsList.length) * 100;
         
@@ -746,7 +743,6 @@
           optionsHTML += `<button class="quiz-option" onclick="nextQuestion(${index})">${opt}</button>`;
         });
 
-        // Removi a tag <div style="margin-top: 25px..."> porque a nossa barra nova já faz esse papel!
         container.innerHTML = `
           <div class="quiz-question">${currentQ.q}</div>
           <div class="quiz-options">${optionsHTML}</div>
@@ -755,8 +751,8 @@
         const flowArea = document.getElementById('quiz-flow-area');
         flowArea.classList.remove('active');
         
-        // ESCONDE A BARRA DE PROGRESSO NA TELA DE RESULTADO
-        document.querySelector('.quiz-progress-wrapper').style.display = 'none';
+        // MÁGICA 3: Esconde a barra na tela final de resultado
+        document.getElementById('progressWrapper').style.display = 'none';
 
         gerarResultadoDinamico();
         
@@ -764,7 +760,6 @@
         document.getElementById('tela-resultado').style.display = 'block';
       }
     }
-
 
     function nextQuestion(pontosDaResposta) {
       quizScore += pontosDaResposta; // Soma os pontos
@@ -811,10 +806,9 @@
       selector.classList.add('active');
       document.getElementById('tela-resultado').style.display = 'none';
       
-      // ESCONDE A BARRA AO VOLTAR PARA O MENU
-      document.querySelector('.quiz-progress-wrapper').style.display = 'none';
+      // Esconde a barra ao voltar para o menu
+      document.getElementById('progressWrapper').style.display = 'none';
     }
-
     
     // -----------------------------------------------------
 // BARRA DE LEITURA (SCROLL PROGRESS)
