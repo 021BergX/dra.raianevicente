@@ -593,3 +593,90 @@ faqItems.forEach(item => {
     transform: scale(1.02); /* Faz o botão crescer 2% */
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
+// =====================================================
+// 1. BARRA DE LEITURA (SCROLL PROGRESS) NO CABEÇALHO
+// =====================================================
+window.addEventListener('scroll', () => {
+    const scrollBar = document.getElementById('scrollBar');
+    // A trava de segurança: só faz o cálculo se a barra existir na página
+    if (scrollBar) {
+        const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrollPercentage = (scrollTop / scrollHeight) * 100;
+        scrollBar.style.width = scrollPercentage + '%';
+    }
+});
+
+// =====================================================
+// 2. SCROLL REVEAL AUTOMÁTICO (ANIMAÇÕES)
+// =====================================================
+document.addEventListener('DOMContentLoaded', () => {
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px 0px -50px 0px',
+        threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('reveal-visible');
+            }
+        });
+    }, observerOptions);
+
+    const elementosParaAnimar = document.querySelectorAll(`
+        section:not(#inicio):not(.hero), 
+        .especialidade-card, 
+        .depoimento-card, 
+        .contato-card, 
+        .sobre-content, 
+        .sobre-image, 
+        .accordion-item,
+        .footer-info
+    `);
+
+    if (elementosParaAnimar.length > 0) {
+        elementosParaAnimar.forEach((el, index) => {
+            el.classList.add('reveal');
+            
+            // Cascata para os cartões
+            if (el.classList.contains('especialidade-card') || el.classList.contains('depoimento-card') || el.classList.contains('contato-card')) {
+                let delayClass = 'delay-' + ((index % 3) + 1);
+                el.classList.add(delayClass);
+            }
+            observer.observe(el);
+        });
+    }
+});
+
+// =====================================================
+// 3. FAQ DINÂMICO (ACCORDION)
+// =====================================================
+document.addEventListener('DOMContentLoaded', () => {
+    const accordions = document.querySelectorAll('.accordion-header');
+
+    if (accordions.length > 0) {
+        accordions.forEach(accordion => {
+            accordion.addEventListener('click', function() {
+                const isActive = this.classList.contains('active');
+
+                // Fecha os outros
+                accordions.forEach(acc => {
+                    acc.classList.remove('active');
+                    if(acc.nextElementSibling) {
+                        acc.nextElementSibling.style.maxHeight = null;
+                    }
+                });
+
+                // Abre o clicado
+                if (!isActive) {
+                    this.classList.add('active');
+                    if(this.nextElementSibling) {
+                        this.nextElementSibling.style.maxHeight = this.nextElementSibling.scrollHeight + "px";
+                    }
+                }
+            });
+        });
+    }
+});
