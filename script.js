@@ -58,25 +58,24 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 3. FAQ (ACCORDION) ---
+    // FAQ (ACCORDION)
     const accordions = document.querySelectorAll('.accordion-header');
     accordions.forEach(header => {
         header.addEventListener('click', () => {
-            const item = header.parentElement;
+            const item = header.parentElement; // Pega o .accordion-item
             const isOpen = item.classList.contains('active');
 
             // Fecha todos os outros antes de abrir o novo
             document.querySelectorAll('.accordion-item').forEach(i => {
                 i.classList.remove('active');
-                const content = i.querySelector('.accordion-content');
-                if (content) content.style.maxHeight = null;
+                i.querySelector('.accordion-content').style.maxHeight = null;
             });
 
-            // Abre o atual apenas se ele não estava aberto
+            // Se não estava aberto, abre agora
             if (!isOpen) {
-                item.classList.add('active');
+                item.classList.add('active'); // Adiciona a classe que faz o + girar
                 const content = item.querySelector('.accordion-content');
-                if (content) content.style.maxHeight = content.scrollHeight + "px";
+                content.style.maxHeight = content.scrollHeight + "px";
             }
         });
     });
