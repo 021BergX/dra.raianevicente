@@ -1,831 +1,441 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
+    <meta charset="UTF-8">
     <link rel="icon" type="image/png" href="IMG/logo.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Imagem oficial para o Google e Redes Sociais -->
-    <meta property="og:image" content="https://www.draraianevicente.com.br/IMG/logo.png">
-    <!-- Título otimizado para SEO -->
-    <title>Quiz Interativo | Dra. Raiane dos Santos Vicente</title>
-  <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-45TZS2CEED">
-    </script>
+    <title>Avaliação Geriátrica Online | Dra. Raiane Vicente</title>
+
+    <!-- Fontes Oficiais -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-45TZS2CEED"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-
         gtag('config', 'G-45TZS2CEED');
     </script>
   
-  <style>
-    :root {
-      --primary-gold: #c5a059;
-      --text-dark: #2c3e50;
-      --bg-light: #fcfbfa;
-      --white: #ffffff;
-    }
+    <style>
+        :root {
+            --primary-blue: #1b2a47;
+            --primary-gold: #c5a059;
+            --text-dark: #2c3e50;
+            --bg-light: #f8f9fa;
+            --white: #ffffff;
+        }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
-    body {
-      background-color: var(--bg-light);
-      color: var(--text-dark);
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+        }
 
-    /* Cabeçalho Padrão */
-    header {
-      background-color: var(--white);
-      padding: 15px 40px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
+        /* --- HEADER --- */
+        header {
+            background: var(--white);
+            padding: 15px 0;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
 
-    .header-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
 
-    .logo-img {
-      height: 70px;
-      width: auto;
-      display: block;
-    }
+        .logo-img { height: 60px; }
 
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 30px;
-      list-style: none;
-    }
+        .btn-voltar {
+            text-decoration: none;
+            color: var(--primary-blue);
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
 
-    .nav-links a {
-      text-decoration: none;
-      color: var(--text-dark);
-      font-weight: 500;
-      transition: color 0.3s ease;
-    }
+        .btn-voltar:hover { color: var(--primary-gold); }
 
-    .nav-links a:hover {
-      color: var(--primary-gold);
-    }
+        /* --- QUIZ CONTAINER --- */
+        main {
+            padding: 60px 20px;
+            display: flex;
+            justify-content: center;
+            min-height: calc(100vh - 90px);
+        }
 
-    .btn-menu-quiz {
-      padding: 10px 20px;
-      border: 1px solid var(--primary-gold);
-      border-radius: 8px;
-      color: var(--primary-gold) !important;
-    }
+        .quiz-card {
+            background: var(--white);
+            width: 100%;
+            max-width: 750px;
+            padding: 45px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(27, 42, 71, 0.06);
+            border: 1px solid rgba(197, 160, 89, 0.1);
+        }
 
-    .btn-whatsapp {
-      background-color: #25d366;
-      color: #ffffff !important;
-      padding: 10px 22px;
-      border-radius: 50px;
-      font-weight: 600;
-    }
-
-    /* Container Principal do Quiz com Animação de Entrada */
-    main {
-      flex: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 40px 20px;
-    }
-
-    .quiz-card {
-      background: var(--white);
-      width: 100%;
-      max-width: 700px;
-      padding: 40px;
-      border-radius: 16px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-      animation: fadeInCard 0.6s ease-out forwards;
-    }
-
-    @keyframes fadeInCard {
-      from {
-        opacity: 0;
-        transform: translateY(15px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .quiz-step {
-      display: none;
-      opacity: 0;
-      transform: translateY(10px);
-      transition: opacity 0.3s ease, transform 0.3s ease;
-      width: 100%;
-      max-width: 700px;
-    }
-
-    .quiz-step.active {
-      display: block;
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .quiz-question {
-      font-size: 22px;
-      font-weight: 600;
-      text-align: center;
-      margin-bottom: 30px;
-      color: var(--text-dark);
-    }
-
-    /* Grid de Seleção dos 10 Cards */
-    .quiz-intro-header {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-
-    .quiz-intro-header h1 {
-      font-size: 26px;
-      font-weight: 700;
-      color: var(--text-dark);
-      margin-bottom: 10px;
-    }
-
-    .quiz-intro-header p {
-      font-size: 15px;
-      color: #555;
-    }
-
-    .disease-cards-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 15px;
-      max-height: 500px;
-      overflow-y: auto;
-      padding-right: 5px;
-    }
-
-    .disease-card {
-      background: var(--white);
-      padding: 20px;
-      border-radius: 12px;
-      border: 2px solid #e2d9cd;
-      cursor: pointer;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      text-align: left;
-    }
-
-    .disease-card:hover {
-      border-color: var(--primary-gold);
-      background-color: #fbf9f6;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(197, 160, 89, 0.15);
-    }
-
-    .disease-card h3 {
-      font-size: 16px;
-      color: var(--text-dark);
-      margin-bottom: 6px;
-    }
-
-    .disease-card p {
-      font-size: 13px;
-      color: #666;
-      line-height: 1.4;
-    }
-
-    /* Opções com Efeito Dinâmico e Hover Fluido */
-    .quiz-options {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
-
-    .quiz-option {
-      width: 100%;
-      padding: 15px 20px;
-      background-color: var(--white);
-      border: 2px solid #e2d9cd;
-      border-radius: 10px;
-      color: var(--text-dark);
-      font-size: 16px;
-      font-weight: 500;
-      cursor: pointer;
-      text-align: left;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .quiz-option:hover {
-      border-color: var(--primary-gold);
-      background-color: #fbf9f6;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(197, 160, 89, 0.15);
-    }
-
-    .quiz-option:active {
-      transform: scale(0.98);
-    }
-
-    /* Tela de Resultado Dinâmica */
-    .result-container {
-      text-align: center;
-    }
-
-    .result-title {
-      font-size: 26px;
-      font-weight: 700;
-      color: var(--text-dark);
-      margin-bottom: 15px;
-    }
-
-    .result-text {
-      font-size: 16px;
-      color: #555;
-      margin-bottom: 30px;
-      line-height: 1.6;
-    }
-
-    /* Estilo padronizado e legível para os botões da tela final */
-    .result-actions {
-      display: flex;
-      gap: 15px;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-top: 30px;
-    }
-
-    /* Botão Principal (Agendar Consulta): Branco por padrão, marrom ao passar o mouse */
-    .btn-resultado-principal {
-      display: inline-block;
-      padding: 12px 28px;
-      background-color: #ffffff;
-      color: var(--text-dark) !important;
-      border: 2px solid var(--primary-gold);
-      border-radius: 8px;
-      font-weight: 600;
-      font-size: 15px;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      cursor: pointer;
-    }
-
-    .btn-resultado-principal:hover {
-      background-color: var(--primary-gold);
-      color: #ffffff !important;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(197, 160, 89, 0.3);
-    }
-
-    /* Botão Secundário (Escolher Outro Teste): Igualzinho, fundo branco e marrom no hover */
-    .btn-resultado-secundario {
-      display: inline-block;
-      padding: 12px 28px;
-      background-color: #ffffff;
-      color: var(--text-dark) !important;
-      border: 2px solid var(--primary-gold);
-      border-radius: 8px;
-      font-weight: 600;
-      font-size: 15px;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      cursor: pointer;
-    }
-
-    .btn-resultado-secundario:hover {
-      background-color: var(--primary-gold);
-      color: #ffffff !important;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(197, 160, 89, 0.3);
-    }
-
-    /* Botão Padrão Elegante */
-    .btn-voltar-padrao {
-      display: inline-block;
-      padding: 12px 32px;
-      background-color: transparent;
-      color: var(--text-dark);
-      border: 2px solid var(--primary-gold);
-      border-radius: 8px;
-      font-weight: 600;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.02);
-      cursor: pointer;
-    }
-
-    .btn-voltar-padrao:hover {
-      background-color: var(--primary-gold);
-      color: #ffffff;
-      transform: translateY(-2px);
-      box-shadow: 0 6px 15px rgba(197, 160, 89, 0.3);
-    }
-    /* =========================================
-   BARRA DE PROGRESSO COM EFEITO GLOW (BRILHO)
-   ========================================= */
-.scroll-progress-container {
-    width: 100%;
-    height: 3px; /* Deixei mais fina para ficar mais elegante */
-    background-color: transparent; 
-    position: absolute;
-    bottom: -1px; /* Cola a barra EXATAMENTE no limite inferior do cabeçalho */
-    left: 0;
-    z-index: 1000;
-}
-
-.scroll-progress-bar {
-    height: 100%;
-    background-color: #c5a059; /* A cor base (Dourado) */
-    width: 0%; 
-    border-radius: 0 2px 2px 0;
-    
-    /* A MÁGICA DO BRILHO (GLOW) */
-    box-shadow: 
-        0px 0px 15px 3px rgba(197, 160, 89, 0.7), /* Brilho maior esfumaçado */
-        0px 0px 5px 1px rgba(197, 160, 89, 0.9);  /* Brilho interno intenso */
+        /* --- PROGRESS BAR --- */
+        .quiz-progress-wrapper { margin-bottom: 40px; }
         
-    transition: width 0.1s ease-out;
-}
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: #7f8c8d;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
 
-    @media (max-width: 768px) {
-        header { padding: 10px !important; }
-        .header-container { flex-direction: column !important; align-items: center !important; justify-content: center !important; }
-        .logo { margin-bottom: 15px !important; }
-        .logo-img { max-width: 70px !important; height: auto !important; }
-        nav { width: 100% !important; }
-        .nav-links { flex-direction: row !important; flex-wrap: wrap !important; justify-content: center !important; align-items: center !important; gap: 12px !important; padding: 0 !important; }
-        .btn-menu-quiz, .btn-whatsapp { display: inline-block !important; text-align: center !important; margin-top: 5px !important; }
-    }
-    /* =========================================
-   UX: LIMPEZA E AJUSTE DO QUIZ NO MOBILE
-   ========================================= */
-@media (max-width: 768px) {
-    .nav-links li a:not(.btn-whatsapp, .btn-menu-quiz) {
-        display: none !important;
-    }
+        .progress-step { color: var(--primary-gold); font-weight: 700; }
 
-    .btn-menu-quiz {
-        display: none !important;
-    }
+        .quiz-progress-track {
+            height: 6px;
+            background: #eee;
+            border-radius: 10px;
+            overflow: hidden;
+        }
 
-    .nav-links {
-        gap: 0 !important;
-        margin-top: 10px;
-    }
+        .quiz-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #c5a059, #e0c080);
+            box-shadow: 0 0 10px rgba(197, 160, 89, 0.5);
+            transition: width 0.4s ease;
+        }
 
-    main {
-        padding-top: 40px !important; /* Adiciona respiro */
-    }
-}
-/* =========================================
-   UX: ESTILO DA TELA DE RESULTADO DO QUIZ
-   ========================================= */
-.caixa-resultado {
-    display: none;
-    background-color: #fcfbfa;
-    border: 2px solid #c5a059;
-    border-radius: 12px;
-    padding: 40px 30px;
-    text-align: center;
-    max-width: 600px;
-    margin: 30px auto;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-    animation: surgir 0.6s ease-out;
-}
+        /* --- QUESTION TEXT --- */
+        .quiz-intro-header h1 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-blue);
+            font-size: 2rem;
+            margin-bottom: 15px;
+            text-align: center;
+        }
 
-.icone-alerta {
-    font-size: 40px;
-    margin-bottom: 15px;
-}
+        .quiz-intro-header p { text-align: center; color: #666; margin-bottom: 30px; }
 
-.titulo-resultado {
-    color: #2c3e50;
-    font-size: 24px;
-    font-weight: 700;
-    margin-bottom: 20px;
-    line-height: 1.3;
-}
+        .quiz-question {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            color: var(--primary-blue);
+            text-align: center;
+            margin-bottom: 35px;
+            line-height: 1.3;
+        }
 
-.texto-resultado {
-    color: #34495e;
-    font-size: 16px;
-    line-height: 1.6;
-    margin-bottom: 15px;
-    text-align: left;
-}
+        /* --- OPTIONS / BUTTONS --- */
+        .disease-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+        }
 
-.chamada-acao {
-    margin-top: 30px;
-    padding-top: 25px;
-    border-top: 1px solid #e1e1e1; 
-}
+        .disease-card {
+            background: #fff;
+            padding: 20px;
+            border-radius: 15px;
+            border: 1.5px solid #eee;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
 
-.chamada-acao p {
-    color: #2c3e50;
-    font-weight: 600;
-    font-size: 15px;
-    margin-bottom: 20px;
-}
+        .disease-card:hover {
+            border-color: var(--primary-gold);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(197, 160, 89, 0.1);
+        }
 
-.btn-whatsapp-resultado {
-    display: inline-block;
-    background-color: #25d366;
-    color: #ffffff !important;
-    text-decoration: none;
-    padding: 16px 30px;
-    border-radius: 50px;
-    font-size: 16px;
-    font-weight: 700;
-    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
-    transition: all 0.3s ease;
-    width: 100%;
-    box-sizing: border-box;
-}
+        .quiz-options { display: flex; flex-direction: column; gap: 15px; }
 
-.btn-whatsapp-resultado:hover {
-    background-color: #20bd5a;
-    transform: translateY(-2px);
-}
+        .quiz-option {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            padding: 18px 25px;
+            background: #fff;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 1rem;
+            color: #4a5568;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Montserrat', sans-serif;
+            text-align: left;
+        }
 
-/* Efeito de surgimento da caixa */
-@keyframes surgir {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-#dynamic-question-container {
-    transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
-    opacity: 1;
-    transform: translateY(0);
-}
+        .option-circle {
+            width: 14px;
+            height: 14px;
+            border: 2px solid var(--primary-gold);
+            border-radius: 50%;
+            margin-right: 15px;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
 
+        .quiz-option:hover {
+            border-color: var(--primary-gold);
+            background: rgba(197, 160, 89, 0.03);
+            transform: translateY(-2px);
+        }
 
-.quiz-option {
-    transition: all 0.2s ease;
-}
+        .quiz-option:hover .option-circle {
+            background: var(--primary-gold);
+            box-shadow: 0 0 8px rgba(197, 160, 89, 0.5);
+        }
 
-.quiz-option:active {
-    transform: scale(0.98);
-    background-color: #f0f0f0;
-}
-    
-  </style>
+        /* --- RESULT SCREEN --- */
+        .caixa-resultado {
+            text-align: center;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        .icone-alerta { font-size: 3rem; margin-bottom: 20px; }
+
+        .titulo-resultado {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+        }
+
+        .texto-resultado { margin-bottom: 15px; color: #555; }
+
+        .btn-whatsapp-resultado {
+            display: inline-block;
+            background: #25d366;
+            color: #fff;
+            padding: 18px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            margin-top: 25px;
+            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.2);
+            transition: 0.3s;
+        }
+
+        .btn-whatsapp-resultado:hover { background: #1eb954; transform: scale(1.03); }
+
+        /* --- ANIMATIONS --- */
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        @media (max-width: 600px) {
+            .quiz-card { padding: 30px 20px; }
+            .quiz-question { font-size: 1.3rem; }
+        }
+    </style>
 </head>
 <body>
 
-  <!-- Cabeçalho Integrado -->
-  <header>
-    <div class="container header-container">
-        <div class="logo">
-            <a href="index.html">
-                <img src="webp (redimensionado)/logo.webp" alt="Logo Dra. Raiane dos Santos Vicente" class="logo-img">
-            </a>
-        </div>
-        <nav>
-         <ul class="nav-links">
-            <li><a href="index.html#inicio">Início</a></li>
-            <li><a href="index.html#sobre">Dra. Raiane</a></li>
-            <li><a href="index.html#especialidades">Especialidades</a></li>
-            <li><a href="index.html#contato">Contato</a></li>
-            <li><a href="quiz.html" class="btn-menu-quiz">Fazer Teste</a></li>
-            <li><a href="https://api.whatsapp.com/send/?phone=5511950460616&text=Olá!%20Vim%20pelo%20site%20e%20gostaria%20de%20mais%20informações%20sobre%20as%20consultas%20com%20a%20Dra.%20Raiane." class="btn-agendar" target="_blank">Agendar consulta</a></li>
-          </ul>
-        </nav>
-    </div>
-    <nav>
-         <ul class="nav-links">
-            <!-- Seus links do menu estão aqui... -->
-          </ul>
-        </nav>
-    </div>
-    
-    <!-- COLOQUE A BARRA EXATAMENTE AQUI -->
-    <div class="scroll-progress-container">
-        <div class="scroll-progress-bar" id="scrollBar"></div>
+<header>
+    <div class="header-container">
+        <a href="index.html">
+            <img src="IMG/logo.png" alt="Dra. Raiane" class="logo-img">
+        </a>
+        <a href="index.html" class="btn-voltar">← Voltar ao Início</a>
     </div>
 </header>
-  </header>
 
-  <!-- Área do Quiz Dinâmico com os 10 Cards -->
 <main>
     <div class="quiz-card">
-      
-      <!-- ========================================== -->
-      <!-- 1. BARRA DE PROGRESSO -->
-      <!-- ========================================== -->
-      <div class="quiz-progress-wrapper" id="progressWrapper" style="display: none;">
-          <div class="quiz-progress-texts">
-              <span class="progress-label">Progresso</span>
-              <span class="progress-step" id="textoEtapa">Pergunta 1 de 5</span>
-          </div>
-          <div class="quiz-progress-track">
-              <div class="quiz-progress-fill" id="barraEtapa" style="width: 0%;"></div>
-          </div>
-      </div>
-
-      <!-- ========================================== -->
-      <!-- 2. TELA INICIAL: SELEÇÃO DE ÁREAS -->
-      <!-- ========================================== -->
-      <div class="quiz-step active" id="step-selector">
-        <div class="quiz-intro-header">
-          <h1>Avaliações Especializadas</h1>
-          <p>Selecione abaixo a condição para iniciar o rastreio específico:</p>
+        
+        <!-- BARRA DE PROGRESSO -->
+        <div class="quiz-progress-wrapper" id="progressWrapper" style="display: none;">
+            <div class="progress-info">
+                <span>Avaliação em curso</span>
+                <span class="progress-step" id="textoEtapa">Pergunta 1 de 5</span>
+            </div>
+            <div class="quiz-progress-track">
+                <div class="quiz-progress-fill" id="barraEtapa"></div>
+            </div>
         </div>
 
-        <div class="disease-cards-grid">
-          <div class="disease-card" onclick="startDiseaseQuiz('parkinson')">
-            <h3>Parkinson</h3>
-            <p>Sintomas motores e rigidez.</p>
-          </div>
-          <div class="disease-card" onclick="startDiseaseQuiz('alzheimer')">
-            <h3>Alzheimer</h3>
-            <p>Memória e cognição global.</p>
-          </div>
-          <div class="disease-card" onclick="startDiseaseQuiz('dor-cronica')">
-            <h3>Dores Crônicas</h3>
-            <p>Intensidade e impacto diário.</p>
-          </div>
-          <div class="disease-card" onclick="startDiseaseQuiz('fragilidade')">
-            <h3>Fragilidade</h3>
-            <p>Fadiga, força e mobilidade.</p>
-          </div>
-          <div class="disease-card" onclick="startDiseaseQuiz('quedas')">
-            <h3>Risco de Quedas</h3>
-            <p>Equilíbrio e segurança em casa.</p>
-          </div>
-          <div class="disease-card" onclick="startDiseaseQuiz('insonia')">
-            <h3>Distúrbios do Sono</h3>
-            <p>Qualidade do descanso noturno.</p>
-          </div>
-          <div class="disease-card" onclick="startDiseaseQuiz('humor')">
-            <h3>Saúde Emocional</h3>
-            <p>Sinais de apatia ou humor.</p>
-          </div>
-          <div class="disease-card" onclick="startDiseaseQuiz('nutricao')">
-            <h3>Estado Nutricional</h3>
-            <p>Apetite e variação de peso.</p>
-          </div>
-          <div class="disease-card" onclick="startDiseaseQuiz('mobilidade')">
-            <h3>Mobilidade</h3>
-            <p>Independência para marcha.</p>
-          </div>
-          <div class="disease-card" onclick="startDiseaseQuiz('geral')">
-            <h3>Saúde Global</h3>
-            <p>Check-up geral de autonomia.</p>
-          </div>
+        <!-- TELA INICIAL: SELETOR -->
+        <div class="quiz-step active" id="step-selector">
+            <div class="quiz-intro-header">
+                <h1>Triagem de Saúde</h1>
+                <p>Escolha uma área abaixo para realizar uma avaliação inicial rápida:</p>
+            </div>
+
+            <div class="disease-cards-grid">
+                <div class="disease-card" onclick="startDiseaseQuiz('parkinson')">
+                    <strong>Parkinson</strong>
+                    <p>Sintomas motores e rigidez.</p>
+                </div>
+                <div class="disease-card" onclick="startDiseaseQuiz('alzheimer')">
+                    <strong>Alzheimer</strong>
+                    <p>Memória e cognição.</p>
+                </div>
+                <div class="disease-card" onclick="startDiseaseQuiz('dor-cronica')">
+                    <strong>Dores Crônicas</strong>
+                    <p>Impacto no dia a dia.</p>
+                </div>
+                <div class="disease-card" onclick="startDiseaseQuiz('fragilidade')">
+                    <strong>Fragilidade</strong>
+                    <p>Fadiga e perda de força.</p>
+                </div>
+                <div class="disease-card" onclick="startDiseaseQuiz('quedas')">
+                    <strong>Risco de Quedas</strong>
+                    <p>Equilíbrio e segurança.</p>
+                </div>
+                <div class="disease-card" onclick="startDiseaseQuiz('insonia')">
+                    <strong>Sono</strong>
+                    <p>Qualidade do descanso.</p>
+                </div>
+            </div>
         </div>
-      </div>
 
-      <!-- ========================================== -->
-      <!-- 3. TELA DAS PERGUNTAS -->
-      <!-- ========================================== -->
-      <div class="quiz-step" id="quiz-flow-area">
-        <div id="dynamic-question-container"></div>
-      </div>
+        <!-- ÁREA DE PERGUNTAS -->
+        <div class="quiz-step" id="quiz-flow-area">
+            <div id="dynamic-question-container"></div>
+        </div>
 
-      <!-- ========================================== -->
-      <!-- 4. TELA DE RESULTADO -->
-      <!-- ========================================== -->
-      <div id="step-result" class="quiz-step">
-          <div class="caixa-resultado" id="tela-resultado">
-              <div class="icone-alerta">💡</div>
-              <h3 class="titulo-resultado" id="resultado-titulo"></h3>
-              <p class="texto-resultado" id="resultado-texto1"></p>
-              <p class="texto-resultado" id="resultado-texto2"></p>
-              
-              <div class="chamada-acao">
-                  <p>Não adie o seu bem-estar. Nossa equipe está pronta para tirar suas dúvidas.</p>
-                  <a href="https://wa.me/5511950460616?text=Olá!%20Acabei%20de%20fazer%20o%20teste%20no%20site%20da%20Dra.%20Raiane%20e%20gostaria%20de%20informações%20sobre%20agendamento." target="_blank" class="btn-whatsapp-resultado">
-                      <i class="fab fa-whatsapp"></i> Falar com a Equipe no WhatsApp
-                  </a>
-              </div>
-          </div>
+        <!-- RESULTADO -->
+        <div id="step-result" class="quiz-step" style="display: none;">
+            <div class="caixa-resultado">
+                <div class="icone-alerta">💡</div>
+                <h3 class="titulo-resultado" id="resultado-titulo"></h3>
+                <p class="texto-resultado" id="resultado-texto1"></p>
+                <p class="texto-resultado" id="resultado-texto2"></p>
+                
+                <a href="https://wa.me/5511950460616?text=Olá!%20Fiz%20o%20teste%20no%20site%20e%20gostaria%20de%20agendar." class="btn-whatsapp-resultado">
+                    Falar no WhatsApp agora
+                </a>
 
-          <div style="text-align: center; margin-top: 20px;">
-               <button onclick="resetQuiz()" style="background: none; border: none; color: #7f8c8d; text-decoration: underline; cursor: pointer; font-size: 14px;">Quero avaliar outra área (Refazer Teste)</button>
-          </div>
-      </div>
+                <div style="margin-top: 30px;">
+                    <button onclick="resetQuiz()" style="background: none; border: none; color: #999; text-decoration: underline; cursor: pointer;">Avaliar outra área</button>
+                </div>
+            </div>
+        </div>
 
-    </div> <!-- ESTE É O FECHAMENTO DO CARD BRANCO -->
-  </main>
+    </div>
+</main>
 
-  <!-- Script Dinâmico para os 10 Cards e Transições -->
-  <script>
+<script>
+    // Seus dados permanecem os mesmos
     const questionnaires = {
       parkinson: [
-        { q: "Você tem notado que seus movimentos estão mais lentos, como se precisasse de muito esforço para começar a caminhar?", opts: ["Não, está tudo normal", "Às vezes sinto uma leve lentidão", "Sim, está bem mais difícil e lento"] },
-        { q: "Alguém comentou ou você percebeu algum tremor nas mãos ou pernas quando está parado assistindo TV ou descansando?", opts: ["Não notei nada", "Raramente, quando estou nervoso(a)", "Sim, tem sido frequente e me incomoda"] },
-        { q: "Como está a sua flexibilidade? Sente os braços ou as pernas rígidos, dificultando tarefas como vestir uma blusa?", opts: ["Normais e flexíveis", "Sinto uma leve rigidez pela manhã", "Sim, sinto muita rigidez e peso nos membros"] },
-        { q: "Você percebeu que a sua letra diminuiu de tamanho (ficou 'apertada') ao escrever à mão recentemente?", opts: ["Minha letra continua igual", "Acho que diminuiu um pouco", "Sim, está bem menor e difícil de ler"] },
-        { q: "Seu tom de voz ficou mais baixo ou as pessoas têm pedido para você repetir o que disse com mais frequência?", opts: ["Minha voz está normal", "Às vezes pedem para eu falar mais alto", "Sim, minha voz está fraca e baixa"] }
+        { q: "Você tem notado que seus movimentos estão mais lentos, como se precisasse de muito esforço para caminhar?", opts: ["Não, está tudo normal", "Às vezes sinto uma leve lentidão", "Sim, está bem mais difícil e lento"] },
+        { q: "Alguém percebeu tremor nas mãos ou pernas quando você está descansando?", opts: ["Não notei nada", "Raramente, sob estresse", "Sim, tem sido frequente"] },
+        { q: "Sente rigidez nos braços ou pernas que dificulta se vestir ou se mover?", opts: ["Normais e flexíveis", "Sinto rigidez pela manhã", "Sim, sinto muita rigidez"] },
+        { q: "Sua letra diminuiu de tamanho ou ficou 'apertada' recentemente?", opts: ["Minha letra continua igual", "Diminuiu um pouco", "Sim, está bem menor"] },
+        { q: "Sua voz ficou mais baixa ou rouca, e as pessoas pedem para você repetir?", opts: ["Voz normal", "Às vezes pedem para falar alto", "Sim, voz fraca e baixa"] }
       ],
       alzheimer: [
-        { q: "Você tem esquecido fatos que aconteceram ontem, ou feito a mesma pergunta várias vezes na mesma conversa?", opts: ["Minha memória está ótima", "Esqueço coisas bobas às vezes", "Sim, isso tem acontecido com muita frequência"] },
-        { q: "Como está a organização das contas da casa, senhas de banco ou o uso do seu celular?", opts: ["Faço tudo sozinho(a) sem problemas", "Preciso de ajuda de vez em quando", "Não consigo mais fazer essas tarefas"] },
-        { q: "Você já se sentiu confuso(a) ou desorientado(a) em lugares que antes eram muito familiares (como o próprio bairro)?", opts: ["Nunca aconteceu", "Raramente, em dias de muito estresse", "Sim, já me perdi ou fiquei muito confuso(a)"] },
-        { q: "Tem sido difícil encontrar as palavras certas para nomear objetos comuns do dia a dia (como caneta, relógio ou chave)?", opts: ["Lembro de todas as palavras", "Às vezes a palavra 'foge' da mente", "Sim, frequentemente esqueço o nome das coisas"] },
-        { q: "Você ou seus familiares notaram que objetos estão sendo guardados em lugares muito estranhos (ex: chave na geladeira)?", opts: ["Não, guardo tudo no lugar certo", "Aconteceu uma ou duas vezes por distração", "Sim, isso tem acontecido com frequência"] }
+        { q: "Tem esquecido fatos que aconteceram ontem ou repete as mesmas perguntas?", opts: ["Memória ótima", "Esqueço coisas bobas", "Sim, com muita frequência"] },
+        { q: "Tem dificuldade para organizar contas, bancos ou usar o celular?", opts: ["Faço tudo sozinho(a)", "Preciso de ajuda às vezes", "Não consigo mais fazer"] },
+        { q: "Já se sentiu confuso(a) em lugares que antes conhecia muito bem?", opts: ["Nunca aconteceu", "Raramente", "Sim, já me perdi"] },
+        { q: "É difícil encontrar as palavras certas para objetos comuns (ex: chave, caneta)?", opts: ["Lembro de tudo", "Às vezes a palavra foge", "Sim, esqueço nomes com frequência"] },
+        { q: "Tem guardado objetos em lugares estranhos (ex: chaves na geladeira)?", opts: ["Não", "Aconteceu uma vez", "Sim, acontece com frequência"] }
       ],
       "dor-cronica": [
-        { q: "A dor que você sente no corpo tem sido um obstáculo diário, presente logo que você acorda?", opts: ["Não sinto dores constantes", "Sinto dores suportáveis em alguns dias", "Sim, acordo e durmo com dor intensa"] },
-        { q: "Por causa da dor, você deixou de fazer coisas que amava, como passear, visitar a família ou cuidar do jardim?", opts: ["Não, mantenho minha rotina", "Tive que reduzir algumas atividades", "Sim, a dor me impede de sair de casa"] },
-        { q: "Quantas vezes por semana você precisa recorrer a remédios para dor (analgésicos ou anti-inflamatórios)?", opts: ["Quase nunca uso", "Umas duas ou três vezes na semana", "Todos os dias, e às vezes não faz efeito"] },
-        { q: "Essa dor costuma 'caminhar' pelo corpo ou é uma dor que afeta várias articulações ao mesmo tempo?", opts: ["É apenas uma dor isolada e pontual", "Sinto em duas ou três partes do corpo", "Sim, parece que meu corpo todo dói"] },
-        { q: "A dor é tão forte que chega a atrapalhar o seu sono, fazendo você acordar de madrugada?", opts: ["Não atrapalha meu sono", "Acordo raramente por causa de dor", "Sim, a dor não me deixa dormir direito"] }
+        { q: "A dor que você sente é um obstáculo diário presente logo ao acordar?", opts: ["Não sinto dores constantes", "Sinto dores suportáveis", "Sim, acordo e durmo com dor"] },
+        { q: "Você deixou de fazer coisas que amava por causa da dor?", opts: ["Não", "Tive que reduzir um pouco", "Sim, a dor me impede"] },
+        { q: "Quantas vezes por semana você precisa de remédios para dor?", opts: ["Quase nunca", "2 a 3 vezes por semana", "Todos os dias"] },
+        { q: "A dor 'caminha' pelo corpo ou afeta várias articulações?", opts: ["Dor isolada", "Em 2 ou 3 partes", "Sim, o corpo todo dói"] },
+        { q: "A dor atrapalha o seu sono, fazendo você acordar de madrugada?", opts: ["Não atrapalha", "Raramente", "Sim, não durmo direito"] }
       ],
       fragilidade: [
-        { q: "Você sente um cansaço extremo que parece não passar, mesmo após descansar ou fazer tarefas muito simples?", opts: ["Tenho muita energia", "Fico cansado(a) apenas com esforço", "Sim, me sinto exausto(a) o tempo todo"] },
-        { q: "Nos últimos meses, você notou que suas roupas estão mais largas, indicando uma perda de peso sem fazer dieta?", opts: ["Meu peso está estável", "Emagreci um pouco, mas recuperei", "Sim, perdi peso e minhas roupas estão largas"] },
-        { q: "Como está a sua força nas mãos? Consegue abrir um pote de vidro novo sem pedir ajuda?", opts: ["Abro com facilidade", "Preciso fazer bastante força", "Não consigo abrir, perdi muita força"] },
-        { q: "Você percebeu que a sua velocidade ao caminhar na rua diminuiu muito comparado a outras pessoas da sua idade?", opts: ["Caminho rápido e acompanho os outros", "Estou um pouco mais devagar", "Sim, ando bem devagar e fico para trás"] },
-        { q: "Qual a sua sensação de energia geral? Sente que está 'esgotando a bateria' muito rápido durante a tarde?", opts: ["Me sinto forte o dia todo", "No fim da tarde sinto um cansaço normal", "Sinto que não tenho forças para quase nada"] }
+        { q: "Sente cansaço extremo mesmo após descansar ou fazer tarefas simples?", opts: ["Tenho muita energia", "Canso apenas com esforço", "Sim, sinto exaustão"] },
+        { q: "Suas roupas ficaram largas sem você estar fazendo dieta?", opts: ["Peso está estável", "Emagreci um pouco", "Sim, perdi muito peso"] },
+        { q: "Consegue abrir um pote de vidro novo sem ajuda?", opts: ["Abro com facilidade", "Preciso de bastante força", "Não consigo abrir"] },
+        { q: "Sua velocidade ao caminhar diminuiu muito recentemente?", opts: ["Caminho normal", "Um pouco mais devagar", "Sim, ando bem devagar"] },
+        { q: "Sente que sua 'bateria' acaba muito rápido durante o dia?", opts: ["Me sinto forte", "Cansaço normal à tarde", "Não tenho forças para nada"] }
       ],
       quedas: [
-        { q: "Nos últimos 6 meses, você sofreu algum tombo, escorregão ou queda que te deixou assustado(a)?", opts: ["Não caí nenhuma vez", "Tive apenas 1 queda leve", "Sim, caí 2 vezes ou mais recentemente"] },
-        { q: "Você costuma andar se apoiando nos móveis ou nas paredes por medo de se desequilibrar dentro de casa?", opts: ["Ando normalmente sem apoio", "Às vezes, quando sinto tontura", "Sim, tenho muito medo de cair e me apoio sempre"] },
-        { q: "Ao levantar da cama de manhã ou da cadeira de forma rápida, você sente tontura ou a vista escurecer?", opts: ["Nunca sinto isso", "Acontece raramente", "Acontece quase toda vez que levanto"] },
-        { q: "Você tem evitado sair de casa sozinho(a) ou caminhar em calçadas irregulares por medo de cair?", opts: ["Saio sozinho(a) com segurança", "Evito apenas lugares muito esburacados", "Sim, não saio mais sozinho(a) por medo"] },
-        { q: "Seus pés costumam tropeçar ou 'enroscar' em tapetes, soleiras de porta ou pequenos degraus com facilidade?", opts: ["Não, levanto bem os pés", "Tropeço de vez em quando", "Sim, tropeço com muita facilidade"] }
+        { q: "Nos últimos 6 meses, você sofreu algum tombo ou escorregão?", opts: ["Não caí", "Tive 1 queda leve", "Sim, caí 2 vezes ou mais"] },
+        { q: "Você se apoia nos móveis ou paredes para andar em casa?", opts: ["Ando sem apoio", "Às vezes sinto tontura", "Sim, tenho medo de cair"] },
+        { q: "Ao levantar da cama ou cadeira, a vista escurece ou sente tontura?", opts: ["Nunca", "Raramente", "Sim, quase toda vez"] },
+        { q: "Tem evitado sair de casa sozinho(a) por medo de cair?", opts: ["Saio sozinho(a)", "Evito calçadas ruins", "Sim, não saio sozinho(a)"] },
+        { q: "Seus pés costumam tropeçar em tapetes ou degraus com facilidade?", opts: ["Não", "De vez em quando", "Sim, tropeço muito"] }
       ],
       insonia: [
-        { q: "Quando você deita, a sua mente não desliga e você rola na cama por mais de 30 minutos até conseguir dormir?", opts: ["Durmo rápido e bem", "Acontece em dias de preocupação", "Sim, demoro muito para pegar no sono"] },
-        { q: "Você costuma acordar de madrugada e não consegue mais voltar a dormir de jeito nenhum?", opts: ["Durmo a noite toda", "Acordo, mas volto a dormir", "Desperto de madrugada e fico acordado(a)"] },
-        { q: "Durante o dia, você se sente tão cansado(a) que precisa cochilar várias vezes para aguentar a rotina?", opts: ["Não, fico bem durante o dia", "Tiro apenas um cochilo curto à tarde", "Sinto muito sono e cansaço o dia inteiro"] },
-        { q: "Você sente uma vontade incontrolável de mexer as pernas ou sente 'formigamentos' quando deita para dormir?", opts: ["Não sinto nada nas pernas", "Raramente, após dias agitados", "Sim, sinto muita agonia nas pernas à noite"] },
-        { q: "Alguém já comentou que você ronca muito alto ou que parece 'parar de respirar' (apneia) durante o sono?", opts: ["Não ronco / Nunca me falaram", "Dizem que ronco um pouco", "Sim, me disseram que ronco alto e tenho apneia"] }
-      ],
-      humor: [
-        { q: "Você tem se sentido muito triste, sem esperança ou com vontade de chorar sem um motivo claro?", opts: ["Me sinto bem e feliz", "Tenho dias ruins, como todo mundo", "Me sinto triste e sem energia quase todos os dias"] },
-        { q: "Atividades que antes te davam muita alegria (ver os netos, cozinhar, ler) perderam a graça?", opts: ["Continuo adorando meus hobbies", "Diminuí um pouco o ritmo", "Não tenho mais vontade de fazer nada disso"] },
-        { q: "Você tem preferido ficar sozinho(a) no seu quarto em vez de receber visitas ou conversar com a família?", opts: ["Adoro companhia", "Às vezes prefiro meu canto", "Sim, tenho evitado o contato com as pessoas"] },
-        { q: "Como está a sua paciência? Sente-se muito irritado(a) ou 'estourando' por motivos pequenos ultimamente?", opts: ["Sou bem calmo(a)", "Tenho meus momentos de estresse", "Sim, perco a paciência com muita facilidade"] },
-        { q: "Você tem tido pensamentos de que é um 'peso' para a família ou sentimentos fortes de inutilidade?", opts: ["De forma alguma", "Às vezes me sinto um pouco inútil", "Sim, tenho esses pensamentos frequentemente"] }
-      ],
-      nutricao: [
-        { q: "Na hora das refeições, você sente que a comida perdeu o sabor ou não tem vontade nenhuma de comer?", opts: ["Meu apetite está ótimo", "Diminuiu um pouco, mas como", "Não sinto fome e a comida parece não ter gosto"] },
-        { q: "Você tem engasgado com frequência, tossido ao beber água ou sentido dificuldade para engolir carnes?", opts: ["Mastigo e engulo perfeitamente", "Às vezes com alimentos mais secos", "Sim, tenho muito medo de engasgar"] },
-        { q: "Como está o uso da sua prótese dentária (dentadura)? Ela machuca ou fica solta ao mastigar?", opts: ["Não uso / Minha prótese é perfeita", "Incomoda um pouco às vezes", "Machuca muito, acabo comendo só coisas pastosas"] },
-        { q: "Você tem pulado refeições importantes (como o almoço) porque sente preguiça ou dificuldade de preparar a comida?", opts: ["Faço todas as refeições", "Pulo raramente quando estou com pressa", "Sim, acabo substituindo por lanches rápidos"] },
-        { q: "Seu intestino funciona regularmente ou você sofre com prisão de ventre constante que causa desconforto?", opts: ["Funciona perfeitamente todo dia", "Às vezes fica preso", "Sofro muito com prisão de ventre"] }
-      ],
-      mobilidade: [
-        { q: "Se você estiver sentado(a) em uma poltrona macia, consegue levantar sem usar os braços para se empurrar?", opts: ["Levanto com facilidade", "Preciso usar um pouco os braços", "Não consigo levantar sem apoio ou ajuda"] },
-        { q: "Para caminhar na rua ou ir à padaria, você sente que suas pernas estão fracas ou não obedecem direito?", opts: ["Caminho super bem", "Sinto um pouco de cansaço", "Minhas pernas pesam e evito sair a pé"] },
-        { q: "Como é subir ou descer um lance de escadas para você hoje?", opts: ["Subo sem problemas", "Subo devagar e segurando no corrimão", "É muito doloroso ou impossível para mim"] },
-        { q: "Você precisa parar para descansar várias vezes enquanto faz tarefas domésticas simples (como varrer a casa)?", opts: ["Faço tudo direto", "Paro uma vez para respirar", "Sim, preciso descansar a todo momento"] },
-        { q: "Como é a flexibilidade para calçar meias, sapatos ou cortar as unhas dos pés?", opts: ["Alcanço os pés com facilidade", "Sinto um pouco de dificuldade", "Não consigo alcançar, preciso que alguém faça"] }
-      ],
-      geral: [
-        { q: "Olhando para sua saúde hoje, você sente que está no controle ou que precisa de muita ajuda para o dia a dia?", opts: ["Sou totalmente independente", "Preciso de ajuda em tarefas pesadas", "Dependo de outras pessoas para quase tudo"] },
-        { q: "Quantos médicos de especialidades diferentes você visita e quantos remédios toma por dia atualmente?", opts: ["Apenas rotina e poucos remédios", "Alguns médicos e cerca de 3 a 4 remédios", "Muitos médicos diferentes e mais de 5 remédios"] },
-        { q: "Você sente que a sua família entende o que você está passando ou falta orientação profissional para eles também?", opts: ["Minha família me apoia muito bem", "Fazemos o possível, mas temos dúvidas", "Estamos todos perdidos e sobrecarregados"] },
-        { q: "Você precisou ser internado(a) ou ir ao pronto-socorro mais de uma vez nos últimos 12 meses?", opts: ["Nenhuma vez", "Fui apenas 1 vez", "Sim, fui ao pronto-socorro 2 vezes ou mais"] },
-        { q: "Quando você pensa no futuro da sua saúde nos próximos 5 anos, qual é o seu maior sentimento?", opts: ["Me sinto seguro(a) e preparado(a)", "Tenho algumas incertezas normais", "Tenho muito medo de perder minha independência"] }
+        { q: "Rola na cama por mais de 30 minutos antes de pegar no sono?", opts: ["Durmo rápido", "Às vezes", "Sim, demoro muito"] },
+        { q: "Costuma acordar de madrugada e não consegue voltar a dormir?", opts: ["Durmo a noite toda", "Acordo, mas volto a dormir", "Fico acordado(a) direto"] },
+        { q: "Sente sono excessivo e precisa cochilar várias vezes ao dia?", opts: ["Não", "Tiro um cochilo curto", "Sinto sono o dia todo"] },
+        { q: "Sente 'formigamento' ou agonia nas pernas ao deitar?", opts: ["Não", "Raramente", "Sim, muita agonia"] },
+        { q: "Dizem que você ronca muito alto ou para de respirar à noite?", opts: ["Não ronco", "Ronco um pouco", "Sim, ronco e tenho apneia"] }
       ]
     };
-    
 
     let currentDisease = '';
-    let currentQuestionIndex = 0;
-    let quizScore = 0;
+    let currentIndex = 0;
+    let score = 0;
 
-    function startDiseaseQuiz(diseaseKey) {
-      currentDisease = diseaseKey;
-      currentQuestionIndex = 0;
-      quizScore = 0;
-      
-      const selector = document.getElementById('step-selector');
-      selector.style.opacity = '0';
-      
-      setTimeout(() => {
-        selector.classList.remove('active');
-        selector.style.opacity = '';
-        
-        const flowArea = document.getElementById('quiz-flow-area');
-        flowArea.classList.add('active');
-        
-        // MÁGICA 1: Mostra a barra de progresso
+    function startDiseaseQuiz(key) {
+        currentDisease = key;
+        currentIndex = 0;
+        score = 0;
+        document.getElementById('step-selector').style.display = 'none';
         document.getElementById('progressWrapper').style.display = 'block';
-        
-        renderQuestion();
-      }, 300);
+        document.getElementById('quiz-flow-area').style.display = 'block';
+        render();
     }
 
-    function renderQuestion() {
-      const questionsList = questionnaires[currentDisease];
-      const container = document.getElementById('dynamic-question-container');
-      
-      if (currentQuestionIndex < questionsList.length) {
-        const currentQ = questionsList[currentQuestionIndex];
+    function render() {
+        const list = questionnaires[currentDisease];
+        const container = document.getElementById('dynamic-question-container');
         
-        // MÁGICA 2: Faz o cálculo e enche a barra dourada
-        const currentQNum = currentQuestionIndex + 1;
-        const progressPercent = (currentQNum / questionsList.length) * 100;
-        
-        document.getElementById('textoEtapa').innerText = `Pergunta ${currentQNum} de ${questionsList.length}`;
-        document.getElementById('barraEtapa').style.width = `${progressPercent}%`;
+        if (currentIndex < list.length) {
+            const item = list[currentIndex];
+            const prog = ((currentIndex + 1) / list.length) * 100;
+            document.getElementById('barraEtapa').style.width = prog + '%';
+            document.getElementById('textoEtapa').innerText = `Pergunta ${currentIndex + 1} de ${list.length}`;
 
-        let optionsHTML = '';
-  
-        currentQ.opts.forEach((opt, index) => {
-          optionsHTML += `<button class="quiz-option" onclick="nextQuestion(${index})">${opt}</button>`;
-        });
+            let optsHtml = '';
+            item.opts.forEach((o, i) => {
+                optsHtml += `<button class="quiz-option" onclick="next(${i})"><span class="option-circle"></span>${o}</button>`;
+            });
 
-        container.innerHTML = `
-          <div class="quiz-question">${currentQ.q}</div>
-          <div class="quiz-options">${optionsHTML}</div>
-        `;
-      } else {
-        const flowArea = document.getElementById('quiz-flow-area');
-        flowArea.classList.remove('active');
-        
-        // MÁGICA 3: Esconde a barra na tela final de resultado
-        document.getElementById('progressWrapper').style.display = 'none';
-
-        gerarResultadoDinamico();
-        
-        document.getElementById('step-result').classList.add('active');
-        document.getElementById('tela-resultado').style.display = 'block';
-      }
-    }
-
-    function nextQuestion(pontosDaResposta) {
-      quizScore += pontosDaResposta; // Soma os pontos
-      
-      const container = document.getElementById('dynamic-question-container');
-      container.style.opacity = '0';
-      container.style.transform = 'translateY(-10px)';
-
-      setTimeout(() => {
-        currentQuestionIndex++;
-        renderQuestion();
-        container.style.opacity = '1';
-        container.style.transform = 'translateY(0)';
-      }, 250);
-    }
-
-
-    function gerarResultadoDinamico() {
-        const tituloEl = document.getElementById('resultado-titulo');
-        const texto1El = document.getElementById('resultado-texto1');
-        const texto2El = document.getElementById('resultado-texto2');
-
-        if (quizScore <= 3) {
-            // CENÁRIO BOM (Prevenção)
-            tituloEl.innerText = "Sua saúde parece estar em um bom caminho!";
-            texto1El.innerHTML = "Com base nas suas respostas, não identificamos sinais graves de alerta no momento. Isso é excelente!";
-            texto2El.innerHTML = "Ainda assim, o envelhecimento saudável exige manutenção. A <strong>Dra. Raiane Vicente</strong> realiza consultas preventivas para garantir que você continue com toda a sua autonomia e energia por muitos anos.";
-        } else if (quizScore <= 6) {
-            // CENÁRIO MÉDIO (Atenção)
-            tituloEl.innerText = "Alguns sinais merecem atenção preventiva.";
-            texto1El.innerHTML = "Identificamos pequenos desconfortos na sua rotina que, se ignorados, podem limitar sua qualidade de vida futuramente.";
-            texto2El.innerHTML = "A boa notícia é que com a Avaliação Geriátrica Ampla (AGA) da <strong>Dra. Raiane Vicente</strong>, é possível investigar a raiz desses sintomas e criar um plano para devolver seu bem-estar antes que o quadro avance.";
+            container.innerHTML = `<div class="quiz-question">${item.q}</div><div class="quiz-options">${optsHtml}</div>`;
         } else {
-            // CENÁRIO RUIM (Urgente - O que você já tinha)
-            tituloEl.innerText = "Seus sinais merecem atenção especializada.";
-            texto1El.innerHTML = "Identificamos pontos importantes na sua rotina que já estão limitando a sua qualidade de vida. Muitas pessoas acham que isso é 'normal da idade', <strong>mas não é verdade</strong>.";
-            texto2El.innerHTML = "O envelhecimento deve ser vivido com autonomia. A <strong>Dra. Raiane Vicente</strong> realiza a Avaliação Geriátrica Ampla (AGA) para investigar a fundo esses sintomas e criar um plano de cuidado personalizado para você.";
+            showResult();
+        }
+    }
+
+    function next(pts) {
+        score += pts;
+        currentIndex++;
+        render();
+    }
+
+    function showResult() {
+        document.getElementById('quiz-flow-area').style.display = 'none';
+        document.getElementById('progressWrapper').style.display = 'none';
+        document.getElementById('step-result').style.display = 'block';
+
+        const t = document.getElementById('resultado-titulo');
+        const p1 = document.getElementById('resultado-texto1');
+        const p2 = document.getElementById('resultado-texto2');
+
+        if (score <= 3) {
+            t.innerText = "Sua saúde parece estável!";
+            p1.innerText = "Não identificamos sinais graves no momento, o que é excelente para sua longevidade.";
+            p2.innerText = "Continue com bons hábitos e considere uma consulta preventiva com a Dra. Raiane para planejar o futuro.";
+        } else {
+            t.innerText = "Atenção: Identificamos sinais de alerta.";
+            p1.innerText = "Suas respostas indicam que alguns sintomas já estão impactando sua autonomia e qualidade de vida.";
+            p2.innerText = "Recomendamos uma Avaliação Geriátrica Ampla com a Dra. Raiane para investigar as causas e iniciar o tratamento adequado.";
         }
     }
 
     function resetQuiz() {
-      document.getElementById('step-result').classList.remove('active');
-      const selector = document.getElementById('step-selector');
-      selector.classList.add('active');
-      document.getElementById('tela-resultado').style.display = 'none';
-      
-      // Esconde a barra ao voltar para o menu
-      document.getElementById('progressWrapper').style.display = 'none';
+        location.reload();
     }
-    
-    // -----------------------------------------------------
-// BARRA DE LEITURA (SCROLL PROGRESS)
-// -----------------------------------------------------
-window.addEventListener('scroll', () => {
-    const scrollBar = document.getElementById('scrollBar');
-    if (scrollBar) {
-        // Calcula quanto o usuário já desceu e quanto falta
-        const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-        const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        
-        // Transforma em porcentagem (0 a 100)
-        const scrollPercentage = (scrollTop / scrollHeight) * 100;
-        scrollBar.style.width = scrollPercentage + '%';
-    }
-});
-  </script>
+</script>
 
 </body>
 </html>
