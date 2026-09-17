@@ -50,11 +50,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <!-- ========================================== -->
-    <!-- CABEÇALHO E MENU NAVEGAÇÃO                 -->
-    <!-- ========================================== -->
-    <header>
+<header>
         <div class="header-container">
             <div class="logo">
                 <a href="index.html">
@@ -62,22 +58,20 @@
                 </a>
             </div>
             
-            <!-- Botão Menu Mobile -->
             <button class="menu-toggle" aria-label="Abrir menu">☰</button>
             
             <nav class="nav-menu">
                 <ul class="nav-links">
-                    <li><a href="#inicio">Início</a></li>
-                    <li><a href="#sobre">Dra. Raiane</a></li>
-                    <li><a href="#especialidades">Especialidades</a></li>
-                    <li><a href="#contato">Contato</a></li>
-                    <li><a href="quiz.html" class="btn-menu-quiz">Fazer Teste</a></li>
-                    <li><a href="https://api.whatsapp.com/send/?phone=5511950460616&text=Olá!%20Vim%20pelo%20site..." class="btn-agendar" target="_blank">Agendar consulta</a></li>
+                    <li><a href="#inicio">INÍCIO</a></li>
+                    <li><a href="#sobre">DRA. RAIANE</a></li>
+                    <li><a href="#especialidades">ESPECIALIDADES</a></li>
+                    <li><a href="#contato">CONTATO</a></li>
+                    <li><a href="quiz.html" class="btn-menu-quiz">FAZER TESTE</a></li>
+                    <li><a href="https://api.whatsapp.com/send/?phone=5511950460616" class="btn-agendar" target="_blank">AGENDAR CONSULTA</a></li>
                 </ul>
             </nav>
         </div>
-        
-        <!-- BARRA DE PROGRESSO DO SCROLL (Efeito Glow) -->
+        <!-- BARRA DE PROGRESSO DO SCROLL (Glow) -->
         <div class="scroll-progress-container">
             <div class="scroll-progress-bar" id="scrollBar"></div>
         </div>
@@ -87,24 +81,38 @@
         <!-- ========================================== -->
         <!-- SEÇÃO INÍCIO (HERO)                        -->
         <!-- ========================================== -->
-        <section id="inicio" class="hero">
-            <div class="hero-container">
-                <div class="hero-content">
-                    <span class="hero-badge">Saúde, Vitalidade e Longevidade</span>
-                    <h1>Cuidado médico contínuo e personalizado em cada fase.</h1>
-                    <p class="hero-description">Integramos saúde física, cognitiva e emocional para que você desfrute da vida com máxima autonomia e segurança.</p>
-                    
-                    <div class="hero-buttons">
-                        <a href="https://api.whatsapp.com/send/?phone=5511950460616" class="btn-whatsapp-main" target="_blank">Agendar Avaliação</a>
-                        <a href="#sobre" class="btn-secondary-link">Conheça minha trajetória &rarr;</a>
-                    </div>
-                </div>
+        <section class="hero" id="inicio">
+        <div class="container hero-grid">
+            
+            <div class="hero-content">
+                <div class="crm-tag-luxury">CRM 180911-SP</div>
                 
-                <div class="hero-image-wrapper">
-                    <img src="webp (redimensionado)/dra-raiane.webp" alt="Dra. Raiane dos Santos Vicente" class="main-photo" loading="lazy">
+                <div class="hero-badge">SAÚDE, VITALIDADE E LONGEVIDADE</div>
+                
+                <h1 class="hero-title">
+                    Cuidado médico contínuo e personalizado <em>em cada fase da sua trajetória.</em>
+                </h1>
+                
+                <p class="hero-description">
+                    Integramos saúde física, cognitiva e emocional para que você desfrute da vida com máxima autonomia e segurança.
+                </p>
+                
+                <a href="#sobre" class="btn-trajetoria-gold">Minha Trajetória</a>
+            </div>
+
+            <div class="hero-image-area">
+                <img src="webp (redimensionado)/dra-raiane.webp" alt="Dra. Raiane Vicente" class="photo-main">
+                
+                <!-- Doctoralia Circular Estático -->
+                <div class="doctoralia-circle">
+                    <img src="IMG/logo_doctor.png" class="doc-logo" alt="Doctoralia">
+                    <div class="stars">★★★★★</div>
+                    <span class="doc-text">Verificada</span>
                 </div>
             </div>
-        </section>
+
+        </div>
+    </section>
 
         <!-- ========================================== -->
         <!-- SEÇÃO SOBRE A DRA. RAIANE                  -->
