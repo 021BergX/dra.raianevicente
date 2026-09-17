@@ -1,28 +1,17 @@
 /* =========================================
-   1. VARIÁVEIS E CONFIGURAÇÕES GERAIS
+   1. CONFIGURAÇÕES GERAIS
    ========================================= */
 :root {
-    --primary-blue: #1b2a47;    /* Azul Marinho (Autoridade) */
-    --gold-accent: #c5a059;      /* Dourado (Premium) */
-    --pastel-bg: #fdfbf8;       /* Fundo Areia/Pastel */
-    --text-dark: #333333;
+    --primary-blue: #1b2a47;
+    --gold-accent: #c5a059;
+    --pastel-bg: #fdfbf8;
     --white: #ffffff;
-    --glass-white: rgba(255, 255, 255, 0.75);
-    --whatsapp-green: #25d366;
+    --glass-white: rgba(255, 255, 255, 0.8);
     --font-heading: 'Playfair Display', serif;
     --font-body: 'Montserrat', sans-serif;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-    scroll-padding-top: 100px;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
     font-family: var(--font-body);
@@ -39,13 +28,11 @@ body {
 }
 
 /* =========================================
-   2. CABEÇALHO (GLASSMORPHISM)
+   2. HEADER (VIDRO FOSCO)
    ========================================= */
 header {
     position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
+    top: 0; width: 100%; z-index: 1000;
     background: var(--glass-white);
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
@@ -62,305 +49,157 @@ header {
     padding: 0 20px;
 }
 
-.logo-img {
-    height: 55px;
-    transition: transform 0.3s;
-}
+.logo-img { height: 50px; }
 
-.nav-links {
-    display: flex;
-    list-style: none;
-    gap: 25px;
-    align-items: center;
-}
+.nav-links { display: flex; list-style: none; gap: 25px; align-items: center; }
 
 .nav-links a {
     text-decoration: none;
     color: var(--primary-blue);
     font-weight: 500;
     font-size: 0.9rem;
-    transition: 0.3s;
-}
-
-.nav-links a:hover {
-    color: var(--gold-accent);
 }
 
 .btn-menu-quiz {
     padding: 8px 18px;
     border: 1px solid var(--gold-accent);
-    border-radius: 4px;
     color: var(--gold-accent) !important;
+    border-radius: 4px;
 }
 
 .btn-agendar {
-    background-color: var(--whatsapp-green);
+    background-color: #25d366;
     color: white !important;
     padding: 10px 22px;
     border-radius: 50px;
     font-weight: 600;
-    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.2);
-}
-
-/* Barra de leitura */
-.scroll-progress-container {
-    width: 100%;
-    height: 3px;
-    background: transparent;
-    position: absolute;
-    bottom: 0;
 }
 
 .scroll-progress-bar {
-    height: 100%;
-    background: var(--gold-accent);
-    width: 0%;
+    height: 3px; background: var(--gold-accent); width: 0;
+    position: absolute; bottom: 0;
 }
 
 /* =========================================
-   3. SEÇÃO HERO (INÍCIO)
+   3. HERO SECTION
    ========================================= */
 .hero {
     padding: 160px 0 80px 0;
-    background: radial-gradient(circle at top right, #ffffff, var(--pastel-bg));
     min-height: 90vh;
     display: flex;
     align-items: center;
+    background: radial-gradient(circle at top right, #ffffff, var(--pastel-bg));
 }
 
 .hero-container {
     display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
+    grid-template-columns: 1fr 1fr;
     align-items: center;
     gap: 50px;
 }
 
 .hero-badge {
     display: inline-block;
-    padding: 6px 14px;
+    padding: 5px 12px;
     background: rgba(197, 160, 89, 0.1);
     color: var(--gold-accent);
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 1.5px;
     text-transform: uppercase;
-    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 700;
     margin-bottom: 10px;
 }
 
-.crm-text {
-    display: block;
-    font-size: 0.8rem;
-    color: #888;
-    margin-bottom: 20px;
-}
+.crm-text { display: block; font-size: 0.8rem; color: #888; margin-bottom: 15px; }
 
-.hero-content h1, .hero-content h2 {
+.hero-content h1 {
     font-family: var(--font-heading);
     font-size: 3rem;
     line-height: 1.2;
-    color: var(--primary-blue);
     margin-bottom: 25px;
 }
 
-.text-highlight {
-    color: var(--gold-accent);
-    font-style: italic;
-    font-weight: 400;
-}
-
-.hero-p {
-    font-size: 1.1rem;
-    color: #555;
-    margin-bottom: 35px;
-    max-width: 500px;
-}
+.text-highlight { color: var(--gold-accent); font-style: italic; }
 
 .btn-hero-outline {
     display: inline-block;
     padding: 15px 35px;
-    border: 1px solid var(--primary-blue);
+    border: 1.5px solid var(--primary-blue);
     color: var(--primary-blue);
     text-decoration: none;
     font-weight: 600;
-    transition: 0.3s;
 }
-
-.btn-hero-outline:hover {
-    background: var(--primary-blue);
-    color: white;
-}
-
-/* FOTO E SELO DOCTORALIA */
-.hero-image-area { position: relative; }
 
 .main-photo {
     width: 100%;
-    max-width: 420px;
+    max-width: 400px;
     border-radius: 12px;
     border: 10px solid white;
-    box-shadow: 0 30px 60px rgba(0,0,0,0.08);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.1);
 }
 
 .doctoralia-badge {
-    position: absolute;
-    bottom: -20px;
-    right: 0;
-    background: white;
-    padding: 12px 20px;
-    border-radius: 10px;
-    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border: 1px solid #f0f0f0;
-}
-
-.doctoralia-logo { height: 20px; margin-bottom: 5px; }
-.stars { color: #ffb400; font-size: 0.8rem; }
-.verificada { font-size: 10px; color: #888; font-weight: 700; text-transform: uppercase; }
-
-/* =========================================
-   4. ESPECIALIDADES (CARROSSEL)
-   ========================================= */
-.especialidades { padding: 80px 0; }
-
-.section-header { text-align: center; margin-bottom: 50px; }
-
-.carousel-wrapper {
-    position: relative;
-    display: flex;
-    align-items: center;
-}
-
-.carousel-track {
-    display: flex;
-    gap: 30px;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    padding: 20px 0;
-    scrollbar-width: none;
-}
-
-.carousel-track::-webkit-scrollbar { display: none; }
-
-.especialidade-card {
-    min-width: 300px;
-    background: white;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-    transition: 0.3s;
+    position: absolute; bottom: -20px; right: 0;
+    background: white; padding: 12px; border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
     text-align: center;
 }
 
-.especialidade-card:hover { transform: translateY(-10px); }
+/* =========================================
+   4. ESPECIALIDADES
+   ========================================= */
+.especialidades { padding: 80px 0; text-align: center; }
 
-.card-img-real {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
+.carousel-track {
+    display: flex; gap: 25px; overflow-x: auto;
+    padding: 30px 0; scrollbar-width: none;
+}
+.carousel-track::-webkit-scrollbar { display: none; }
+
+.especialidade-card {
+    min-width: 280px; background: white;
+    border-radius: 15px; overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
 }
 
-.especialidade-card h4 { padding: 20px 10px; font-size: 1.2rem; }
+.card-img-real { width: 100%; height: 200px; object-fit: cover; }
 
 /* =========================================
-   5. FAQ (ACCORDION)
+   5. FAQ (COM ANIMAÇÃO DO +)
    ========================================= */
-.secao-faq { padding: 80px 0; background: #fff; }
-
-.accordion-item { border-bottom: 1px solid #eee; }
+.secao-faq { padding: 80px 0; max-width: 800px; margin: 0 auto; }
 
 .accordion-header {
-    width: 100%;
-    padding: 20px 0;
-    background: none;
-    border: none;
-    display: flex;
-    justify-content: space-between;
-    align-items: center; /* Garante que o texto e o ícone fiquem alinhados */
-    font-family: var(--font-body);
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: var(--primary-blue);
-    cursor: pointer;
-    text-align: left;
+    width: 100%; padding: 20px 0; background: none; border: none;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 1.1rem; font-weight: 600; color: var(--primary-blue);
+    cursor: pointer; text-align: left;
 }
 
 .accordion-header .icon {
-    font-size: 26px;
-    font-weight: 300;
-    color: var(--gold-accent);
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); /* Animação suave */
-    display: inline-block;
-    line-height: 1;
+    font-size: 24px; color: var(--gold-accent);
+    transition: transform 0.4s ease;
 }
 
+.accordion-item.active .icon { transform: rotate(45deg); }
 
 .accordion-content {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease-out;
-}
-
-.accordion-content p { padding-bottom: 20px; color: #666; }
-
-/* =========================================
-   6. ANIMAÇÕES E AUXILIARES
-   ========================================= */
-.reveal {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.8s ease-out;
-}
-
-.reveal-visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.whatsapp-float {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    background: var(--whatsapp-green);
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-    z-index: 999;
+    max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out;
 }
 
 /* =========================================
-   7. RESPONSIVIDADE
+   6. ANIMAÇÕES
    ========================================= */
+.reveal { opacity: 0; transform: translateY(30px); transition: 0.8s; }
+.reveal-visible { opacity: 1; transform: translateY(0); }
+
+/* MOBILE */
 @media (max-width: 968px) {
     .hero-container { grid-template-columns: 1fr; text-align: center; }
-    .hero-image-area { display: flex; justify-content: center; margin-top: 40px; }
-    .doctoralia-badge { right: 50%; transform: translateX(50%); }
     .hero-content h1 { font-size: 2.2rem; }
-    
-    .menu-toggle {
-        display: block;
-        background: none;
-        border: none;
-        font-size: 2rem;
-        color: var(--primary-blue);
+    .nav-links { display: none; }
+    .nav-menu.ativo .nav-links {
+        display: flex; flex-direction: column;
+        position: absolute; top: 70px; left: 0; width: 100%;
+        background: white; padding: 20px;
     }
-
-    .nav-menu {
-        display: none; /* Controlado via JS */
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background: white;
-        flex-direction: column;
-        padding: 20px;
-    }
-
-    .nav-menu.ativo { display: flex; }
 }
